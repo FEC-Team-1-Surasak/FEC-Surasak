@@ -1,0 +1,30 @@
+{
+  "name": "fec",
+  "version": "1.0.0",
+  "description": "FEC",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "build": "webpack -d -watch",
+    "watch": "webpack -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FEC-Team-1-Surasak/FEC-Surasak.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FEC-Team-1-Surasak/FEC-Surasak/issues"
+  },
+  "homepage": "https://github.com/FEC-Team-1-Surasak/FEC-Surasak#readme",
+  "dependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.3",
+    "path": "^0.12.7",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^4.9.1"
+  }
+}
