@@ -3,7 +3,7 @@
 /* eslint-disable no-console */
 import React from 'react';
 import axios from 'axios';
-import Container from './Ratings_Reviews/Container';
+import Container from './Ratings_Reviews/Container.jsx';
 // import Overview from './Overview/Overview.jsx';
 
 export default class App extends React.Component {
