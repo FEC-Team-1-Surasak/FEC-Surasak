@@ -12,6 +12,10 @@ export default class App extends React.Component {
     this.getRandomProduct = this.getRandomProduct.bind(this);
   }
 
+  componentDidMount() {
+    this.getRandomProduct();
+  }
+
   getRandomProduct() {
     axios.get('/products')
       .then((products) => {
