@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import React from 'react';
 import axios from 'axios';
+import RatingsReviews from './Ratings_Reviews/RatingsReviews';
 
 export default class App extends React.Component {
   constructor() {
@@ -32,6 +33,11 @@ export default class App extends React.Component {
   }
 
   render() {
-    return <div>Hello, World</div>;
+    const { id } = this.state;
+    return (
+      <div>
+        <RatingsReviews productId={id} />
+      </div>
+    );
   }
 }
