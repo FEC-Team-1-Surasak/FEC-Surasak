@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
+    "start": "nodemon ./server",
     "build": "webpack -d -watch",
     "watch": "webpack -w",
     "lint": "./node_modules/.bin/eslint src"
@@ -24,6 +25,8 @@
     "@babel/preset-env": "^7.15.8",
     "@babel/preset-react": "^7.14.5",
     "babel-loader": "^8.2.3",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.14",
     "path": "^0.12.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
