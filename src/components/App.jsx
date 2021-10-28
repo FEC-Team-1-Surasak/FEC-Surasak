@@ -1,6 +1,9 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/extensions */
 /* eslint-disable no-console */
 import React from 'react';
 import axios from 'axios';
+import Questions from './QA/questions.jsx';
 
 export default class App extends React.Component {
   constructor() {
@@ -32,6 +35,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    return <div>Hello, World</div>;
+    return <Questions />;
   }
 }
