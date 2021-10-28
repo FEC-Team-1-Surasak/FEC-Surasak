@@ -11,11 +11,13 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/products', (req, res) => {
   const options = {
-    Authorization: config.API_KEY,
+    headers: {
+      Authorization: config.API_KEY,
+    },
   };
   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products?page=1&count=30', options)
     .then((products) => {
-      console.log(products.data);
+      res.status(200).json(products.data);
     })
     .catch((err) => {
       console.log(err);
