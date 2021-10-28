@@ -1,8 +1,10 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable react/no-unused-state */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-console */
 import axios from 'axios';
 import React from 'react';
+import ListContainer from './Subcomponents/ListContainer';
 
 export default class Container extends React.Component {
   constructor(props) {
@@ -20,8 +22,12 @@ export default class Container extends React.Component {
     this.getReviewMetaData(productId);
   }
 
-  getReviewData(id) {
-    axios.get(`/reviews/${id}`)
+  getReviewData(id, filter) {
+    if (!filter) {
+      filter = 'relevant';
+    }
+    // TODO: add list filter options.
+    axios.get(`/reviews/${id}/${filter}`)
       .then((reviews) => {
         this.setState({
           reviewData: reviews.data,
