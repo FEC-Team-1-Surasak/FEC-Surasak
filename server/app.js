@@ -31,9 +31,8 @@ app.get('/products/:product_id', (req, res) => {
       res.status(200).json(product.data);
     })
     .catch((err) => {
-      res.status(505).json(err);
+      res.status(500).json(err);
     });
 });
-
 
 module.exports = app;
