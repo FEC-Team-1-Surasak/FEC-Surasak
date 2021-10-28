@@ -3,8 +3,8 @@
 /* eslint-disable no-console */
 import React from 'react';
 import axios from 'axios';
-import RatingsReviews from './Ratings_Reviews/RatingsReviews';
-import Overview from './Overview/Overview.jsx';
+import Container from './Ratings_Reviews/Container';
+// import Overview from './Overview/Overview.jsx';
 
 export default class App extends React.Component {
   constructor() {
@@ -37,13 +37,12 @@ export default class App extends React.Component {
 
   render() {
     if (this.state.id === null) {
-      return <div></div>;
+      return <div />;
     }
-
     return (
       <>
         <div>Hello, World</div>
-        <Overview id={this.state.id} />
+        <Container productId={this.state.id} />
       </>
     );
   }
