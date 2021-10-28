@@ -3,11 +3,8 @@
 /* eslint-disable no-console */
 import React from 'react';
 import axios from 'axios';
-<<<<<<< HEAD
 import RatingsReviews from './Ratings_Reviews/RatingsReviews';
-=======
 import Overview from './Overview/Overview.jsx';
->>>>>>> f1d482ba4f9f839477795dcccd60f4b2a487959a
 
 export default class App extends React.Component {
   constructor() {
@@ -39,13 +36,6 @@ export default class App extends React.Component {
   }
 
   render() {
-<<<<<<< HEAD
-    const { id } = this.state;
-    return (
-      <div>
-        <RatingsReviews productId={id} />
-      </div>
-=======
     if (this.state.id === null) {
       return <div></div>;
     }
@@ -55,7 +45,6 @@ export default class App extends React.Component {
         <div>Hello, World</div>
         <Overview id={this.state.id} />
       </>
->>>>>>> f1d482ba4f9f839477795dcccd60f4b2a487959a
     );
   }
 }
