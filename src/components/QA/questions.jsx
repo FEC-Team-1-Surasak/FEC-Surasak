@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable import/extensions */
@@ -15,17 +16,17 @@ class Question extends React.Component {
     super(props);
 
     this.state = {
-      // will change id to props.id once the component is ready to be deployed
+      // will change id to this.props.id once the component is ready to be deployed
       id: '37355',
       list: [],
     };
   }
 
   componentDidMount() {
-    console.log('RUNNING')
     this.getlist(this.state.id);
   }
 
+  // get a list of quesitons from the API
   getlist() {
     axios.get('/qa/questions', { params: { product_id: this.state.id } })
       .then(
@@ -41,7 +42,7 @@ class Question extends React.Component {
   render() {
     return (
       <div className="question-list">
-        {this.state.list.map((question) => <IndividualQuestion question={question} />)}
+        {this.state.list.map((question) => <IndividualQuestion question={question} key={question.question_id} />)}
       </div>
 
     );
