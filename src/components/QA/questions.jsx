@@ -42,7 +42,7 @@ class Question extends React.Component {
   render() {
     return (
       <div className="question-list">
-        {this.state.list.map((question) => <IndividualQuestion question={question} key={question.question_id} />)}
+        {this.state.list.slice(0, 4).map((question) => <IndividualQuestion question={question} key={question.question_id} />)}
       </div>
 
     );
