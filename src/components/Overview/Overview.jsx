@@ -1,20 +1,21 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable import/extensions */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/no-unused-state */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import axios from 'axios';
-import OverviewDetails from './OverviewDetails.jsx';
+import ProductDescription from './ProductDescription.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.id,
+      // id: this.props.id,
+      id: 37315,
+      product: {},
       category: '',
-      name: '',
       price: '',
-      style: '',
     };
     this.getProductInfo = this.getProductInfo.bind(this);
   }
@@ -27,8 +28,8 @@ class Overview extends React.Component {
     axios.get(`/products/${this.state.id}`)
       .then((product) => {
         this.setState({
+          product: product.data,
           category: product.data.category,
-          name: product.data.name,
           price: product.data.default_price.slice(0, product.data.default_price.indexOf('.')),
         });
       })
@@ -44,9 +45,9 @@ class Overview extends React.Component {
         <a>Read all reviews</a>
         <br />
         <span>{this.state.category.toUpperCase()}</span>
-        <h3>{this.state.name}</h3>
+        <h2>{this.state.product.name}</h2>
         <span>${this.state.price}</span>
-        <OverviewDetails />
+        <ProductDescription product={this.state.product} />
       </div>
     );
   }
