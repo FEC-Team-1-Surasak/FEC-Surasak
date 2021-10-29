@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/extensions */
 /* eslint-disable no-console */
@@ -35,6 +36,9 @@ export default class App extends React.Component {
   }
 
   render() {
+    if (this.state.id === null) {
+      return <div> </div>;
+    }
     return <Questions />;
   }
 }
