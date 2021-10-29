@@ -38,22 +38,20 @@ app.get('/products/:product_id', (req, res) => {
 app.get('/reviews/:product_id/:filter', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews?product_id=${req.params.product_id}&count=1000&sort=${req.params.filter}`, options)
     .then((reviews) => {
-      console.log(reviews.data);
       res.status(200).json(reviews.data);
     })
     .catch((err) => {
-      res.status(err).send(err);
+      res.status(500).send(err);
     });
 });
 
 app.get('/reviews/meta/:product_id', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=${req.params.product_id}`, options)
     .then((reviews) => {
-      console.log(reviews.data);
       res.status(200).json(reviews.data);
     })
     .catch((err) => {
-      res.status(err).send(err);
+      res.status(500).send(err);
     });
 });
 
