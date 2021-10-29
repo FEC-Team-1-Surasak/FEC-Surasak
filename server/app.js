@@ -33,7 +33,8 @@ app.get('/qa/questions', (req, res) => {
       Authorization: config.API_KEY,
     },
   };
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=${req.query.product_id}`, options)
+
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=${req.query.product_id}&count=${req.query.count}`, options)
     .then((response) => {
       res.status(200).json(response.data);
     })

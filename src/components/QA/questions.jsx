@@ -28,7 +28,7 @@ class Question extends React.Component {
 
   // get a list of quesitons from the API
   getlist() {
-    axios.get('/qa/questions', { params: { product_id: this.state.id } })
+    axios.get('/qa/questions', { params: { product_id: this.state.id, count: 30 } })
       .then(
         (response) => {
           this.setState({ list: response.data.results });
