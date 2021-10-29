@@ -12,6 +12,7 @@
 import React from 'react';
 import axios from 'axios';
 import AddAnswer from './AddAnswer.jsx';
+import Answer from './Answer.jsx';
 
 class IndividualQuestion extends React.Component {
   constructor(props) {
@@ -19,11 +20,17 @@ class IndividualQuestion extends React.Component {
     this.state = {
       helpfulness: this.props.question.question_helpfulness,
       cnt: 0,
+      answers:[]
     };
     this.onClick = this.onClick.bind(this);
   }
   // get helpfulness information form api '/qa/questions'
   // data.results.question_helpfulness
+
+  // componentDidMount() {
+  //   this.getAnswer();
+  // }
+
 
   // click functions to update the counts of helpfulness
   onClick() {
@@ -53,6 +60,10 @@ class IndividualQuestion extends React.Component {
             )
           </span>
         </div>
+        <div>
+          <Answer question_id={this.props.question.question_id} />
+        </div>
+
         {/* <AddAnswer /> */}
       </div>
 

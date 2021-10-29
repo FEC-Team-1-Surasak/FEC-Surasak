@@ -11,6 +11,12 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
+const options = {
+  headers: {
+    Authorization: config.API_KEY,
+  }
+}
+
 app.get('/products', (req, res) => {
   const options = {
     headers: {
@@ -58,6 +64,19 @@ app.put('/qa/questions/:question_id/helpful', (req, res) => {
       },
     )
     .catch((err) => { console.log(err); });
+});
+
+// get request handler for answer list
+
+app.get('/qa/questions/:question_id/answers', (req, res) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.query.question_id}/answers`, options)
+    .then((response) => {
+      res.status(201).json(response.data);
+    })
+    .catch((err) => {
+      console.log('err');
+      res.status(500);
+    });
 });
 
 module.exports = app;
