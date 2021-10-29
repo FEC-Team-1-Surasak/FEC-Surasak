@@ -5,6 +5,11 @@
 import React from 'react';
 import axios from 'axios';
 import Questions from './QA/questions.jsx';
+/* eslint-disable import/extensions */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable no-console */
+
+import Overview from './Overview/Overview.jsx';
 
 export default class App extends React.Component {
   constructor() {
