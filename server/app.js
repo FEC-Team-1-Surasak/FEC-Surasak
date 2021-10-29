@@ -36,7 +36,7 @@ app.get('/qa/questions', (req, res) => {
 
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=${req.query.product_id}&count=${req.query.count}`, options)
     .then((response) => {
-      res.status(200).json(response.data);
+      res.status(201).json(response.data);
     })
     .catch((err) => {
       console.log('err');
@@ -54,7 +54,7 @@ app.put('/qa/questions/:question_id/helpful', (req, res) => {
   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question_id}/helpful`, null, options)
     .then(
       () => {
-        res.status(200).send('UPDATE THE RECORD');
+        res.status(204);
       },
     )
     .catch((err) => { console.log(err); });
