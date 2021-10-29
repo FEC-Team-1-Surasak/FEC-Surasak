@@ -41,7 +41,6 @@ export default class App extends React.Component {
 
     return (
       <>
-        <div>Hello, World</div>
         <Overview id={this.state.id} />
       </>
     );
