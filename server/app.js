@@ -26,21 +26,37 @@ app.get('/products', (req, res) => {
     });
 });
 
+// get request handler for questions
 app.get('/qa/questions', (req, res) => {
   const options = {
     headers: {
       Authorization: config.API_KEY,
     },
   };
-  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id='+ req.query.product_id, options)
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=${req.query.product_id}`, options)
     .then((response) => {
-      console.log('data is', response.data);
       res.status(200).json(response.data);
     })
     .catch((err) => {
       console.log('err');
       res.status(500);
     });
+});
+
+// put reqeust handler for questions
+app.put('/qa/questions/:question_id/helpful', (req, res) => {
+  const options = {
+    headers: {
+      Authorization: config.API_KEY,
+    },
+  };
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question_id}/helpful`, null, options)
+    .then(
+      () => {
+        res.status(200).send('UPDATE THE RECORD');
+      },
+    )
+    .catch((err) => { console.log(err); });
 });
 
 module.exports = app;
