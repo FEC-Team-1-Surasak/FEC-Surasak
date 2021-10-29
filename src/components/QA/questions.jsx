@@ -19,6 +19,7 @@ class Question extends React.Component {
       // will change id to this.props.id once the component is ready to be deployed
       id: '37355',
       list: [],
+
     };
   }
 
@@ -34,6 +35,9 @@ class Question extends React.Component {
           this.setState({ list: response.data.results });
         },
       )
+      // .then(
+      //   async function()
+      // )
       .catch(
         (err) => { console.log('ERROR'); },
       );
