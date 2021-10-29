@@ -5,7 +5,7 @@
 /* eslint-disable no-console */
 import axios from 'axios';
 import React from 'react';
-import ListContainer from './Subcomponents/ListContainer.jsx';
+// import ListContainer from './Subcomponents/ListContainer.jsx';
 
 export default class Container extends React.Component {
   constructor(props) {
@@ -58,7 +58,7 @@ export default class Container extends React.Component {
     console.log(reviewData.results);
     return (
       <>
-        <ListContainer reviews={reviewData.results} />
+        {/* <ListContainer reviews={reviewData.results} /> */}
       </>
     );
   }
