@@ -53,7 +53,7 @@ class Answer extends React.Component {
     return (
       <div>
         {/* redner up to 2 answers */}
-        {this.state.list.slice(0, 30).map((answer) => (
+        {this.state.list.slice(0, 2).map((answer) => (
           <div>
             <IndividualAnswer answer={answer} />
           </div>
