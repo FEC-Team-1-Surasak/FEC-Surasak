@@ -14,8 +14,8 @@ app.use(express.static(path.join(__dirname, '../public')));
 const options = {
   headers: {
     Authorization: config.API_KEY,
-  }
-}
+  },
+};
 
 app.get('/products', (req, res) => {
   const options = {
@@ -34,12 +34,6 @@ app.get('/products', (req, res) => {
 
 // get request handler for questions
 app.get('/qa/questions', (req, res) => {
-  const options = {
-    headers: {
-      Authorization: config.API_KEY,
-    },
-  };
-
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=${req.query.product_id}&count=${req.query.count}`, options)
     .then((response) => {
       res.status(201).json(response.data);
@@ -52,11 +46,6 @@ app.get('/qa/questions', (req, res) => {
 
 // put reqeust handler for questions
 app.put('/qa/questions/:question_id/helpful', (req, res) => {
-  const options = {
-    headers: {
-      Authorization: config.API_KEY,
-    },
-  };
   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question_id}/helpful`, null, options)
     .then(
       () => {
@@ -79,4 +68,17 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
     });
 });
 
+// put requst handler for answer
+
+app.put('/qa/answers/:answer_id/helpful', (req, res) => {
+  console.log(req.body.answer_id);
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${req.body.answer_id}/helpful`, null, options)
+    .then(
+      () => {
+        console.log('update')
+        res.status(204);
+      },
+    )
+    .catch((err) => { console.log(err); });
+});
 module.exports = app;
