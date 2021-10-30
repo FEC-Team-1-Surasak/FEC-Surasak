@@ -1,16 +1,20 @@
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable no-alert */
+/* eslint-disable react/sort-comp */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable no-console */
 /* eslint-disable react/no-unused-state */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import axios from 'axios';
+import IndividualAnswer from './individualAnswer.jsx';
 
 class Answer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      helpfulness: 0,
-      cnt: 0,
       list: [],
     };
     this.getAnswer = this.getAnswer.bind(this);
@@ -25,10 +29,10 @@ class Answer extends React.Component {
     axios.get('/qa/questions/:question_id/answers', { params: { question_id: this.props.question_id } })
       .then((response) => {
         this.setState({ list: response.data.results });
-        console.log(this.props.question_id, this.state.list);
       })
       .catch((err) => { console.log(err); });
   }
+
 
   render() {
     if (this.state.list.length === 0) {
@@ -38,18 +42,7 @@ class Answer extends React.Component {
       <div>
         {this.state.list.slice(0, 2).map((answer) => (
           <div>
-            <div className="answer">
-              {' '}
-              <b>A:</b>
-              {answer.body}
-            </div>
-            <div className="user-name">
-              by user
-              {answer.answerer_name === 'Seller' ? <b>Seller</b> : answer.answerer_name}
-              ,
-              {' '}
-              {new Date(answer.date).toLocaleDateString('en-US', {month: 'long', day: 'numeric', year: 'numeric'})}
-            </div>
+            <IndividualAnswer answer={answer} />
           </div>
         ))}
       </div>
