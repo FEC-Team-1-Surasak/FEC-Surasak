@@ -58,7 +58,6 @@ app.put('/qa/questions/:question_id/helpful', (req, res) => {
 // get request handler for answer list
 
 app.get('/qa/questions/:question_id/answers', (req, res) => {
-  console.log('count is', req.query.count)
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.query.question_id}/answers?count=${req.query.count}`, options)
     .then((response) => {
       res.status(201).json(response.data);
@@ -69,10 +68,21 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
     });
 });
 
-// put requst handler for answer
+// put requst handler for answer helpfulness
 
 app.put('/qa/answers/:answer_id/helpful', (req, res) => {
   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${req.body.answer_id}/helpful`, null, options)
+    .then(
+      () => {
+        res.status(204);
+      },
+    )
+    .catch((err) => { console.log(err); });
+});
+
+// put request handler for answer report
+app.put('/qa/answers/:answer_id/report', (req, res) => {
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${req.body.answer_id}/report`, null, options)
     .then(
       () => {
         res.status(204);
