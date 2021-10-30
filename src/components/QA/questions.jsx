@@ -1,3 +1,4 @@
+/* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable func-call-spacing */
 /* eslint-disable max-len */
 /* eslint-disable no-console */
@@ -18,10 +19,12 @@ class Question extends React.Component {
 
     this.state = {
       // will change id to this.props.id once the component is ready to be deployed
-      id: '37355',
+      id: '37366',
       list: [],
+      len: 2,
 
     };
+    this.getMoreAnswers = this.getMoreAnswers.bind(this);
   }
 
   componentDidMount() {
@@ -36,20 +39,23 @@ class Question extends React.Component {
           this.setState({ list: response.data.results });
         },
       )
-      // .then(
-      //   async function()
-      // )
       .catch(
         (err) => { console.log('ERROR'); },
       );
   }
 
+  getMoreAnswers() {
+    this.setState({ len: this.state.len + 2 });
+  }
+
   render() {
     return (
-      <div className="question-list">
-        {this.state.list.slice(0, 4).map((question) => <IndividualQuestion question={question} key={question.question_id} />)}
+      <div>
+        <div className="question-list">
+          {this.state.list.slice(0, this.state.len).map((question) => <IndividualQuestion question={question} key={question.question_id} />)}
+        </div>
+        {(this.state.list.length > 2 && this.state.len < this.state.list.length) ? <button onClick={this.getMoreAnswers} type="submit"> MORE ANSWERED QUESTIONS</button> : ''}
       </div>
-
     );
   }
 }
