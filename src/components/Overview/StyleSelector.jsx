@@ -19,7 +19,7 @@ class StyleSelector extends React.Component {
         <div>{<b>STYLE ></b>} SELECTED STYLE</div>
         <div>
           {this.props.styles.map(style => {
-            return <Thumbnail style={style} />;
+            return <Thumbnail style={style} updateStyle={this.props.updateStyle}/>;
           })}
         </div>
       </>

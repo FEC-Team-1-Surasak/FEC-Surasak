@@ -22,6 +22,7 @@ class Overview extends React.Component {
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getStyles = this.getStyles.bind(this);
+    this.updateStyle = this.updateStyle.bind(this);
   }
 
   componentDidMount() {
@@ -48,11 +49,19 @@ class Overview extends React.Component {
       .then((styleList) => {
         this.setState({
           styles: styleList.data.results,
+          currentStyle: styleList.data.results[0],
         });
       })
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  updateStyle(style) {
+    console.log(style);
+    this.setState({
+      currentStyle: style,
+    });
   }
 
   render() {
@@ -64,7 +73,7 @@ class Overview extends React.Component {
         <span>{this.state.category.toUpperCase()}</span>
         <h2>{this.state.product.name}</h2>
         <span>${this.state.price}</span>
-        <StyleSelector styles={this.state.styles} />
+        <StyleSelector styles={this.state.styles} updateStyle={this.updateStyle} />
         <ProductDescription product={this.state.product} />
       </div>
     );
