@@ -14,7 +14,7 @@ class Overview extends React.Component {
     super(props);
     this.state = {
       // id: this.props.id,
-      id: 37311,
+      id: 37325,
       product: {},
       styles: [],
       currentStyle: {},
@@ -25,13 +25,11 @@ class Overview extends React.Component {
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getStyles = this.getStyles.bind(this);
     this.updateStyle = this.updateStyle.bind(this);
-    this.setPrice = this.setPrice.bind(this);
   }
 
   componentDidMount() {
     this.getProductInfo();
     this.getStyles();
-    this.setPrice(this.state.currentStyle);
   }
 
   getProductInfo() {
@@ -54,6 +52,7 @@ class Overview extends React.Component {
         this.setState({
           styles: styleList.data.results,
           currentStyle: styleList.data.results[0],
+          isOnSale: !!styleList.data.results[0].sale_price,
         });
       })
       .catch((err) => {
@@ -65,12 +64,6 @@ class Overview extends React.Component {
     this.setState({
       currentStyle: style,
       isOnSale: !!style.sale_price,
-    });
-  }
-
-  setPrice(style) {
-    this.setState({
-      price: !!style.sale_price,
     });
   }
 
