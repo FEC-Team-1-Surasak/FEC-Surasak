@@ -6,6 +6,7 @@
 import React from 'react';
 import axios from 'axios';
 import ProductDescription from './ProductDescription.jsx';
+import StyleSelector from './StyleSelector.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -14,7 +15,8 @@ class Overview extends React.Component {
       // id: this.props.id,
       id: 37315,
       product: {},
-      styles: {},
+      styles: [],
+      currentStyle: null,
       category: '',
       price: '',
     };
@@ -62,6 +64,7 @@ class Overview extends React.Component {
         <span>{this.state.category.toUpperCase()}</span>
         <h2>{this.state.product.name}</h2>
         <span>${this.state.price}</span>
+        <StyleSelector styles={this.state.styles} />
         <ProductDescription product={this.state.product} />
       </div>
     );
