@@ -41,6 +41,11 @@ class IndividualAnswer extends React.Component {
           <b>A:</b>
           {this.props.answer.body}
         </div>
+        <div className="image">
+          {this.props.answer.photos.map(photo => (
+            <img src = {photo.url} width = '100' height = '50'></img>
+          ))}
+        </div>
         <div className="user-name">
           by user
           {this.props.answerer_name === 'Seller' ? <b>Seller</b> : this.props.answer.answer_name}
