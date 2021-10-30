@@ -24,13 +24,6 @@ class IndividualQuestion extends React.Component {
     };
     this.onClick = this.onClick.bind(this);
   }
-  // get helpfulness information form api '/qa/questions'
-  // data.results.question_helpfulness
-
-  // componentDidMount() {
-  //   this.getAnswer();
-  // }
-
 
   // click functions to update the counts of helpfulness
   onClick() {
