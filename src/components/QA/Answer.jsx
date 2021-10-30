@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable no-alert */
 /* eslint-disable react/sort-comp */
@@ -21,26 +22,38 @@ class Answer extends React.Component {
   }
 
   componentDidMount() {
-    this.getAnswer();
+    // callback function to move seller to the top of the answer list
+    this.getAnswer(() => {
+      const oldlist = this.state.list;
+      for (let i = 1; i < this.state.list.length; i++) {
+        if (oldlist[i].answerer_name === 'Seller') {
+          const temp = oldlist[i - 1];
+          oldlist[i - 1] = oldlist[i];
+          oldlist[i] = temp;
+        }
+      }
+      this.setState({ list: oldlist });
+    });
   }
 
   // get a list of answers for a quesiotns
-  getAnswer() {
-    axios.get('/qa/questions/:question_id/answers', { params: { question_id: this.props.question_id } })
+  getAnswer(callback) {
+    axios.get('/qa/questions/:question_id/answers', { params: { question_id: this.props.question_id, count: 30 } })
       .then((response) => {
         this.setState({ list: response.data.results });
       })
+      .then(callback)
       .catch((err) => { console.log(err); });
   }
 
-
   render() {
     if (this.state.list.length === 0) {
-      return <div>Loading...</div>;
+      return <div />;
     }
     return (
       <div>
-        {this.state.list.slice(0, 2).map((answer) => (
+        {/* redner up to 2 answers */}
+        {this.state.list.slice(0, 30).map((answer) => (
           <div>
             <IndividualAnswer answer={answer} />
           </div>
