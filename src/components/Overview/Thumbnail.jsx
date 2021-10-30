@@ -8,8 +8,13 @@ class Thumbnail extends React.Component {
   }
 
   render() {
+    const style = {
+      height: 50,
+      width: 50,
+      borderRadius: 30,
+    };
     return (
-      <img src={this.props.style.photos[0].thumbnail_url} />
+      <img style={style} src={this.props.style.photos[0].thumbnail_url} />
     );
   }
 }

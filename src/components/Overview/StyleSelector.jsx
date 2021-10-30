@@ -7,7 +7,6 @@ class StyleSelector extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentStyle: null,
     };
   }
 
@@ -16,11 +15,14 @@ class StyleSelector extends React.Component {
       return <></>;
     }
     return (
-      <div>
-        {this.props.styles.map(style => {
-          return <Thumbnail style={style} />;
-        })}
-      </div>
+      <>
+        <div>{<b>STYLE ></b>} SELECTED STYLE</div>
+        <div>
+          {this.props.styles.map(style => {
+            return <Thumbnail style={style} />;
+          })}
+        </div>
+      </>
     );
   }
 }
