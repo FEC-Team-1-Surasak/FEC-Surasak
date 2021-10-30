@@ -1,3 +1,4 @@
+/* eslint-disable func-call-spacing */
 /* eslint-disable max-len */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-expressions */
