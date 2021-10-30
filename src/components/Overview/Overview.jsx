@@ -1,3 +1,4 @@
+/* eslint-disable react/sort-comp */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable import/extensions */
 /* eslint-disable react/destructuring-assignment */
@@ -13,21 +14,24 @@ class Overview extends React.Component {
     super(props);
     this.state = {
       // id: this.props.id,
-      id: 37315,
+      id: 37311,
       product: {},
       styles: [],
-      currentStyle: null,
+      currentStyle: {},
       category: '',
       price: '',
+      isOnSale: '',
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getStyles = this.getStyles.bind(this);
     this.updateStyle = this.updateStyle.bind(this);
+    this.setPrice = this.setPrice.bind(this);
   }
 
   componentDidMount() {
     this.getProductInfo();
     this.getStyles();
+    this.setPrice(this.state.currentStyle);
   }
 
   getProductInfo() {
@@ -58,13 +62,32 @@ class Overview extends React.Component {
   }
 
   updateStyle(style) {
-    console.log(style);
     this.setState({
       currentStyle: style,
+      isOnSale: !!style.sale_price,
+    });
+  }
+
+  setPrice(style) {
+    this.setState({
+      price: !!style.sale_price,
     });
   }
 
   render() {
+    let price;
+    if (this.state.isOnSale) {
+      price = (
+        <>
+          <span>${this.state.currentStyle.sale_price}</span> {' '}
+          <span style={{ textDecorationLine: 'line-through', textDecorationStyle: 'solid' }}>
+            ${this.state.currentStyle.original_price}
+          </span>
+        </>
+      );
+    } else {
+      price = <span>${this.state.currentStyle.original_price}</span>;
+    }
     return (
       <div>
         <span>⭐️⭐️⭐️⭐️⭐️</span>
@@ -72,8 +95,12 @@ class Overview extends React.Component {
         <br />
         <span>{this.state.category.toUpperCase()}</span>
         <h2>{this.state.product.name}</h2>
-        <span>${this.state.price}</span>
-        <StyleSelector styles={this.state.styles} updateStyle={this.updateStyle} />
+        {price}
+        <StyleSelector
+          styles={this.state.styles}
+          currentStyle={this.state.currentStyle}
+          updateStyle={this.updateStyle}
+        />
         <ProductDescription product={this.state.product} />
       </div>
     );

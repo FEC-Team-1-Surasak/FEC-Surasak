@@ -16,10 +16,10 @@ class StyleSelector extends React.Component {
     }
     return (
       <>
-        <div>{<b>STYLE ></b>} SELECTED STYLE</div>
+        <div>{<b>STYLE > </b>}{this.props.currentStyle.name}</div>
         <div>
           {this.props.styles.map(style => {
-            return <Thumbnail style={style} updateStyle={this.props.updateStyle}/>;
+            return <Thumbnail style={style} updateStyle={this.props.updateStyle} />;
           })}
         </div>
       </>
