@@ -14,14 +14,17 @@ class Overview extends React.Component {
       // id: this.props.id,
       id: 37315,
       product: {},
+      styles: {},
       category: '',
       price: '',
     };
     this.getProductInfo = this.getProductInfo.bind(this);
+    this.getStyles = this.getStyles.bind(this);
   }
 
   componentDidMount() {
     this.getProductInfo();
+    this.getStyles();
   }
 
   getProductInfo() {
@@ -31,6 +34,18 @@ class Overview extends React.Component {
           product: product.data,
           category: product.data.category,
           price: product.data.default_price.slice(0, product.data.default_price.indexOf('.')),
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  getStyles() {
+    axios.get(`/products/${this.state.id}/styles`)
+      .then((styleList) => {
+        this.setState({
+          styles: styleList.data.results,
         });
       })
       .catch((err) => {
@@ -52,6 +67,5 @@ class Overview extends React.Component {
     );
   }
 }
-
 
 export default Overview;
