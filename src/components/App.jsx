@@ -44,6 +44,13 @@ export default class App extends React.Component {
     if (this.state.id === null) {
       return <div> </div>;
     }
-    return <Questions />;
+    return (
+      <div>
+        <h1> OVERVIEW PLACEHOLDER</h1>
+        <h1>RELATED PRODUCTS PLACEHOLDER</h1>
+        <Questions />
+        <h1>RATING & REVIEW PLACEHOLDER</h1>
+      </div>
+    );
   }
 }
