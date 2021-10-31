@@ -24,7 +24,7 @@ class Question extends React.Component {
       len: 2,
 
     };
-    this.getMoreAnswers = this.getMoreAnswers.bind(this);
+    this.getMoreQuestions = this.getMoreQuestions.bind(this);
   }
 
   componentDidMount() {
@@ -44,7 +44,7 @@ class Question extends React.Component {
       );
   }
 
-  getMoreAnswers() {
+  getMoreQuestions() {
     this.setState({ len: this.state.len + 2 });
   }
 
@@ -54,7 +54,7 @@ class Question extends React.Component {
         <div className="question-list">
           {this.state.list.slice(0, this.state.len).map((question) => <IndividualQuestion question={question} key={question.question_id} />)}
         </div>
-        {(this.state.list.length > 2 && this.state.len < this.state.list.length) ? <button onClick={this.getMoreAnswers} type="submit"> MORE ANSWERED QUESTIONS</button> : ''}
+        {(this.state.list.length > 2 && this.state.len < this.state.list.length) ? <button className="add-quetsions" onClick={this.getMoreQuestions} type="submit"> MORE ANSWERED QUESTIONS</button> : ''}
       </div>
     );
   }
