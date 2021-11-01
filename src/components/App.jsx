@@ -36,11 +36,12 @@ export default class App extends React.Component {
 
   render() {
     if (this.state.id === null) {
-      return <div></div>;
+      return <div />;
     }
 
     return (
       <>
+        <div>Hello, World</div>
         {/* <Overview id={this.state.id} /> */}
       </>
     );
