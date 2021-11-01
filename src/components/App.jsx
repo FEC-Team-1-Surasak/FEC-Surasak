@@ -5,11 +5,9 @@
 import React from 'react';
 import axios from 'axios';
 import Questions from './QA/questions.jsx';
-/* eslint-disable import/extensions */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable no-console */
+// import Overview from './Overview/Overview.jsx';
+// import Container from './Ratings_Reviews/Container.jsx';
 
-import Overview from './Overview/Overview.jsx';
 
 export default class App extends React.Component {
   constructor() {
@@ -44,6 +42,13 @@ export default class App extends React.Component {
     if (this.state.id === null) {
       return <div> </div>;
     }
-    return <Questions />;
+    return (
+      <>
+        <Questions />;
+        <div>Hello, World</div>
+        {/* <Overview id={this.state.id} /> */}
+        {/* <Container productId={this.state.id} /> */}
+      </>
+    )
   }
 }
