@@ -8,13 +8,14 @@ import React from 'react';
 import axios from 'axios';
 import ProductDescription from './ProductDescription.jsx';
 import StyleSelector from './StyleSelector.jsx';
+import AddToCart from './AddToCart.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       // id: this.props.id,
-      id: 37325,
+      id: 37322,
       product: {},
       styles: [],
       currentStyle: {},
@@ -94,6 +95,7 @@ class Overview extends React.Component {
           currentStyle={this.state.currentStyle}
           updateStyle={this.updateStyle}
         />
+        <AddToCart currentStyle={this.state.currentStyle} />
         <ProductDescription product={this.state.product} />
       </div>
     );
