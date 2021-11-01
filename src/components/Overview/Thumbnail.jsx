@@ -17,7 +17,7 @@ class Thumbnail extends React.Component {
       <img
         style={style}
         src={this.props.style.photos[0].thumbnail_url}
-        onClick={(e) => this.props.updateStyle(this.props.style)}
+        onClick={() => this.props.updateStyle(this.props.style)}
       />
     );
   }

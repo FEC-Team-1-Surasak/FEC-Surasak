@@ -72,14 +72,14 @@ class Overview extends React.Component {
     if (this.state.isOnSale) {
       price = (
         <>
-          <span>${this.state.currentStyle.sale_price}</span> {' '}
+          <span style={{ color: 'red' }}>${this.state.currentStyle.sale_price.slice(0, this.state.currentStyle.sale_price.indexOf('.'))}</span> {' '}
           <span style={{ textDecorationLine: 'line-through', textDecorationStyle: 'solid' }}>
-            ${this.state.currentStyle.original_price}
+            ${this.state.currentStyle.original_price.slice(0, this.state.currentStyle.original_price.indexOf('.'))}
           </span>
         </>
       );
-    } else {
-      price = <span>${this.state.currentStyle.original_price}</span>;
+    } else if (this.state.currentStyle.original_price !== undefined) {
+      price = <span>${this.state.currentStyle.original_price.slice(0, this.state.currentStyle.original_price.indexOf('.'))}</span>;
     }
     return (
       <div>
