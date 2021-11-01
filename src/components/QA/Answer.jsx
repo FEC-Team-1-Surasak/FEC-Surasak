@@ -64,7 +64,7 @@ class Answer extends React.Component {
       return <div />;
     }
     return (
-      <div>
+      <div className="answer-list">
         <div>
           {/* redner up to 2 answers */}
           {this.state.list.slice(0, this.state.len).map((answer) => (
@@ -73,7 +73,7 @@ class Answer extends React.Component {
             </div>
           ))}
         </div>
-        {(this.state.list.length > 2) ? <span className="add-answer" onClick={this.getMoreAnswers}><u>{this.state.loading}</u></span> : ''}
+        {(this.state.list.length > 2) ? <div className="add-answer" onClick={this.getMoreAnswers}><u>{this.state.loading}</u></div> : ''}
       </div>
     );
   }
