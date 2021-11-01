@@ -3,7 +3,7 @@
 /* eslint-disable no-console */
 import React from 'react';
 import axios from 'axios';
-import Overview from './Overview/Overview.jsx';
+// import Overview from './Overview/Overview.jsx';
 
 export default class App extends React.Component {
   constructor() {
@@ -41,7 +41,7 @@ export default class App extends React.Component {
 
     return (
       <>
-        <Overview id={this.state.id} />
+        {/* <Overview id={this.state.id} /> */}
       </>
     );
   }
