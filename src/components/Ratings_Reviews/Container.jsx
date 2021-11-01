@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable import/extensions */
 /* eslint-disable no-param-reassign */
 /* eslint-disable react/no-unused-state */
@@ -5,7 +6,7 @@
 /* eslint-disable no-console */
 import axios from 'axios';
 import React from 'react';
-// import ListContainer from './Subcomponents/ListContainer.jsx';
+import ReviewsList from './subcomponents/ReviewsList.jsx';
 
 export default class Container extends React.Component {
   constructor(props) {
@@ -39,6 +40,7 @@ export default class Container extends React.Component {
   }
 
   getReviewMetaData(id) {
+    console.log('ID>>', id);
     axios.get(`/reviews/meta/${id}`)
       .then((reviews) => {
         this.setState({
@@ -51,14 +53,15 @@ export default class Container extends React.Component {
   }
 
   render() {
-    const { reviewData } = this.state;
+    const { reviewData, metaData } = this.state;
     if (!reviewData.results) {
       return <div />;
     }
-    console.log(reviewData.results);
+    console.log('reviews', reviewData.results);
+    console.log('meta', metaData);
     return (
       <>
-        {/* <ListContainer reviews={reviewData.results} /> */}
+        <ReviewsList reviews={reviewData.results} />
       </>
     );
   }
