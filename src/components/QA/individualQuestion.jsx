@@ -1,3 +1,7 @@
+/* eslint-disable react/no-danger */
+/* eslint-disable space-infix-ops */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-alert */
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -20,9 +24,10 @@ class IndividualQuestion extends React.Component {
     this.state = {
       helpfulness: this.props.question.question_helpfulness,
       cnt: 0,
-      answers:[]
+      answers: [],
     };
     this.onClick = this.onClick.bind(this);
+    this.highlight = this.highlight.bind(this);
   }
 
   // click functions to update the counts of helpfulness
@@ -40,12 +45,41 @@ class IndividualQuestion extends React.Component {
     }
   }
 
+  // highklight the search term
+  highlight(term) {
+    if (term !== '') {
+      return (
+        <span>
+          {this.props.question.question_body.split(' ')
+            .map((item) => {
+              const index = item.toLowerCase().indexOf(term.toLowerCase());
+              if (index !== -1) {
+                const regex = new RegExp(term, 'gi');
+                const text = item.replace(regex, '<mark class="highlight">$&</mark>');
+
+                return (
+                  <span dangerouslySetInnerHTML={{ __html: `${text} ` }} />
+                );
+              }
+              return <span>{`${item}\xa0`}</span>;
+            })}
+        </span>
+      );
+    }
+
+    return (
+      <span>
+        {this.props.question.question_body}
+      </span>
+    );
+  }
+
   render() {
     return (
       <div className="question">
         <div className="question-body">
           <b> Q:</b>
-          {this.props.question.question_body}
+          {this.highlight(this.props.term)}
           <span>Helpful?</span>
           <span onClick={this.onClick}>
             Yes(
