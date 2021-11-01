@@ -1,0 +1,13 @@
+div.answer-list{
+  height: 50%,
+  overflow:scroll
+}
+
+div.question-list{
+  height:25%;
+  overflow: scroll;
+}
+
+mark{
+  background-color: yellow;
+}
