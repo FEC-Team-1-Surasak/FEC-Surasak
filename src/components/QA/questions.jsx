@@ -57,18 +57,13 @@ class Question extends React.Component {
     this.setState({ len: this.state.len + 2 });
   }
 
+  // onChange funciton to handle the search component
   onChange(e) {
     this.setState({ term: e.target.value }, () => {
       if (this.state.term.length >= 3) {
-        const filtered = this.state.list.filter(
+        const filtered = this.state.list.slice(0, this.state.len).filter(
           (question) => question.question_body.toLowerCase().includes(this.state.term.toLowerCase()),
         );
-      //  filtered.map((list) => {
-      //     const item = list.question_body.toLowerCase();
-
-      //  });
-
-
         this.setState({ filteredList: filtered });
       } else {
         this.setState({ filteredList: this.state.list });
