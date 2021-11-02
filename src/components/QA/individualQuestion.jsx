@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/no-danger */
 /* eslint-disable space-infix-ops */
 /* eslint-disable no-unused-expressions */
@@ -15,8 +16,8 @@
 /* eslint-disable react/jsx-no-undef */
 import React from 'react';
 import axios from 'axios';
-import AddAnswer from './AddAnswer.jsx';
 import Answer from './Answer.jsx';
+import AnswerModal from './AnswerModal.jsx';
 
 class IndividualQuestion extends React.Component {
   constructor(props) {
@@ -25,9 +26,12 @@ class IndividualQuestion extends React.Component {
       helpfulness: this.props.question.question_helpfulness,
       cnt: 0,
       answers: [],
+      modal: false,
     };
     this.onClick = this.onClick.bind(this);
     this.highlight = this.highlight.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   // click functions to update the counts of helpfulness
@@ -74,6 +78,15 @@ class IndividualQuestion extends React.Component {
     );
   }
 
+  showModal() {
+    this.setState({ modal: true });
+  }
+
+  closeModal() {
+    this.setState({ modal: false });
+  }
+
+  // render body
   render() {
     return (
       <div className="question">
@@ -86,12 +99,22 @@ class IndividualQuestion extends React.Component {
             {this.state.helpfulness}
             )
           </span>
+          <span onClick={this.showModal}>
+            <u>Add Answer</u>
+
+          </span>
+          {this.state.modal ? (
+            <AnswerModal
+              show={this.showModel}
+              close={this.closeModal}
+              name={this.props.productname}
+              question={this.props.question}
+            />
+          ):null}
         </div>
         <div>
           <Answer question_id={this.props.question.question_id} />
         </div>
-
-        {/* <AddAnswer /> */}
       </div>
 
     );
