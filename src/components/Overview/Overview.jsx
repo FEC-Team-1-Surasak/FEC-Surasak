@@ -14,18 +14,20 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.id,
-      // id: 37322,
+      // id: this.props.id,
+      id: 37322,
       product: {},
       styles: [],
       currentStyle: {},
       category: '',
       price: '',
       isOnSale: '',
+      cart: [],
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getStyles = this.getStyles.bind(this);
     this.updateStyle = this.updateStyle.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   componentDidMount() {
@@ -68,6 +70,17 @@ class Overview extends React.Component {
     });
   }
 
+  addToCart(item) {
+    this.setState({
+      cart: [...this.state.cart, {
+        name: item.name,
+        style: item.style,
+        size: item.size,
+        qty: item.qty,
+      }],
+    });
+  }
+
   render() {
     let price;
     if (this.state.isOnSale) {
@@ -95,13 +108,15 @@ class Overview extends React.Component {
           currentStyle={this.state.currentStyle}
           updateStyle={this.updateStyle}
         />
-        <AddToCart currentStyle={this.state.currentStyle} />
+        <AddToCart
+          currentStyle={this.state.currentStyle}
+          addToCart={this.addToCart}
+          product={this.state.product}
+        />
         <ProductDescription product={this.state.product} />
       </div>
     );
   }
 }
-
-
 
 export default Overview;

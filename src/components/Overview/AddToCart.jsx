@@ -12,15 +12,21 @@ class AddToCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentStyle: {},
+      sku: '',
       size: '',
       quantity: '',
+      bagQty: 1,
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
-    console.log('clicked!');
+    this.props.addToCart({
+      name: this.props.product.name,
+      style: this.props.currentStyle.name,
+      size: this.state.size,
+      qty: this.state.bagQty,
+    });
   }
 
   render() {
@@ -30,18 +36,18 @@ class AddToCart extends React.Component {
 
     const qtyCount = [];
     if (this.state.quantity < 15) {
-      for (let i = 1; i <= this.state.quantity; i++) {
+      for (let i = 2; i <= this.state.quantity; i++) {
         qtyCount.push(i);
       }
     } else {
-      for (let i = 1; i <= 15; i++) {
+      for (let i = 2; i <= 15; i++) {
         qtyCount.push(i);
       }
     }
 
     return (
       <>
-        <select onChange={(e) => { this.setState({ size: e.target.value, quantity: this.props.currentStyle.skus[e.target.value].quantity }); }} name="selectSize" id="selectSize">
+        <select onChange={(e) => { this.setState({ sku: e.target.value, quantity: this.props.currentStyle.skus[e.target.value].quantity, size: this.props.currentStyle.skus[e.target.value].size }); }} >
           <option>Select Size</option>
           {Object.keys(this.props.currentStyle.skus).map(sku => {
             const size = this.props.currentStyle.skus[sku].size;
@@ -52,7 +58,7 @@ class AddToCart extends React.Component {
           })}
         </select>
         {' '}
-        <select name="selectQty" id="selectQty">
+        <select onChange={(e) => { this.setState({ bagQty: e.target.value }); }}>
           <option>{this.state.size === '' ? '-' : 1}</option>
           {qtyCount.map(digit => {
             return <option value={digit}>{digit}</option>;
@@ -66,7 +72,5 @@ class AddToCart extends React.Component {
     );
   }
 }
-
-
 
 export default AddToCart;
