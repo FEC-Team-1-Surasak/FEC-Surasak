@@ -81,6 +81,7 @@ class Question extends React.Component {
 
   showModel() {
     this.setState({ modal: true });
+    console.log('showing the modal')
   }
 
   closeModal() {
@@ -92,7 +93,8 @@ class Question extends React.Component {
       <div>
         <input placeholder="Have a question? Search for answers…" onChange={this.onChange} />
         <div className="question-list">
-          {this.state.filteredList.slice(0, this.state.len).map((question) => <IndividualQuestion question={question} key={question.question_id} term={this.state.term} />)}
+          {this.state.filteredList.slice(0, this.state.len)
+            .map((question) => <IndividualQuestion productname={this.props.name} question={question} key={question.question_id} term={this.state.term} />)}
         </div>
         {(this.state.list.length > 2 && this.state.len < this.state.list.length) ? <button className="load-quetsions" onClick={this.getMoreQuestions} type="submit"> MORE ANSWERED QUESTIONS</button> : ''}
         <button onClick={this.showModel}>ADD A QUESTION +</button>
