@@ -5,7 +5,6 @@ import ReviewTile from './ReviewTile.jsx';
 
 const ReviewsList = ({ reviews }) => (
   <div className="reviews-list-container">
-    <div>This is where all the reviews will be held</div>
     {
       reviews.map((review) => (<ReviewTile review={review} />))
     }

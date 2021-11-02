@@ -15,7 +15,7 @@ const ReviewTile = ({ review }) => (
       { review.rating }
     </div>
     <div className="review-date">{moment(review.date).format('MMMM Do YYYY')}</div>
-    <div clasName="review-summary"><b>{review.summary}</b></div>
+    <div className="review-summary"><b>{review.summary}</b></div>
     <div className="review-body">{review.body}</div>
     <ReviewPhotos photos={review.photos} />
     {review.recommend ? <div>✅  Recommended by reviewer</div> : <></>}

@@ -8,25 +8,29 @@ import axios from 'axios';
 import React from 'react';
 import ReviewsList from './subcomponents/ReviewsList.jsx';
 import RatingsContainer from './subcomponents/RatingsContainer.jsx';
-import StarRating from './subcomponents/StarRatingDynamic.jsx';
+import SortDropdown from './subcomponents/SortDropdown.jsx';
+// import StarRating from './subcomponents/StarRatingDynamic.jsx';
 
 export default class Container extends React.Component {
   constructor(props) {
     super(props);
+    const { productId } = this.props;
     this.state = {
+      id: productId,
       reviewData: {},
       metaData: {},
     };
     this.getReviewData = this.getReviewData.bind(this);
+    this.getReviewMetaData = this.getReviewMetaData.bind(this);
   }
 
   componentDidMount() {
-    const { productId } = this.props;
-    this.getReviewData(productId);
-    this.getReviewMetaData(productId);
+    this.getReviewData();
+    this.getReviewMetaData();
   }
 
-  getReviewData(id, filter) {
+  getReviewData(filter) {
+    const { id } = this.state;
     if (!filter) {
       filter = 'relevant';
     }
@@ -41,7 +45,8 @@ export default class Container extends React.Component {
       });
   }
 
-  getReviewMetaData(id) {
+  getReviewMetaData() {
+    const { id } = this.state;
     console.log('ID>>', id);
     axios.get(`/reviews/meta/${id}`)
       .then((reviews) => {
@@ -61,10 +66,10 @@ export default class Container extends React.Component {
     }
     return (
       <>
-        <StarRating />
         <br />
         <RatingsContainer data={metaData} />
         <br />
+        <SortDropdown getReviews={this.getReviewData} />
         <ReviewsList reviews={reviewData.results} />
       </>
     );
