@@ -5,9 +5,8 @@
 import React from 'react';
 import axios from 'axios';
 import Questions from './QA/questions.jsx';
-// import Overview from './Overview/Overview.jsx';
+import Overview from './Overview/Overview.jsx';
 // import Container from './Ratings_Reviews/Container.jsx';
-
 
 export default class App extends React.Component {
   constructor() {
@@ -15,6 +14,7 @@ export default class App extends React.Component {
     this.state = {
       // eslint-disable-next-line react/no-unused-state
       id: null,
+      name: null,
     };
     this.getRandomProduct = this.getRandomProduct.bind(this);
   }
@@ -31,6 +31,7 @@ export default class App extends React.Component {
         this.setState({
           // eslint-disable-next-line react/no-unused-state
           id: products.data[itemNumber].id,
+          name: products.data[itemNumber].name,
         });
       })
       .catch((err) => {
@@ -44,9 +45,10 @@ export default class App extends React.Component {
     }
     return (
       <div>
-        <h1> OVERVIEW PLACEHOLDER</h1>
+        {/* <h1> OVERVIEW PLACEHOLDER</h1> */}
+        <Overview />
         <h1>RELATED PRODUCTS PLACEHOLDER</h1>
-        <Questions />
+        <Questions name={this.state.name} id = {this.state.id} />
         <h1>RATING & REVIEW PLACEHOLDER</h1>
       </div>
     );
