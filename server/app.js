@@ -1,15 +1,16 @@
+/* eslint-disable no-template-curly-in-string */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 const express = require('express');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const path = require('path');
 const axios = require('axios');
 const config = require('../config');
 
 const app = express();
 
-app.use(morgan('combined'));
+// app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
@@ -87,7 +88,7 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
     )
     .catch((err) => { console.log(err); });
 });
-=======
+
 app.get('/products/:product_id', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.params.product_id}`, options)
     .then((product) => {
@@ -95,6 +96,23 @@ app.get('/products/:product_id', (req, res) => {
     })
     .catch((err) => {
       res.status(500).json(err);
+    });
+});
+
+// post request for add a questions
+app.post('/qa/questions', (req, res) => {
+  console.log('request data is',req);
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions', {
+    body: req.body.body,
+    name: req.body.name,
+    email: req.body.email,
+    product_id: req.body.product_id
+  }, options)
+    .then(
+      (response) => { res.status(201).send('CREATE'); },
+    )
+    .catch((err) => {
+      console.log(err);
     });
 });
 
