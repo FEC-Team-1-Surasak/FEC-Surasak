@@ -43,8 +43,8 @@ export default class App extends React.Component {
     }
     return (
       <>
-        <Questions />
         <Overview id={this.state.id} />
+        <Questions />
         <Container productId={this.state.id} />
       </>
     );
