@@ -87,7 +87,7 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
     )
     .catch((err) => { console.log(err); });
 });
-=======
+
 app.get('/products/:product_id', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.params.product_id}`, options)
     .then((product) => {

@@ -7,6 +7,7 @@
 import axios from 'axios';
 import React from 'react';
 import ReviewsList from './subcomponents/ReviewsList.jsx';
+import RatingsContainer from './subcomponents/RatingsContainer.jsx';
 
 export default class Container extends React.Component {
   constructor(props) {
@@ -57,10 +58,11 @@ export default class Container extends React.Component {
     if (!reviewData.results) {
       return <div />;
     }
-    console.log('reviews', reviewData.results);
-    console.log('meta', metaData);
     return (
       <>
+        <br />
+        <RatingsContainer data={metaData} />
+        <br />
         <ReviewsList reviews={reviewData.results} />
       </>
     );
