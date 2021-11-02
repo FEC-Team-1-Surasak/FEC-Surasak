@@ -8,6 +8,7 @@ import axios from 'axios';
 import React from 'react';
 import ReviewsList from './subcomponents/ReviewsList.jsx';
 import RatingsContainer from './subcomponents/RatingsContainer.jsx';
+import StarRating from './subcomponents/StarRating.jsx';
 
 export default class Container extends React.Component {
   constructor(props) {
@@ -60,6 +61,7 @@ export default class Container extends React.Component {
     }
     return (
       <>
+        <StarRating />
         <br />
         <RatingsContainer data={metaData} />
         <br />
