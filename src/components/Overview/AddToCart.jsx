@@ -1,3 +1,6 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable react/button-has-type */
+/* eslint-disable arrow-body-style */
 /* eslint-disable react/no-unused-state */
 /* eslint-disable arrow-parens */
 /* eslint-disable react/destructuring-assignment */
@@ -13,6 +16,11 @@ class AddToCart extends React.Component {
       size: '',
       quantity: '',
     };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    console.log('clicked!');
   }
 
   render() {
@@ -45,15 +53,20 @@ class AddToCart extends React.Component {
         </select>
         {' '}
         <select name="selectQty" id="selectQty">
-          <option> {this.state.size === '' ? '-' : 1} </option>
+          <option>{this.state.size === '' ? '-' : 1}</option>
           {qtyCount.map(digit => {
             return <option value={digit}>{digit}</option>;
           })}
         </select>
+        <br />
+        <button onClick={this.handleClick}>
+          Add to Cart
+        </button>
       </>
     );
   }
 }
+
 
 
 export default AddToCart;

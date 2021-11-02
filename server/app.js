@@ -2,14 +2,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 const express = require('express');
-// const morgan = require('morgan');
+const morgan = require('morgan');
 const path = require('path');
 const axios = require('axios');
 const config = require('../config');
 
 const app = express();
 
-// app.use(morgan('combined'));
+app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
@@ -128,6 +128,5 @@ app.get('/products/:product_id/styles', (req, res) => {
       res.status(500);
     });
 });
-
 
 module.exports = app;

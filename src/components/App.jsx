@@ -5,8 +5,8 @@
 import React from 'react';
 import axios from 'axios';
 import Overview from './Overview/Overview.jsx';
-// import Container from './Ratings_Reviews/Container.jsx';
-// import Questions from './QA/questions.jsx';
+import Container from './Ratings_Reviews/Container.jsx';
+import Questions from './QA/questions.jsx';
 
 export default class App extends React.Component {
   constructor() {
@@ -43,11 +43,10 @@ export default class App extends React.Component {
     }
     return (
       <>
-        {/* <Questions />;
-        <div>Hello, World</div> */}
+        <Questions />
         <Overview id={this.state.id} />
-        {/* <Container productId={this.state.id} /> */}
+        <Container productId={this.state.id} />
       </>
-    )
+    );
   }
 }
