@@ -5,7 +5,7 @@ const ReviewPhotos = ({ photos }) => (
   <div className="photo-container">
     {
       photos.map((photo) => (
-        <img src={photo.url} alt={photo.id} height="100" width="100" />
+        <img src={photo.url} alt={photo.id} height="100" />
       ))
     }
   </div>

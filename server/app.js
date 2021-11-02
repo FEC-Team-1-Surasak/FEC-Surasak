@@ -119,4 +119,14 @@ app.get('/reviews/:product_id/:filter', (req, res) => {
     });
 });
 
+app.get('/products/:product_id/styles', (req, res) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.params.product_id}/styles`, options)
+    .then((styles) => {
+      res.status(200).json(styles.data);
+    })
+    .catch((err) => {
+      res.status(500);
+    });
+});
+
 module.exports = app;
