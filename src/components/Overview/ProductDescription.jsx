@@ -7,6 +7,7 @@ function ProductDescription(props) {
   if (props.product.features === undefined) {
     return <div></div>;
   }
+  // console.log(props.product);
   return (
     <div className="product-description">
       <h4>{props.product.slogan}</h4>
