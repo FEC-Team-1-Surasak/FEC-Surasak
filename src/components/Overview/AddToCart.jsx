@@ -55,4 +55,5 @@ class AddToCart extends React.Component {
   }
 }
 
+
 export default AddToCart;
