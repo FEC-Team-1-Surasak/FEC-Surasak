@@ -101,12 +101,28 @@ app.get('/products/:product_id', (req, res) => {
 
 // post request for add a questions
 app.post('/qa/questions', (req, res) => {
-  console.log('request data is',req);
+  console.log('request data is', req);
   axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions', {
     body: req.body.body,
     name: req.body.name,
     email: req.body.email,
-    product_id: req.body.product_id
+    product_id: req.body.product_id,
+  }, options)
+    .then(
+      (response) => { res.status(201).send('CREATE'); },
+    )
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+// post request for add an answer
+app.post('/qa/questions/:question_id/answers', (req, res) => {
+  console.log('request data is', req);
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.query.question_id}/answers`, {
+    body: req.body.body,
+    name: req.body.name,
+    email: req.body.email,
   }, options)
     .then(
       (response) => { res.status(201).send('CREATE'); },
