@@ -14,9 +14,7 @@ import SortDropdown from './subcomponents/SortDropdown.jsx';
 export default class Container extends React.Component {
   constructor(props) {
     super(props);
-    const { productId } = this.props;
     this.state = {
-      id: productId,
       reviewData: {},
       metaData: {},
     };
@@ -30,14 +28,14 @@ export default class Container extends React.Component {
   }
 
   getReviewData(filter) {
-    const { id } = this.state;
+    const { productId } = this.props;
     if (!filter) {
       filter = 'relevant';
     }
-    axios.get(`/reviews/${id}/${filter}`)
+    axios.get(`/reviews/${productId}/${filter}`)
       .then((reviews) => {
         this.setState({
-          reviewData: reviews.data,
+          reviewData: reviews.data.results,
         });
       })
       .catch((err) => {
@@ -46,22 +44,23 @@ export default class Container extends React.Component {
   }
 
   getReviewMetaData() {
-    const { id } = this.state;
-    console.log('ID>>', id);
-    axios.get(`/reviews/meta/${id}`)
+    const { productId } = this.props;
+    axios.get(`/reviews/meta/${productId}`)
       .then((reviews) => {
         this.setState({
           metaData: reviews.data,
         });
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   }
 
   render() {
     const { reviewData, metaData } = this.state;
-    if (!reviewData.results) {
+    console.log('REVIEWDATA: ', reviewData);
+    console.log('METADATA: ', metaData);
+    if (Object.keys(reviewData).length === 0) {
       return <div />;
     }
     return (
@@ -70,7 +69,7 @@ export default class Container extends React.Component {
         <RatingsContainer data={metaData} />
         <br />
         <SortDropdown getReviews={this.getReviewData} />
-        <ReviewsList reviews={reviewData.results} />
+        <ReviewsList reviews={reviewData} />
       </>
     );
   }

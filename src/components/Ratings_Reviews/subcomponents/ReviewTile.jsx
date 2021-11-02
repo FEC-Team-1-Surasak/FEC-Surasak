@@ -7,6 +7,7 @@ import React from 'react';
 import moment from 'moment';
 import ReviewPhotos from './ReviewPhotos.jsx';
 import HelpfulnessRating from './HelpfulnessRating.jsx';
+import ReportButton from './ReportButton.jsx';
 
 const ReviewTile = ({ review }) => (
   <div className="review-tile">
@@ -26,6 +27,8 @@ const ReviewTile = ({ review }) => (
       </div>}
     <HelpfulnessRating helpfulness={review.helpfulness} />
     <div className="reviewer">{review.reviewer_name}</div>
+    <ReportButton review_id={review.review_id} />
+    <br />
     <br />
   </div>
 );
