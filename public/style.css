@@ -1,11 +1,14 @@
 div.answer-list{
-  height: 50%,
-  overflow:scroll
+  max-height: 250px;
+  overflow-y:auto;
 }
 
 div.question-list{
-  height:25%;
-  overflow: scroll;
+  max-height: 500px;
+  width: 80%;
+  overflow-y:auto;
+  display:block;
+
 }
 
 mark{

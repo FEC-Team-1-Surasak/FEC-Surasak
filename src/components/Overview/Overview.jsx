@@ -40,7 +40,7 @@ class Overview extends React.Component {
 
   render() {
     return (
-      <div>
+      <div onClick={this.props.onclick}>
         <span>⭐️⭐️⭐️⭐️⭐️</span>
         <a>Read all reviews</a>
         <br />

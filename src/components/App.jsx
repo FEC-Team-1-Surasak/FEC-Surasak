@@ -6,6 +6,7 @@ import React from 'react';
 import axios from 'axios';
 import Questions from './QA/questions.jsx';
 import Overview from './Overview/Overview.jsx';
+import EventTracking from './EventTracking.jsx';
 // import Container from './Ratings_Reviews/Container.jsx';
 
 export default class App extends React.Component {
@@ -40,15 +41,16 @@ export default class App extends React.Component {
   }
 
   render() {
+
     if (this.state.id === null) {
       return <div> </div>;
     }
     return (
       <div>
-        {/* <h1> OVERVIEW PLACEHOLDER</h1> */}
+        {/* <EventTracking> */}
         <Overview />
         <h1>RELATED PRODUCTS PLACEHOLDER</h1>
-        <Questions name={this.state.name} id = {this.state.id} />
+        <Questions name={this.state.name} id={this.state.id} />
         <h1>RATING & REVIEW PLACEHOLDER</h1>
       </div>
     );
