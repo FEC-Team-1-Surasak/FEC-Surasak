@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/button-has-type */
 /* eslint-disable no-param-reassign */
@@ -90,7 +91,7 @@ class Question extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="overall-question" onClick={this.props.onclick}>
         <input placeholder="Have a question? Search for answers…" onChange={this.onChange} />
         <div className="question-list">
           {this.state.filteredList.slice(0, this.state.len)
