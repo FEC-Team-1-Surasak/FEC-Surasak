@@ -7,6 +7,7 @@
 /* eslint-disable no-useless-constructor */
 import React from 'react';
 import axios from 'axios';
+import Photo from './Photo.jsx';
 
 class AnswerModal extends React.Component {
   constructor(props) {
@@ -58,7 +59,7 @@ class AnswerModal extends React.Component {
         body: this.state.body,
         name: this.state.name,
         email: this.state.email,
-      },{params:{question_id: this.props.question.question_id}})
+      }, { params: { question_id: this.props.question.question_id } })
         .then(() => { console.log('CREATE IT'); })
         .catch((err) => { console.log(err); });
     } else if (this.state.body === '' || this.state.name === '' || this.state.email === '') {
@@ -97,9 +98,7 @@ class AnswerModal extends React.Component {
 
           <div className="photo">
             <h3>Upload your photo</h3>
-
-
-
+            <Photo />
           </div>
 
         </div>
