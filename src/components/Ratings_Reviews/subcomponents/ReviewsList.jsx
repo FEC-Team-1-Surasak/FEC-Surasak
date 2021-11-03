@@ -12,8 +12,7 @@ class ReviewsList extends React.Component {
     this.showMoreReviews = this.showMoreReviews.bind(this);
   }
 
-  showMoreReviews(e) {
-    e.preventDefault();
+  showMoreReviews() {
     const { listLength } = this.state;
     this.setState({
       listLength: listLength + 2,
@@ -25,20 +24,18 @@ class ReviewsList extends React.Component {
     const { listLength } = this.state;
     let remainingReviews = false;
     return (
-      <>
-        <div className="reviews-list-container">
-          {
-            reviews.map((review, i) => {
-              if (i >= listLength) {
-                remainingReviews = true;
-                return <></>;
-              }
-              return <ReviewTile review={review} />;
-            })
-          }
-          {remainingReviews ? <button type="submit" onClick={this.showMoreReviews}>Load More Reviews</button> : <></>}
-        </div>
-      </>
+      <div className="reviews-list-container">
+        {
+          reviews.map((review, i) => {
+            if (i >= listLength) {
+              remainingReviews = true;
+              return <div key={review.review_id} display="hidden" />;
+            }
+            return <ReviewTile key={review.review_id} review={review} />;
+          })
+        }
+        {remainingReviews ? <button type="submit" onClick={this.showMoreReviews}>Load More Reviews</button> : <div display="hidden" />}
+      </div>
     );
   }
 }
