@@ -95,7 +95,12 @@ class AnswerModal extends React.Component {
             <h5><i>For authentication reasons, you will not be emailed</i></h5>
           </div>
 
-          <div className="photo" />
+          <div className="photo">
+            <h3>Upload your photo</h3>
+
+
+
+          </div>
 
         </div>
         <div className="button">
