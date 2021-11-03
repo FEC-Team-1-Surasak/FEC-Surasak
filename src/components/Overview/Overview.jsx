@@ -1,3 +1,4 @@
+/* eslint-disable react/sort-comp */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable import/extensions */
 /* eslint-disable react/destructuring-assignment */
@@ -6,22 +7,30 @@
 import React from 'react';
 import axios from 'axios';
 import ProductDescription from './ProductDescription.jsx';
+import StyleSelector from './StyleSelector.jsx';
+import AddToCart from './AddToCart.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // id: this.props.id,
-      id: 37315,
+      id: this.props.id,
+      // id: 37322,
       product: {},
+      styles: [],
+      currentStyle: {},
       category: '',
       price: '',
+      isOnSale: '',
     };
     this.getProductInfo = this.getProductInfo.bind(this);
+    this.getStyles = this.getStyles.bind(this);
+    this.updateStyle = this.updateStyle.bind(this);
   }
 
   componentDidMount() {
     this.getProductInfo();
+    this.getStyles();
   }
 
   getProductInfo() {
@@ -38,7 +47,41 @@ class Overview extends React.Component {
       });
   }
 
+  getStyles() {
+    axios.get(`/products/${this.state.id}/styles`)
+      .then((styleList) => {
+        this.setState({
+          styles: styleList.data.results,
+          currentStyle: styleList.data.results[0],
+          isOnSale: !!styleList.data.results[0].sale_price,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  updateStyle(style) {
+    this.setState({
+      currentStyle: style,
+      isOnSale: !!style.sale_price,
+    });
+  }
+
   render() {
+    let price;
+    if (this.state.isOnSale) {
+      price = (
+        <>
+          <span style={{ color: 'red' }}>${this.state.currentStyle.sale_price.slice(0, this.state.currentStyle.sale_price.indexOf('.'))}</span> {' '}
+          <span style={{ textDecorationLine: 'line-through', textDecorationStyle: 'solid' }}>
+            ${this.state.currentStyle.original_price.slice(0, this.state.currentStyle.original_price.indexOf('.'))}
+          </span>
+        </>
+      );
+    } else if (this.state.currentStyle.original_price !== undefined) {
+      price = <span>${this.state.currentStyle.original_price.slice(0, this.state.currentStyle.original_price.indexOf('.'))}</span>;
+    }
     return (
       <div onClick={this.props.onclick}>
         <span>⭐️⭐️⭐️⭐️⭐️</span>
@@ -46,12 +89,19 @@ class Overview extends React.Component {
         <br />
         <span>{this.state.category.toUpperCase()}</span>
         <h2>{this.state.product.name}</h2>
-        <span>${this.state.price}</span>
+        {price}
+        <StyleSelector
+          styles={this.state.styles}
+          currentStyle={this.state.currentStyle}
+          updateStyle={this.updateStyle}
+        />
+        <AddToCart currentStyle={this.state.currentStyle} />
         <ProductDescription product={this.state.product} />
       </div>
     );
   }
 }
+
 
 
 export default Overview;
