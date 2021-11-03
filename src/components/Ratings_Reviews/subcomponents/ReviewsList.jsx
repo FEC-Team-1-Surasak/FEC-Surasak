@@ -3,15 +3,42 @@
 import React from 'react';
 import ReviewTile from './ReviewTile.jsx';
 
-const ReviewsList = ({ reviews }) => (
-  <>
-    <div className="reviews-list-container">
-      {
-        reviews.map((review) => (<ReviewTile review={review} />))
-      }
-    </div>
-    {/* <button onClick="">Load More Reviews</button> */}
-  </>
-);
+class ReviewsList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      listLength: 2,
+    };
+    this.showMoreReviews = this.showMoreReviews.bind(this);
+  }
+
+  showMoreReviews(e) {
+    e.preventDefault();
+    const { listLength } = this.state;
+    this.setState({
+      listLength: listLength + 2,
+    });
+  }
+
+  render() {
+    const { reviews } = this.props;
+    const { listLength } = this.state;
+    return (
+      <>
+        <div className="reviews-list-container">
+          {
+            reviews.map((review, i) => {
+              if (i >= listLength) {
+                return <></>;
+              }
+              return <ReviewTile review={review} />;
+            })
+          }
+          <button type="submit" onClick={this.showMoreReviews}>Load More Reviews</button>
+        </div>
+      </>
+    );
+  }
+}
 
 export default ReviewsList;
