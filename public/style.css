@@ -1,0 +1,42 @@
+div.answer-list{
+  max-height: 250px;
+  overflow-y:auto;
+}
+
+div.question-list{
+  max-height: 500px;
+  width: 80%;
+  overflow-y:auto;
+  display:block;
+
+}
+
+mark{
+  background-color: yellow;
+}
+div.modal{
+  position:fixed;
+  width:90%;
+  height:90%;
+  z-index:1;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color:white;
+}
+
+div.box{
+  /* left: 50%;
+  right: 50%;
+  top: 50%;
+  bottom: 50%; */
+  margin: auto;
+  background-color:white;
+}
+
+/* h2,h3{
+  text-align: center;
+} */

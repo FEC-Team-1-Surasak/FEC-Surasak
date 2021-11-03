@@ -17,8 +17,11 @@ class Answer extends React.Component {
     super(props);
     this.state = {
       list: [],
+      len: 2,
+      loading: 'See More Answers',
     };
     this.getAnswer = this.getAnswer.bind(this);
+    this.getMoreAnswers = this.getMoreAnswers.bind(this);
   }
 
   componentDidMount() {
@@ -46,18 +49,31 @@ class Answer extends React.Component {
       .catch((err) => { console.log(err); });
   }
 
+  getMoreAnswers() {
+    if (this.state.len === 2) {
+      this.setState({ len: this.state.list.length });
+      this.setState({ loading: 'Collapse answers' });
+    } else {
+      this.setState({ len: 2 });
+      this.setState({ loading: 'See More Answers' });
+    }
+  }
+
   render() {
     if (this.state.list.length === 0) {
       return <div />;
     }
     return (
-      <div>
-        {/* redner up to 2 answers */}
-        {this.state.list.slice(0, 2).map((answer) => (
-          <div>
-            <IndividualAnswer answer={answer} />
-          </div>
-        ))}
+      <div className="answer-list">
+        <div>
+          {/* redner up to 2 answers */}
+          {this.state.list.slice(0, this.state.len).map((answer) => (
+            <div>
+              <IndividualAnswer answer={answer} />
+            </div>
+          ))}
+        </div>
+        {(this.state.list.length > 2) ? <div className="add-answer" onClick={this.getMoreAnswers}><u>{this.state.loading}</u></div> : ''}
       </div>
     );
   }

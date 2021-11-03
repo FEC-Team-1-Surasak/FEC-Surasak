@@ -83,7 +83,7 @@ class Overview extends React.Component {
       price = <span>${this.state.currentStyle.original_price.slice(0, this.state.currentStyle.original_price.indexOf('.'))}</span>;
     }
     return (
-      <div>
+      <div onClick={this.props.onclick}>
         <span>⭐️⭐️⭐️⭐️⭐️</span>
         <a>Read all reviews</a>
         <br />
