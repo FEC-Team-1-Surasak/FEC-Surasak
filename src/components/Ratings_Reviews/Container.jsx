@@ -58,8 +58,6 @@ export default class Container extends React.Component {
 
   render() {
     const { reviewData, metaData } = this.state;
-    console.log('REVIEWDATA: ', reviewData);
-    console.log('METADATA: ', metaData);
     if (Object.keys(reviewData).length === 0) {
       return <div />;
     }

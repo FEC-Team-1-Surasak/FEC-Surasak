@@ -23,18 +23,20 @@ class ReviewsList extends React.Component {
   render() {
     const { reviews } = this.props;
     const { listLength } = this.state;
+    let remainingReviews = false;
     return (
       <>
         <div className="reviews-list-container">
           {
             reviews.map((review, i) => {
               if (i >= listLength) {
+                remainingReviews = true;
                 return <></>;
               }
               return <ReviewTile review={review} />;
             })
           }
-          <button type="submit" onClick={this.showMoreReviews}>Load More Reviews</button>
+          {remainingReviews ? <button type="submit" onClick={this.showMoreReviews}>Load More Reviews</button> : <></>}
         </div>
       </>
     );

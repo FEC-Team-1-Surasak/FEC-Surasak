@@ -132,7 +132,6 @@ app.get('/products/:product_id/styles', (req, res) => {
 
 // put request handler for reporting a review
 app.put('/reviews/report', (req, res) => {
-  console.log(` ⭐⭐⭐ review id >> ${req.body.review_id}`);
   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${req.body.review_id}/report`, null, options)
     .then((report) => res.status(200).json('Report successful'))
     .catch((err) => res.status(501).send(`Error in server while reporting Review ID: ${req.params.review_id}`));
