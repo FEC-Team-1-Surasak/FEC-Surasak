@@ -8,13 +8,11 @@ import moment from 'moment';
 import ReviewPhotos from './ReviewPhotos.jsx';
 import HelpfulnessRating from './HelpfulnessRating.jsx';
 import ReportButton from './ReportButton.jsx';
+import StarRatingStatic from './StarRatingStatic.jsx';
 
 const ReviewTile = ({ review }) => (
   <div className="review-tile">
-    <div>
-      Needs to be separate component Star Rating:
-      { review.rating }
-    </div>
+    <StarRatingStatic rating={review.rating / 5} />
     <div className="review-date">{moment(review.date).format('MMMM Do YYYY')}</div>
     <div className="review-summary"><b>{review.summary}</b></div>
     <div className="review-body">{review.body}</div>

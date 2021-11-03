@@ -9,7 +9,6 @@ import React from 'react';
 import ReviewsList from './subcomponents/ReviewsList.jsx';
 import RatingsContainer from './subcomponents/RatingsContainer.jsx';
 import SortDropdown from './subcomponents/SortDropdown.jsx';
-// import StarRating from './subcomponents/StarRatingDynamic.jsx';
 
 export default class Container extends React.Component {
   constructor(props) {
