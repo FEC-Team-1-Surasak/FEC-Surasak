@@ -152,4 +152,16 @@ app.get('/reviews/meta/:product_id', (req, res) => {
     });
 });
 
+app.post('/interactions', (req, res) => {
+  console.log('request is', req.body);
+  data = {
+    element: req.body.element,
+    widget: req.body.widget,
+    time: req.body.time,
+  };
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/interactions', data, options)
+    .then(() => { console.log('CREATED IT'); })
+    .catch((err) => { console.log(err); });
+});
+
 module.exports = app;
