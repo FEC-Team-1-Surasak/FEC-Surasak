@@ -98,8 +98,8 @@ app.get('/products/:product_id', (req, res) => {
     });
 });
 
+// get request handler for fetching all review meta-data for a specific product
 app.get('/reviews/meta/:product_id', (req, res) => {
-  console.log('req.params!', req.params.product_id);
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=${req.params.product_id}`, options)
     .then((reviews) => {
       res.status(200).json(reviews.data);
@@ -109,6 +109,7 @@ app.get('/reviews/meta/:product_id', (req, res) => {
     });
 });
 
+// get request handler for fetching all review data of a specific product in a specific order
 app.get('/reviews/:product_id/:filter', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews?product_id=${req.params.product_id}&count=1000&sort=${req.params.filter}`, options)
     .then((reviews) => {
@@ -127,6 +128,13 @@ app.get('/products/:product_id/styles', (req, res) => {
     .catch((err) => {
       res.status(500);
     });
+});
+
+// put request handler for reporting a review
+app.put('/reviews/report', (req, res) => {
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${req.body.review_id}/report`, null, options)
+    .then((report) => res.status(200).json('Report successful'))
+    .catch((err) => res.status(501).send(`Error in server while reporting Review ID: ${req.params.review_id}`));
 });
 
 module.exports = app;

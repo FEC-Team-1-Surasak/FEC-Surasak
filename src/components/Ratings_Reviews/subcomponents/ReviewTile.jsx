@@ -7,6 +7,7 @@ import React from 'react';
 import moment from 'moment';
 import ReviewPhotos from './ReviewPhotos.jsx';
 import HelpfulnessRating from './HelpfulnessRating.jsx';
+import ReportButton from './ReportButton.jsx';
 
 const ReviewTile = ({ review }) => (
   <div className="review-tile">
@@ -15,9 +16,9 @@ const ReviewTile = ({ review }) => (
       { review.rating }
     </div>
     <div className="review-date">{moment(review.date).format('MMMM Do YYYY')}</div>
-    <div clasName="review-summary"><b>{review.summary}</b></div>
+    <div className="review-summary"><b>{review.summary}</b></div>
     <div className="review-body">{review.body}</div>
-    <ReviewPhotos photos={review.photos} />
+    {review.photos.length !== 0 ? <ReviewPhotos photos={review.photos} /> : <></>}
     {review.recommend ? <div>✅  Recommended by reviewer</div> : <></>}
     {review.response === null
       ? <></>
@@ -26,6 +27,8 @@ const ReviewTile = ({ review }) => (
       </div>}
     <HelpfulnessRating helpfulness={review.helpfulness} />
     <div className="reviewer">{review.reviewer_name}</div>
+    <ReportButton review_id={review.review_id} />
+    <br />
     <br />
   </div>
 );
