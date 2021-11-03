@@ -30,7 +30,7 @@ class IndividualAnswer extends React.Component {
     } else {
       this.setState({ helpfulness: this.state.helpfulness + 1 });
       this.setState({ cnt: 1 });
-      // send a put
+      // send a p`ut
       axios.put('/qa/answers/:answer_id/helpful', { answer_id: this.props.answer.answer_id })
         .then(() => {
           console.log('UPDATED THE RECORD');
