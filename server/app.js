@@ -162,8 +162,8 @@ app.post('/interactions', (req, res) => {
   };
   axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/interactions', data, options)
     .then(() => { console.log('CREATED IT'); })
-    .catch((err) => { console.log(err); 
-  });
+    .catch((err) => console.log(err));
+});
 
 app.get('/products/:product_id/styles', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.params.product_id}/styles`, options)
