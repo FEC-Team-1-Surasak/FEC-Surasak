@@ -1,3 +1,6 @@
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable class-methods-use-this */
 /* eslint-disable react/sort-comp */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable import/extensions */
@@ -24,16 +27,20 @@ class Overview extends React.Component {
       price: '',
       isOnSale: '',
       cart: [],
+      avgRating: 0,
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getStyles = this.getStyles.bind(this);
     this.updateStyle = this.updateStyle.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.getRatings = this.getRatings.bind(this);
+    this.calculateAvg = this.calculateAvg.bind(this);
   }
 
   componentDidMount() {
     this.getProductInfo();
     this.getStyles();
+    this.getRatings();
   }
 
   getProductInfo() {
@@ -62,6 +69,28 @@ class Overview extends React.Component {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  getRatings() {
+    axios.get(`/reviews/meta/${this.state.id}`)
+      .then((reviews) => {
+        this.setState({
+          avgRating: this.calculateAvg(reviews.data.ratings) || 0,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  calculateAvg(ratings) {
+    let total = 0;
+    let numRatings = 0;
+    for (const rating in ratings) {
+      total += (rating * Number(ratings[rating]));
+      numRatings += Number(ratings[rating]);
+    }
+    return (total / numRatings);
   }
 
   updateStyle(style) {
@@ -103,8 +132,7 @@ class Overview extends React.Component {
 
     return (
       <div>
-        <span>⭐️⭐️⭐️⭐️⭐️</span>
-        {/* <StarRatingStatic /> */}
+        <StarRatingStatic rating={this.state.avgRating/5} />
         <a>Read all reviews</a>
         <br />
         <span>{this.state.category.toUpperCase()}</span>
