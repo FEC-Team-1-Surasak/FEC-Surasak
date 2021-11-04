@@ -15,7 +15,7 @@ class Overview extends React.Component {
     super(props);
     this.state = {
       // id: this.props.id,
-      id: 37322,
+      id: 37326,
       product: {},
       styles: [],
       currentStyle: {},
@@ -64,6 +64,7 @@ class Overview extends React.Component {
   }
 
   updateStyle(style) {
+    console.log(style);
     this.setState({
       currentStyle: style,
       isOnSale: !!style.sale_price,
@@ -71,6 +72,7 @@ class Overview extends React.Component {
   }
 
   addToCart(item) {
+    console.log(item);
     this.setState({
       cart: [...this.state.cart, {
         name: item.name,
@@ -95,6 +97,11 @@ class Overview extends React.Component {
     } else if (this.state.currentStyle.original_price !== undefined) {
       price = <span>${this.state.currentStyle.original_price.slice(0, this.state.currentStyle.original_price.indexOf('.'))}</span>;
     }
+
+    if (this.state.currentStyle === undefined) {
+      return <div />;
+    }
+
     return (
       <div>
         <span>⭐️⭐️⭐️⭐️⭐️</span>

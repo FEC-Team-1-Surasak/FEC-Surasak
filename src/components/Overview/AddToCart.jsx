@@ -13,66 +13,77 @@ class AddToCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // currentStyle: this.props.currentStyle,
+      currentStyle: this.props.currentStyle,
       sku: '',
       size: '',
       quantity: null,
       bagQty: 1,
       selectSize: true,
-      inStock: true,
+      isOutOfStock: false,
     };
 
-    // this.updateStyle = this.updateStyle.bind(this);
+    this.updateStyle = this.updateStyle.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.outOfStock = this.outOfStock.bind(this);
+    this.isOutOfStock = this.isOutOfStock.bind(this);
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.currentStyle !== this.props.currentStyle) {
-  //     this.updateStyle(this.props.currentStyle);
-  //   }
-  // }
+  componentDidMount() {
+    setTimeout(
+      () => this.setState({
+        currentStyle: this.props.currentStyle,
+      }), 1000,
+    );
+  }
 
-  // updateStyle(style) {
-  //   console.log(style);
-  //   this.setState({
-  //     currentStyle: style,
-  //   });
-  // }
+  componentDidUpdate(prevProps) {
+    if (this.props.currentStyle !== prevProps.currentStyle) {
+      this.updateStyle(this.props.currentStyle);
+    }
+  }
+
+  updateStyle(style) {
+    this.setState({
+      currentStyle: style,
+      sku: '',
+      size: '',
+      quantity: null,
+      isOutOfStock: this.isOutOfStock(style.skus),
+    });
+  }
 
   handleClick() {
     if (this.state.size) {
-      this.setState({
-        selectSize: true,
+      this.props.addToCart({
+        name: this.props.product.name,
+        style: this.props.currentStyle.name,
+        size: this.state.size,
+        qty: this.state.bagQty,
       });
     } else {
       this.setState({
         selectSize: false,
       });
     }
-    this.props.addToCart({
-      name: this.props.product.name,
-      style: this.props.currentStyle.name,
-      size: this.state.size,
-      qty: this.state.bagQty,
-    });
   }
 
   handleChange(e) {
     this.setState({
       sku: e.target.value,
-      quantity: this.props.currentStyle.skus[e.target.value].quantity,
-      size: this.props.currentStyle.skus[e.target.value].size,
+      quantity: this.state.currentStyle.skus[e.target.value].quantity,
+      size: this.state.currentStyle.skus[e.target.value].size,
       selectSize: true,
-      inStock: this.props.currentStyle.skus[e.target.value].quantity !== 0,
+      inStock: this.isOutOfStock(this.state.currentStyle.skus),
     });
   }
 
-  outOfStock() {
-    this.setState({
-      inStock: false,
-    });
+  isOutOfStock(skus) {
+    for (var key in skus) {
+      if (skus[key].quantity > 0) {
+        return false;
+      }
+    }
+    return true;
   }
 
   render() {
@@ -94,13 +105,13 @@ class AddToCart extends React.Component {
     return (
       <>
         <div>{this.state.selectSize ? '' : 'Please select size'}</div>
-        <select onChange={this.handleChange}>
-          <option>Select Size</option>
-          {Object.keys(this.props.currentStyle.skus).map(sku => {
+        <select value={this.state.sku} onChange={this.handleChange}>
+          <option>{this.state.isOutOfStock ? 'OUT OF STOCK' : 'Select Size'}</option>
+          {Object.keys(this.props.currentStyle.skus).map((sku) => {
             const size = this.props.currentStyle.skus[sku].size;
             const qty = this.props.currentStyle.skus[sku].quantity;
             if (qty !== 0) {
-              return <option key={size} value={sku}>{size}</option>;
+              return <option value={sku}>{size}</option>;
             }
           })}
         </select>
@@ -115,7 +126,7 @@ class AddToCart extends React.Component {
         </select>
         <br />
         <div>
-          {this.state.inStock ? <button onClick={this.handleClick}>Add to Cart</button> : null}
+          {this.state.isOutOfStock ? null : <button onClick={this.handleClick}>Add to Cart</button>}
         </div>
       </>
     );
