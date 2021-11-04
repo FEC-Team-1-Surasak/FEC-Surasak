@@ -1,7 +1,9 @@
+/* eslint-disable import/extensions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-use-before-define */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import StarRatingStatic from './StarRatingStatic.jsx';
 
 function getAverageRating(obj) {
   const result = [];
@@ -31,7 +33,8 @@ const RatingsContainer = ({ data }) => {
       <div className="average-rating">
         Average Rating:
         {' '}
-        {averageRating}
+        {averageRating.toFixed(1)}
+        <StarRatingStatic rating={averageRating / 5} />
       </div>
       <div className="rating-breakdown">
         {/* <RatingsBreakdown ratings={ratings} totalRatings={totalRatings} /> */}
