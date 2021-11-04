@@ -19,7 +19,6 @@ export default class ReviewForm extends React.Component {
       characteristics: {},
       recommended: null,
       rendered: false,
-      textCount: 0,
     };
     this.change = this.change.bind(this);
     this.getRating = this.getRating.bind(this);
@@ -47,6 +46,7 @@ export default class ReviewForm extends React.Component {
   render() {
     const { data } = this.props;
     const { characteristics } = data;
+    const { body } = this.state;
     return (
       <form onSubmit={(e) => e.preventDefault()}>
         <div>
@@ -103,12 +103,12 @@ export default class ReviewForm extends React.Component {
             onChange={this.change}
             minLength="50"
             maxLength="1000"
-            value={this.state.body}
+            value={body}
           />
           <div>
-            {this.state.body.length < 50
-              ? `Minimum required characters left: ${50 - this.state.body.length}`
-              : `Minimum reached. Maximum remaining characters left: ${1000 - this.state.body.length}`}
+            {body.length < 50
+              ? `Minimum required characters left: ${50 - body.length}`
+              : `Minimum reached. Maximum remaining characters left: ${1000 - body.length}`}
           </div>
         </label>
         <br />
