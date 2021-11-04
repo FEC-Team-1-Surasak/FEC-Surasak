@@ -8,13 +8,11 @@ import Overview from './Overview/Overview.jsx';
 import Container from './Ratings_Reviews/Container.jsx';
 import Questions from './QA/questions.jsx';
 import EventTracking from './EventTracking.jsx';
-// import Container from './Ratings_Reviews/Container.jsx';
 
 export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      // eslint-disable-next-line react/no-unused-state
       id: null,
       name: null,
     };
@@ -31,7 +29,6 @@ export default class App extends React.Component {
         const number = products.data.length;
         const itemNumber = Math.floor(Math.random() * (number));
         this.setState({
-          // eslint-disable-next-line react/no-unused-state
           id: products.data[itemNumber].id,
           name: products.data[itemNumber].name,
         });
@@ -42,17 +39,14 @@ export default class App extends React.Component {
   }
 
   render() {
-
     if (this.state.id === null) {
       return <div> </div>;
     }
     return (
       <div>
-        {/* <EventTracking> */}
-        <Overview />
-        <h1>RELATED PRODUCTS PLACEHOLDER</h1>
+        <Overview id={this.state.id} />
         <Questions name={this.state.name} id={this.state.id} />
-        <h1>RATING & REVIEW PLACEHOLDER</h1>
+        <Container productId={this.state.id} />
       </div>
     );
   }

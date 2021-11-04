@@ -15,8 +15,8 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // id: this.props.id,
-      id: 37326,
+      id: this.props.id,
+      // id: 37326,
       product: {},
       styles: [],
       currentStyle: {},
@@ -65,7 +65,6 @@ class Overview extends React.Component {
   }
 
   updateStyle(style) {
-    console.log(style);
     this.setState({
       currentStyle: style,
       isOnSale: !!style.sale_price,
@@ -73,7 +72,6 @@ class Overview extends React.Component {
   }
 
   addToCart(item) {
-    console.log(item);
     this.setState({
       cart: [...this.state.cart, {
         name: item.name,
@@ -104,8 +102,9 @@ class Overview extends React.Component {
     }
 
     return (
-        {/* <span>⭐️⭐️⭐️⭐️⭐️</span> */}
-        // <StarRatingStatic />
+      <div>
+        <span>⭐️⭐️⭐️⭐️⭐️</span>
+        {/* <StarRatingStatic /> */}
         <a>Read all reviews</a>
         <br />
         <span>{this.state.category.toUpperCase()}</span>

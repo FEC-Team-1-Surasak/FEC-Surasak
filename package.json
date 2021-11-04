@@ -4,7 +4,7 @@
   "description": "FEC",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "jest",
     "start": "nodemon ./server",
     "build": "webpack -d -watch",
     "watch": "webpack -w"
