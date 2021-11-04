@@ -1,8 +1,14 @@
+/* eslint-disable no-console */
+/* eslint-disable no-useless-escape */
+/* eslint-disable no-unused-vars */
+/* eslint-disable consistent-return */
+/* eslint-disable react/button-has-type */
 /* eslint-disable react/no-unused-state */
 /* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
+import axios from 'axios';
 import StarRatingDynamic from './StarRatingDynamic.jsx';
 import CharacteristicsReview from './CharacteristicsReview.jsx';
 
@@ -13,16 +19,18 @@ export default class ReviewForm extends React.Component {
       rating: null,
       summary: '',
       body: '',
-      username: '',
+      nickname: '',
       email: '',
-      photoUrls: '',
+      photoUrls: [],
       characteristics: {},
       recommended: null,
       rendered: false,
+      uploadUrls: false,
     };
     this.change = this.change.bind(this);
     this.getRating = this.getRating.bind(this);
     this.getCharScore = this.getCharScore.bind(this);
+    this.submitReview = this.submitReview.bind(this);
   }
 
   getRating(value) {
@@ -43,10 +51,73 @@ export default class ReviewForm extends React.Component {
     });
   }
 
+  submitReview() {
+    function validateEmail(email) {
+      const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    }
+
+    const { productId, data } = this.props;
+    const { requiredChars } = data;
+    const {
+      rating,
+      summary,
+      body,
+      recommended,
+      nickname,
+      email,
+      photosUrls,
+      characteristics,
+    } = this.state;
+
+    if (rating === null) {
+      return Window.alert('Submission Invalid: Please rate item 1 - 5 stars');
+    }
+    if (recommended === null) {
+      return Window.alert('Submission Invalid: Please choose whether or not to recommend this product');
+    }
+    if (Object.keys(requiredChars).length !== Object.keys(characteristics).length) {
+      return Window.alert('Submission Invalid: Please rate all characteristics presented');
+    }
+    if (summary.length < 1) {
+      return Window.alert('Submission Invalid: Please provide a summary for your review');
+    }
+    if (body.length < 50) {
+      return Window.alert('Submission Invalid: Please provide a body that is at least 50 characters long');
+    }
+    if (nickname.length < 1) {
+      return Window.alert('Submission Invalid: Please enter a nickname');
+    }
+    if (email.length < 1 || !validateEmail(email)) {
+      return Window.alert('Submission Invalid: Please enter a valid email');
+    }
+
+    const reviewSubmission = {
+      product_id: JSON.parse(productId),
+      rating: JSON.parse(rating),
+      summary,
+      body,
+      recommend: JSON.parse(recommended),
+      name: nickname,
+      email,
+      photos: photosUrls,
+      characteristics,
+    };
+
+    axios.post('/reviews', reviewSubmission)
+      .then(() => {
+        Window.alert('Thank you for your submission');
+        this.setState({
+          rendered: false,
+        });
+      })
+      .catch((err) => console.error(err));
+  }
+
   render() {
     const { data } = this.props;
     const { characteristics } = data;
-    const { body } = this.state;
+    const { body, uploadUrls } = this.state;
     return (
       <form onSubmit={(e) => e.preventDefault()}>
         <div>
@@ -112,6 +183,41 @@ export default class ReviewForm extends React.Component {
           </div>
         </label>
         <br />
+        <button name="submit-url" onClick={() => this.setState({ uploadUrls: true })}>
+          Upload Photos
+        </button>
+        <br />
+        <br />
+        <label>
+          Nickname:
+          <br />
+          <input
+            name="nickname"
+            type="text"
+            placeholder="Example: jackson11!"
+            onChange={this.change}
+            maxLength="60"
+          />
+          <div>For privacy reasons, do not use your full name or email address</div>
+        </label>
+        <br />
+        <label>
+          Email:
+          <br />
+          <input
+            name="email"
+            type="text"
+            placeholder="Example: jackson11@email.com"
+            onChange={this.change}
+            maxLength="60"
+          />
+        </label>
+        <div>For authentication reasons, you will not be emailed</div>
+        <br />
+        <br />
+        <button name="submit-form" onClick={this.submitReview}>
+          Submit Review
+        </button>
       </form>
     );
   }
