@@ -1,15 +1,16 @@
+/* eslint-disable no-template-curly-in-string */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 const express = require('express');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const path = require('path');
 const axios = require('axios');
 const config = require('../config');
 
 const app = express();
 
-app.use(morgan('combined'));
+// app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
@@ -98,8 +99,40 @@ app.get('/products/:product_id', (req, res) => {
     });
 });
 
+// post request for add a questions
+app.post('/qa/questions', (req, res) => {
+  console.log('request data is', req);
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions', {
+    body: req.body.body,
+    name: req.body.name,
+    email: req.body.email,
+    product_id: req.body.product_id,
+  }, options)
+    .then(
+      (response) => { res.status(201).send('CREATE'); },
+    )
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+// post request for add an answer
+app.post('/qa/questions/:question_id/answers', (req, res) => {
+  console.log('request data is', req);
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.query.question_id}/answers`, {
+    body: req.body.body,
+    name: req.body.name,
+    email: req.body.email,
+  }, options)
+    .then(
+      (response) => { res.status(201).send('CREATE'); },
+    )
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 app.get('/reviews/meta/:product_id', (req, res) => {
-  console.log('req.params!', req.params.product_id);
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=${req.params.product_id}`, options)
     .then((reviews) => {
       res.status(200).json(reviews.data);
@@ -109,6 +142,7 @@ app.get('/reviews/meta/:product_id', (req, res) => {
     });
 });
 
+// get request handler for fetching all review data of a specific product in a specific order
 app.get('/reviews/:product_id/:filter', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews?product_id=${req.params.product_id}&count=1000&sort=${req.params.filter}`, options)
     .then((reviews) => {
@@ -119,6 +153,18 @@ app.get('/reviews/:product_id/:filter', (req, res) => {
     });
 });
 
+app.post('/interactions', (req, res) => {
+  console.log('request is', req.body);
+  data = {
+    element: req.body.element,
+    widget: req.body.widget,
+    time: req.body.time,
+  };
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/interactions', data, options)
+    .then(() => { console.log('CREATED IT'); })
+    .catch((err) => { console.log(err); 
+  });
+
 app.get('/products/:product_id/styles', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.params.product_id}/styles`, options)
     .then((styles) => {
@@ -127,6 +173,13 @@ app.get('/products/:product_id/styles', (req, res) => {
     .catch((err) => {
       res.status(500);
     });
+});
+
+// put request handler for reporting a review
+app.put('/reviews/report', (req, res) => {
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${req.body.review_id}/report`, null, options)
+    .then((report) => res.status(200).json('Report successful'))
+    .catch((err) => res.status(501).send(`Error in server while reporting Review ID: ${req.params.review_id}`));
 });
 
 module.exports = app;
