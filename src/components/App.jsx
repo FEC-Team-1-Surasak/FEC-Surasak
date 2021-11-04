@@ -7,7 +7,6 @@ import axios from 'axios';
 import Overview from './Overview/Overview.jsx';
 import Container from './Ratings_Reviews/Container.jsx';
 import Questions from './QA/questions.jsx';
-import Overview from './Overview/Overview.jsx';
 import EventTracking from './EventTracking.jsx';
 // import Container from './Ratings_Reviews/Container.jsx';
 

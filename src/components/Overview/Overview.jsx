@@ -9,6 +9,7 @@ import axios from 'axios';
 import ProductDescription from './ProductDescription.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
+import StarRatingStatic from '../Ratings_Reviews/subcomponents/StarRatingStatic.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -103,8 +104,8 @@ class Overview extends React.Component {
     }
 
     return (
-      <div onClick={this.props.onclick}>
-        <span>⭐️⭐️⭐️⭐️⭐️</span>
+        {/* <span>⭐️⭐️⭐️⭐️⭐️</span> */}
+        // <StarRatingStatic />
         <a>Read all reviews</a>
         <br />
         <span>{this.state.category.toUpperCase()}</span>
