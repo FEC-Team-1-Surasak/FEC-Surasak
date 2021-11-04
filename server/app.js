@@ -177,9 +177,16 @@ app.get('/products/:product_id/styles', (req, res) => {
 
 // put request handler for reporting a review
 app.put('/reviews/report', (req, res) => {
-  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${req.body.review_id}/report`, null, options)
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${req.body.reviewId}/report`, null, options)
     .then((report) => res.status(200).json('Report successful'))
-    .catch((err) => res.status(501).send(`Error in server while reporting Review ID: ${req.params.review_id}`));
+    .catch((err) => res.status(501).send(`Error in server while reporting Review ID: ${req.params.reviewId}`));
+});
+
+// put request handler for reporting review as helpful
+app.put('/reviews/helpful', (req, res) => {
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${req.body.reviewId}/helpful`, null, options)
+    .then((report) => res.status(200).json('Helpful rating successful'))
+    .catch((err) => res.status(501).send(`Error in server while rating Review ID: ${req.params.reviewId} as helpful`));
 });
 
 module.exports = app;

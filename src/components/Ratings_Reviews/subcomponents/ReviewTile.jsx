@@ -23,9 +23,9 @@ const ReviewTile = ({ review }) => (
       : <div className="seller-response">
         <i>Seller Response: {review.response}</i>
       </div>}
-    <HelpfulnessRating helpfulness={review.helpfulness} />
+    <HelpfulnessRating reviewId={review.review_id} helpfulness={review.helpfulness} />
     <div className="reviewer">{review.reviewer_name}</div>
-    <ReportButton review_id={review.review_id} />
+    <ReportButton reviewId={review.review_id} />
     <br />
     <br />
   </div>

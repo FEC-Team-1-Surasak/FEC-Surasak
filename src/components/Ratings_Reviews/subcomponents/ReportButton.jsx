@@ -15,13 +15,13 @@ export default class ReportButton extends React.Component {
   }
 
   reportReview() {
-    const { review_id } = this.props;
+    const { reviewId } = this.props;
     const { reported } = this.state;
     if (reported) {
-      window.alert(`Review ID:${review_id} has already been reported.`);
+      window.alert(`Review ID:${reviewId} has already been reported.`);
       return;
     }
-    axios.put('/reviews/report', { review_id })
+    axios.put('/reviews/report', { reviewId })
       .then(() => {
         this.setState({
           reported: true,
