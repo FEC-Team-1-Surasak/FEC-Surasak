@@ -9,11 +9,8 @@ class StarRating extends React.Component {
     super(props);
     this.state = {
       rating: null,
-      hover: null,
     };
     this.clickHandler = this.clickHandler.bind(this);
-    this.mouseEnterHandler = this.mouseEnterHandler.bind(this);
-    this.mouseLeaveHandler = this.mouseLeaveHandler.bind(this);
   }
 
   clickHandler(e) {
@@ -24,20 +21,8 @@ class StarRating extends React.Component {
     });
   }
 
-  mouseEnterHandler(value) {
-    this.setState({
-      hover: value,
-    });
-  }
-
-  mouseLeaveHandler() {
-    this.setState({
-      hover: null,
-    });
-  }
-
   render() {
-    const { rating, hover } = this.state;
+    const { rating } = this.state;
     return (
       <div>
         {[...Array(5)].map((star, i) => {
@@ -54,10 +39,8 @@ class StarRating extends React.Component {
               <Star
                 className="star"
                 value={ratingValue}
-                color={ratingValue <= (hover || rating) ? '#ffc110' : '#e3e8e4'}
+                color={ratingValue <= rating ? '#ffc110' : '#e3e8e4'}
                 size="1em"
-                onMouseEnter={() => (this.mouseEnterHandler(ratingValue))}
-                onMouseLeave={this.mouseLeaveHandler}
               />
             </label>
           );
