@@ -44,7 +44,7 @@ export default class App extends React.Component {
     }
     return (
       <div>
-        <Overview />
+        <Overview id={this.state.id} />
         <Questions name={this.state.name} id={this.state.id} />
         <Container productId={this.state.id} />
       </div>
