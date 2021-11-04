@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
@@ -16,6 +17,8 @@ class StarRating extends React.Component {
   }
 
   clickHandler(e) {
+    const { rating } = this.props;
+    rating(e.target.value);
     this.setState({
       rating: e.target.value,
     });
@@ -42,6 +45,7 @@ class StarRating extends React.Component {
           return (
             <label>
               <input
+                className="star-radio"
                 type="radio"
                 name="rating"
                 value={ratingValue}
