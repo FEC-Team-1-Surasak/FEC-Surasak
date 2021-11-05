@@ -123,6 +123,7 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
     body: req.body.body,
     name: req.body.name,
     email: req.body.email,
+    photo: req.body.photo,
   }, options)
     .then(
       (response) => { res.status(201).send('CREATE'); },
@@ -132,18 +133,18 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
     });
 });
 
-app.get('/reviews/:product_id/:filter', (req, res) => {
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews?product_id=${req.params.product_id}&count=1000&sort=${req.params.filter}`, options)
-app.get('/reviews/meta/:product_id', (req, res) => {
-  console.log('req.params!', req.params.product_id);
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=${req.params.product_id}`, options)
-    .then((reviews) => {
-      res.status(200).json(reviews.data);
-    })
-    .catch((err) => {
-      res.status(500).send(err);
-    });
-});
+// app.get('/reviews/:product_id/:filter', (req, res) => {
+//   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews?product_id=${req.params.product_id}&count=1000&sort=${req.params.filter}`, options)
+// app.get('/reviews/meta/:product_id', (req, res) => {
+//   console.log('req.params!', req.params.product_id);
+//   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=${req.params.product_id}`, options)
+//     .then((reviews) => {
+//       res.status(200).json(reviews.data);
+//     })
+//     .catch((err) => {
+//       res.status(500).send(err);
+//     });
+// });
 
 app.get('/reviews/:product_id/:filter', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews?product_id=${req.params.product_id}&count=1000&sort=${req.params.filter}`, options)
@@ -155,16 +156,16 @@ app.get('/reviews/:product_id/:filter', (req, res) => {
     });
 });
 
-app.post('/interactions', (req, res) => {
-  console.log('request is', req.body);
-  data = {
-    element: req.body.element,
-    widget: req.body.widget,
-    time: req.body.time,
-  };
-  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/interactions', data, options)
-    .then(() => { console.log('CREATED IT'); })
-    .catch((err) => { console.log(err); });
+// app.post('/interactions', (req, res) => {
+//   console.log('request is', req.body);
+//   data = {
+//     element: req.body.element,
+//     widget: req.body.widget,
+//     time: req.body.time,
+//   };
+//   axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/interactions', data, options)
+//     .then(() => { console.log('CREATED IT'); })
+//     .catch((err) => { console.log(err); });
 
 app.get('/products/:product_id/styles', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.params.product_id}/styles`, options)
