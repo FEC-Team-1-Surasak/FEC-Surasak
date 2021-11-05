@@ -97,6 +97,7 @@ class AnswerModal extends React.Component {
         body: this.state.body,
         name: this.state.name,
         email: this.state.email,
+        photo: this.state.photo
       }, { params: { question_id: this.props.question.question_id } })
         .then(() => { console.log('CREATE IT'); })
         .catch((err) => { console.log(err); });
