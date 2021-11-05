@@ -15,11 +15,13 @@ export default class Container extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviewData: {},
+      reviewData: [],
       metaData: {},
+      filteredReviews: [],
     };
     this.getReviewData = this.getReviewData.bind(this);
     this.getReviewMetaData = this.getReviewMetaData.bind(this);
+    this.applyRatingFilters = this.applyRatingFilters.bind(this);
   }
 
   componentDidMount() {
@@ -56,8 +58,27 @@ export default class Container extends React.Component {
       });
   }
 
+  applyRatingFilters(filter) {
+    console.log('metadta from server: ', this.state.metaData.ratings);
+    console.log('filter: ', filter);
+    const { reviewData } = this.state;
+    console.log('reviewData: ', reviewData);
+    const filteredReviews = [];
+    if (Object.values(filter).includes(true, 0)) {
+      console.log('Got into the filtering function');
+      reviewData.forEach((review) => {
+        if (filter[review.rating]) {
+          filteredReviews.push(review);
+        }
+      });
+    }
+    this.setState({
+      filteredReviews,
+    });
+  }
+
   render() {
-    const { reviewData, metaData } = this.state;
+    const { reviewData, metaData, filteredReviews } = this.state;
     const { productId } = this.props;
     if (Object.keys(reviewData).length === 0 || Object.keys(metaData).length === 0) {
       return <div />;
@@ -66,10 +87,14 @@ export default class Container extends React.Component {
       <>
         <ReviewForm data={metaData} productId={productId} />
         <br />
-        <RatingsContainer data={metaData} />
+        <RatingsContainer applyFilters={this.applyRatingFilters} data={metaData} />
         <br />
         <SortDropdown getReviews={this.getReviewData} />
-        <ReviewsList reviews={reviewData} />
+        <ReviewsList
+          reviews={filteredReviews.length === 0
+            ? reviewData
+            : filteredReviews}
+        />
       </>
     );
   }

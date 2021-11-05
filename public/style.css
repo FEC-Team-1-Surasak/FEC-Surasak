@@ -204,3 +204,17 @@ Characteristic Rating in Review Form Component!
   object-fit: cover;
   border: 1px solid;
 }
+
+/*
+---------------------------------------------------
+
+Characteristic Rating in Review Form Component!
+
+---------------------------------------------------
+*/
+
+.rating-breakdown-container{
+  width: 20%;
+  text-align: left;
+  vertical-align: middle
+};
