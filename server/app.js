@@ -123,6 +123,7 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
     body: req.body.body,
     name: req.body.name,
     email: req.body.email,
+    photo: req.body.photo,
   }, options)
     .then(
       (response) => { res.status(201).send('CREATE'); },

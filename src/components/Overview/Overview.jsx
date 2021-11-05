@@ -20,7 +20,6 @@ class Overview extends React.Component {
     super(props);
     this.state = {
       id: this.props.id,
-      // id: 37318,
       product: {},
       styles: [],
       currentStyle: {},
