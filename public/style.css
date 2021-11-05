@@ -71,3 +71,34 @@ div.box{
 /* h2,h3{
   text-align: center;
 } */
+
+.overview-carousel-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  border: 1px solid lightslategray;
+  height: 450px;
+  width: 550px;
+}
+
+/* .overview-arrow-R {
+  position: absolute;
+  z-index: 10;
+  right: 20px;
+  top: 225px;
+  color: #FFFAFA;
+  font-weight: bold;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-size: 18px;
+}
+
+.overview-arrow-L {
+  position: absolute;
+  z-index: 10;
+  left: 75px;
+  top: 225px;
+  color: #FFFAFA;
+  font-weight: bold;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-size: 18px;
+} */
