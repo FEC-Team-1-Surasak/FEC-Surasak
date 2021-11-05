@@ -81,7 +81,7 @@ div.box{
   width: 550px;
 }
 
-/* .overview-arrow-R {
+.overview-carousel-arrow-R {
   position: absolute;
   z-index: 10;
   right: 20px;
@@ -92,16 +92,16 @@ div.box{
   font-size: 18px;
 }
 
-.overview-arrow-L {
+.overview-carousel-arrow-L {
   position: absolute;
   z-index: 10;
-  left: 75px;
+  left: 103px;
   top: 225px;
   color: #FFFAFA;
   font-weight: bold;
   text-shadow: black 0.1em 0.1em 0.2em;
   font-size: 18px;
-} */
+}
 
 .overview-carousel-image {
   max-width: 100%;
