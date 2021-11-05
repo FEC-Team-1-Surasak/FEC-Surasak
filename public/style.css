@@ -102,3 +102,27 @@ div.box{
   text-shadow: black 0.1em 0.1em 0.2em;
   font-size: 18px;
 } */
+
+.overview-carousel-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.overview-thumbnail-list {
+  z-index: 11;
+  max-width: 70px;
+  max-height: 380px;
+  overflow-y: auto;
+  left: 15px;
+  top: 20px;
+  position: absolute;
+  text-align: center;
+}
+
+.overview-carousel-thumbnail {
+  max-width: 100%;
+  max-height: 60px;
+  object-fit: cover;
+  border: 1px solid;
+}

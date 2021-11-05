@@ -22,18 +22,10 @@ class CarouselThumbnail extends React.Component {
   // }
 
   render() {
-    const thumbnailStyle = {
-      'max-width': '100%',
-      'max-height': '60px',
-      'object-fit': 'cover',
-      border: '1px solid',
-
-    };
-
     return (
       <div>
         <img
-          style={thumbnailStyle}
+          className="overview-carousel-thumbnail"
           src={this.props.url}
           onClick={(e) => { this.props.selectIndex(this.props.index); }}
           // onClick={(e) => { this.clickHandler(this.props.index); }}
