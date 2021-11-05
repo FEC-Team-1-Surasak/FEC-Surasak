@@ -103,6 +103,6 @@ class RatingsContainer extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default RatingsContainer;

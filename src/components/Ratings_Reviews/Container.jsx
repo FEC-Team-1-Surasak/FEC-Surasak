@@ -41,7 +41,7 @@ export default class Container extends React.Component {
         });
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   }
 
@@ -59,13 +59,9 @@ export default class Container extends React.Component {
   }
 
   applyRatingFilters(filter) {
-    console.log('metadta from server: ', this.state.metaData.ratings);
-    console.log('filter: ', filter);
     const { reviewData } = this.state;
-    console.log('reviewData: ', reviewData);
     const filteredReviews = [];
     if (Object.values(filter).includes(true, 0)) {
-      console.log('Got into the filtering function');
       reviewData.forEach((review) => {
         if (filter[review.rating]) {
           filteredReviews.push(review);
