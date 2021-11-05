@@ -7,6 +7,8 @@
 import axios from 'axios';
 import React from 'react';
 import ReviewsList from './subcomponents/ReviewsList.jsx';
+import RatingsContainer from './subcomponents/RatingsContainer.jsx';
+import SortDropdown from './subcomponents/SortDropdown.jsx';
 
 export default class Container extends React.Component {
   constructor(props) {
@@ -16,22 +18,23 @@ export default class Container extends React.Component {
       metaData: {},
     };
     this.getReviewData = this.getReviewData.bind(this);
+    this.getReviewMetaData = this.getReviewMetaData.bind(this);
   }
 
   componentDidMount() {
-    const { productId } = this.props;
-    this.getReviewData(productId);
-    this.getReviewMetaData(productId);
+    this.getReviewData();
+    this.getReviewMetaData();
   }
 
-  getReviewData(id, filter) {
+  getReviewData(filter) {
+    const { productId } = this.props;
     if (!filter) {
       filter = 'relevant';
     }
-    axios.get(`/reviews/${id}/${filter}`)
+    axios.get(`/reviews/${productId}/${filter}`)
       .then((reviews) => {
         this.setState({
-          reviewData: reviews.data,
+          reviewData: reviews.data.results,
         });
       })
       .catch((err) => {
@@ -39,29 +42,31 @@ export default class Container extends React.Component {
       });
   }
 
-  getReviewMetaData(id) {
-    console.log('ID>>', id);
-    axios.get(`/reviews/meta/${id}`)
+  getReviewMetaData() {
+    const { productId } = this.props;
+    axios.get(`/reviews/meta/${productId}`)
       .then((reviews) => {
         this.setState({
           metaData: reviews.data,
         });
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   }
 
   render() {
     const { reviewData, metaData } = this.state;
-    if (!reviewData.results) {
+    if (Object.keys(reviewData).length === 0) {
       return <div />;
     }
-    console.log('reviews', reviewData.results);
-    console.log('meta', metaData);
     return (
       <>
-        <ReviewsList reviews={reviewData.results} />
+        <br />
+        <RatingsContainer data={metaData} />
+        <br />
+        <SortDropdown getReviews={this.getReviewData} />
+        <ReviewsList reviews={reviewData} />
       </>
     );
   }
