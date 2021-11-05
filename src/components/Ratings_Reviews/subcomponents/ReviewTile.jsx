@@ -4,7 +4,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import moment from 'moment';
+// import moment from 'moment';
 import ReviewPhotos from './ReviewPhotos.jsx';
 import HelpfulnessRating from './HelpfulnessRating.jsx';
 
