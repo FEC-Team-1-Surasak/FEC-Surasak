@@ -123,6 +123,7 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
     body: req.body.body,
     name: req.body.name,
     email: req.body.email,
+    photo: req.body.photo,
   }, options)
     .then(
       (response) => { res.status(201).send('CREATE'); },
@@ -189,6 +190,7 @@ app.put('/reviews/helpful', (req, res) => {
     .catch((err) => res.status(501).send(`Error in server while rating Review ID: ${req.params.reviewId} as helpful`));
 });
 
+// post request handler for reporting a review as helpful
 app.post('/reviews', (req, res) => {
   console.log(req.body);
   axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews', req.body, options)

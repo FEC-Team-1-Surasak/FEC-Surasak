@@ -12,6 +12,7 @@ import axios from 'axios';
 import ProductDescription from './ProductDescription.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
+import CarouselDefaultView from './Carousel/CarouselDefaultView.jsx';
 import StarRatingStatic from '../Ratings_Reviews/subcomponents/StarRatingStatic.jsx';
 
 class Overview extends React.Component {
@@ -19,7 +20,6 @@ class Overview extends React.Component {
     super(props);
     this.state = {
       id: this.props.id,
-      // id: 37326,
       product: {},
       styles: [],
       currentStyle: {},
@@ -94,6 +94,7 @@ class Overview extends React.Component {
   }
 
   updateStyle(style) {
+    console.log('HERE  ', style.photos);
     this.setState({
       currentStyle: style,
       isOnSale: !!style.sale_price,
@@ -149,6 +150,7 @@ class Overview extends React.Component {
           product={this.state.product}
         />
         <ProductDescription product={this.state.product} />
+        <CarouselDefaultView currentStyle={this.state.currentStyle} />
       </div>
     );
   }
