@@ -55,12 +55,12 @@ class CharacteristicsReview extends React.Component {
     const { characteristics } = this.state;
     func({
       ...characteristics,
-      [e.target.name]: e.target.value,
+      [e.target.name]: JSON.parse(e.target.value),
     });
     this.setState({
       characteristics: {
         ...characteristics,
-        [e.target.name]: e.target.value,
+        [e.target.name]: JSON.parse(e.target.value),
       },
     });
   }

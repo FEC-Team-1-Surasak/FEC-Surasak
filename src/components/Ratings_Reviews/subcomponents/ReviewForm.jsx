@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable no-console */
 /* eslint-disable no-useless-escape */
 /* eslint-disable no-unused-vars */
@@ -58,7 +59,7 @@ export default class ReviewForm extends React.Component {
     }
 
     const { productId, data } = this.props;
-    const { requiredChars } = data;
+    const { characteristics: requiredChars } = data;
     const {
       rating,
       summary,
@@ -71,25 +72,25 @@ export default class ReviewForm extends React.Component {
     } = this.state;
 
     if (rating === null) {
-      return Window.alert('Submission Invalid: Please rate item 1 - 5 stars');
+      return window.alert('Submission Invalid: Please rate item 1 - 5 stars');
     }
     if (recommended === null) {
-      return Window.alert('Submission Invalid: Please choose whether or not to recommend this product');
+      return window.alert('Submission Invalid: Please choose whether or not to recommend this product');
     }
     if (Object.keys(requiredChars).length !== Object.keys(characteristics).length) {
-      return Window.alert('Submission Invalid: Please rate all characteristics presented');
+      return window.alert('Submission Invalid: Please rate all characteristics presented');
     }
     if (summary.length < 1) {
-      return Window.alert('Submission Invalid: Please provide a summary for your review');
+      return window.alert('Submission Invalid: Please provide a summary for your review');
     }
     if (body.length < 50) {
-      return Window.alert('Submission Invalid: Please provide a body that is at least 50 characters long');
+      return window.alert('Submission Invalid: Please provide a body that is at least 50 characters long');
     }
     if (nickname.length < 1) {
-      return Window.alert('Submission Invalid: Please enter a nickname');
+      return window.alert('Submission Invalid: Please enter a nickname');
     }
     if (email.length < 1 || !validateEmail(email)) {
-      return Window.alert('Submission Invalid: Please enter a valid email');
+      return window.alert('Submission Invalid: Please enter a valid email');
     }
 
     const reviewSubmission = {
@@ -106,7 +107,7 @@ export default class ReviewForm extends React.Component {
 
     axios.post('/reviews', reviewSubmission)
       .then(() => {
-        Window.alert('Thank you for your submission');
+        window.alert('Thank you for your submission');
         this.setState({
           rendered: false,
         });
