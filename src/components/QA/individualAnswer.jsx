@@ -14,7 +14,7 @@ class IndividualAnswer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cnt: 0,
+      hasVoted: false,
       helpfulness: this.props.answer.helpfulness,
       IsReport: 'Report',
       reportCount: 0,
@@ -25,18 +25,13 @@ class IndividualAnswer extends React.Component {
 
   // click function to mark answers helpful
   onClick() {
-    if (this.state.cnt === 1) {
-      alert('You have already marked this answer helfpful');
-    } else {
-      this.setState({ helpfulness: this.state.helpfulness + 1 });
-      this.setState({ cnt: 1 });
-      // send a p`ut
-      axios.put('/qa/answers/:answer_id/helpful', { answer_id: this.props.answer.answer_id })
-        .then(() => {
-          console.log('UPDATED THE RECORD');
-        })
-        .catch((err) => { console.error(err); });
-    }
+    this.setState({ helpfulness: this.state.helpfulness + 1 });
+    this.setState({ hasVoted: true });
+    axios.put('/qa/answers/:answer_id/helpful', { answer_id: this.props.answer.answer_id })
+      .then(() => {
+        console.log('UPDATED THE RECORD');
+      })
+      .catch((err) => { console.error(err); });
   }
 
   // report an answer
@@ -75,12 +70,16 @@ class IndividualAnswer extends React.Component {
           {' '}
           {new Date(this.props.answer.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
           <span>Helpful?</span>
-          <span onClick={this.onClick}>
-            <u>Yes</u>
-            (
-            {this.state.helpfulness}
-            )
-          </span>
+          {this.state.hasVoted
+            ? <span>Marked Yes</span>
+            : (
+              <span onClick={this.onClick}>
+                <u>Yes</u>
+                (
+                {this.state.helpfulness}
+                )
+              </span>
+            )}
           <span onClick={this.report}><u>{this.state.IsReport}</u></span>
         </div>
       </div>
