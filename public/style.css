@@ -1,4 +1,11 @@
-input[type="radio"] {
+/*
+---------------------------------------------------
+
+Star Rating Component!
+
+---------------------------------------------------
+*/
+.star-radio {
   display: none;
 }
 
@@ -28,6 +35,14 @@ input[type="radio"] {
 .layer2{
   overflow-x: hidden;
 }
+
+/*
+---------------------------------------------------
+
+Question Component!
+
+---------------------------------------------------
+*/
 
 div.answer-list{
   max-height: 250px;
@@ -85,6 +100,30 @@ div.box{
 /* h2,h3{
   text-align: center;
 } */
+
+
+/*
+---------------------------------------------------
+
+Characteristic Rating in Review Form Component!
+
+---------------------------------------------------
+*/
+
+.radio-group label {
+  display: inline-block;
+  text-align: center;
+  margin: 0 2em;
+}
+.radio-group label input[type="radio"] {
+  display: block;
+  margin: 0.5em auto;
+}
+
+/*
+->
+*/
+
 .close-icon{
   color:rgb(240, 9, 9);
   position:absolute;
@@ -109,9 +148,6 @@ div.box{
   height:350px;
   top:100px;
   left:330px;
-
-
-
 }
 
 .overview-carousel-container {

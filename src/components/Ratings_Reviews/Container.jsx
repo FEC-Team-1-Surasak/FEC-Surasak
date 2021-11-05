@@ -9,6 +9,7 @@ import React from 'react';
 import ReviewsList from './subcomponents/ReviewsList.jsx';
 import RatingsContainer from './subcomponents/RatingsContainer.jsx';
 import SortDropdown from './subcomponents/SortDropdown.jsx';
+import ReviewForm from './subcomponents/ReviewForm.jsx';
 
 export default class Container extends React.Component {
   constructor(props) {
@@ -57,11 +58,13 @@ export default class Container extends React.Component {
 
   render() {
     const { reviewData, metaData } = this.state;
-    if (Object.keys(reviewData).length === 0) {
+    const { productId } = this.props;
+    if (Object.keys(reviewData).length === 0 || Object.keys(metaData).length === 0) {
       return <div />;
     }
     return (
       <>
+        <ReviewForm data={metaData} productId={productId} />
         <br />
         <RatingsContainer data={metaData} />
         <br />
