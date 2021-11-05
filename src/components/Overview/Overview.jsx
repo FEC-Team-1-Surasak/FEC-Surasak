@@ -94,7 +94,6 @@ class Overview extends React.Component {
   }
 
   updateStyle(style) {
-    console.log('HERE  ', style.photos);
     this.setState({
       currentStyle: style,
       isOnSale: !!style.sale_price,

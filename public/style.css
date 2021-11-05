@@ -150,6 +150,14 @@ Characteristic Rating in Review Form Component!
   left:330px;
 }
 
+/*
+---------------------------------------------------
+
+Overview - Carousel Component!
+
+---------------------------------------------------
+*/
+
 .overview-carousel-container {
   position: relative;
   display: flex;
@@ -203,4 +211,11 @@ Characteristic Rating in Review Form Component!
   max-height: 60px;
   object-fit: cover;
   border: 1px solid;
+}
+
+.overview-carousel-thumbnail.selected {
+  max-width: 100%;
+  max-height: 60px;
+  object-fit: cover;
+  border: 2px solid #98FB98;
 }

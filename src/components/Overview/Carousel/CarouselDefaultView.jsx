@@ -33,8 +33,10 @@ class CarouselDefaultView extends React.Component {
   }
 
   updateStyle(style) {
+    const oldIndex = this.state.currentImgIndex;
     this.setState({
       currentStyle: style,
+      currentImgIndex: !style.photos[oldIndex] ? 0 : oldIndex,
     });
   }
 
