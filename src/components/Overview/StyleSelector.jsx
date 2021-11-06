@@ -17,7 +17,7 @@ class StyleSelector extends React.Component {
     return (
       <>
         <div>{<b>STYLE > </b>}{this.props.currentStyle.name}</div>
-        <div style={{'max-width': '200px'}}>
+        <div className='style-selector-container'>
           {this.props.styles.map(style => {
             return <Thumbnail style={style} updateStyle={this.props.updateStyle} />;
           })}

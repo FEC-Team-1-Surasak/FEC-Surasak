@@ -144,24 +144,28 @@ class Overview extends React.Component {
     }
 
     return (
-      <div>
-        <StarRatingStatic rating={this.state.avgRating/5} />
-        <a>Read all reviews</a>
-        <br />
-        <span>{this.state.category.toUpperCase()}</span>
-        <h2>{this.state.product.name}</h2>
-        {price}
-        <StyleSelector
-          styles={this.state.styles}
-          currentStyle={this.state.currentStyle}
-          updateStyle={this.updateStyle}
-        />
-        <AddToCart
-          currentStyle={this.state.currentStyle}
-          addToCart={this.addToCart}
-          product={this.state.product}
-        />
-        <ProductDescription product={this.state.product} />
+      <div className="overview-container">
+        <div className="product-info">
+          <StarRatingStatic rating={this.state.avgRating/5} />
+          <a>Read all reviews</a>
+          <br />
+          <span>{this.state.category.toUpperCase()}</span>
+          <h2>{this.state.product.name}</h2>
+          {price}
+          <StyleSelector
+            styles={this.state.styles}
+            currentStyle={this.state.currentStyle}
+            updateStyle={this.updateStyle}
+          />
+          <AddToCart
+            currentStyle={this.state.currentStyle}
+            addToCart={this.addToCart}
+            product={this.state.product}
+          />
+        </div>
+        <div className="product-description">
+          <ProductDescription product={this.state.product} />
+        </div>
         <CarouselDefaultView
           currentStyle={this.state.currentStyle}
           changeView={this.changeView}

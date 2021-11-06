@@ -13,7 +13,6 @@ class CarouselDefaultView extends React.Component {
       currentImgIndex: 0,
       view: null,
     };
-
     this.updateStyle = this.updateStyle.bind(this);
     this.previous = this.previous.bind(this);
     this.next = this.next.bind(this);
@@ -69,7 +68,6 @@ class CarouselDefaultView extends React.Component {
     if (this.state.currentStyle.photos === undefined) {
       return <div />;
     }
-
     return (
       <div className="overview-carousel-container">
         <CarouselImage url={this.state.currentStyle.photos[this.state.currentImgIndex].url} changeView={this.props.changeView} />
