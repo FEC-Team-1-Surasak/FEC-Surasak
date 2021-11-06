@@ -14,6 +14,7 @@ import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 import CarouselDefaultView from './Carousel/CarouselDefaultView.jsx';
 import StarRatingStatic from '../Ratings_Reviews/subcomponents/StarRatingStatic.jsx';
+import ExpandedView from './Carousel/ExpandedView.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -28,6 +29,7 @@ class Overview extends React.Component {
       isOnSale: '',
       cart: [],
       avgRating: 0,
+      view: null,
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getStyles = this.getStyles.bind(this);
@@ -35,6 +37,13 @@ class Overview extends React.Component {
     this.addToCart = this.addToCart.bind(this);
     this.getRatings = this.getRatings.bind(this);
     this.calculateAvg = this.calculateAvg.bind(this);
+    this.changeView = this.changeView.bind(this);
+  }
+
+  changeView(option) {
+    this.setState({
+      view: option,
+    });
   }
 
   componentDidMount() {
@@ -130,6 +139,10 @@ class Overview extends React.Component {
       return <div />;
     }
 
+    if (this.state.view === 'expanded') {
+      return <ExpandedView changeView={this.changeView} />;
+    }
+
     return (
       <div>
         <StarRatingStatic rating={this.state.avgRating/5} />
@@ -149,7 +162,11 @@ class Overview extends React.Component {
           product={this.state.product}
         />
         <ProductDescription product={this.state.product} />
-        <CarouselDefaultView currentStyle={this.state.currentStyle} />
+        <CarouselDefaultView
+          currentStyle={this.state.currentStyle}
+          changeView={this.changeView}
+          view={this.state.view}
+        />
       </div>
     );
   }

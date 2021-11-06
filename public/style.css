@@ -244,3 +244,17 @@ Overview - Carousel Component!
   border: 2px solid #98FB98;
   box-shadow: 0 0 50px #ccc;
 }
+
+.overview-carousel-expanded {
+  background-color: #4169E1;
+  height: 100vh;
+  position: relative;
+  z-index: 10;
+}
+
+.close-button {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  z-index: 12;
+}
