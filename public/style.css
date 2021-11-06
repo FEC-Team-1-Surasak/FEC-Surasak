@@ -180,7 +180,34 @@ li::before {
   max-width: 240px;
 }
 
+.selected-thumbnail-container {
+  position: relative;
+  display: inline-block;
+  height: 42px;
+  width: 100%;
+  max-width: 42px;
+  max-height: 42px;
+  margin: 0px 14px 0px 0px;
+  border-radius: 30px;
+}
+
+.checkmark-overlay {
+  position: absolute;
+  top: 4px;
+  right: 0px;
+  border: 1px solid;
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  font-size: 5px;
+  text-align: center;
+  padding: 2px;
+  background-color: white;
+  z-index: 20;
+}
+
 .default-thumbnail {
+  position: relative;
   border-radius: 30px;
   -webkit-border-radius: 30px;
   max-width: 42px;
@@ -227,7 +254,7 @@ Overview - Carousel Component!
 .overview-carousel-arrow-L {
   position: absolute;
   z-index: 10;
-  left: 103px;
+  left: 88px;
   top: 225px;
   color: #FFFAFA;
   font-weight: bold;

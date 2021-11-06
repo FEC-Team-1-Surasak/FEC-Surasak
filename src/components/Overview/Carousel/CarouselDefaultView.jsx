@@ -3,7 +3,6 @@ import React from 'react';
 import Arrows from './Arrows.jsx';
 import CarouselImage from './CarouselImage.jsx';
 import ThumbnailList from './ThumbnailList.jsx';
-import ExpandedView from './ExpandedView.jsx';
 
 class CarouselDefaultView extends React.Component {
   constructor(props) {
@@ -59,6 +58,7 @@ class CarouselDefaultView extends React.Component {
   }
 
   selectIndex(index) {
+    this.props.updateImgIndex(index);
     this.setState({
       currentImgIndex: index,
     });

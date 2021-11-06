@@ -30,6 +30,7 @@ class Overview extends React.Component {
       cart: [],
       avgRating: 0,
       view: null,
+      currentImgIndex: 0,
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getStyles = this.getStyles.bind(this);
@@ -38,6 +39,7 @@ class Overview extends React.Component {
     this.getRatings = this.getRatings.bind(this);
     this.calculateAvg = this.calculateAvg.bind(this);
     this.changeView = this.changeView.bind(this);
+    this.updateImgIndex = this.updateImgIndex.bind(this);
   }
 
   changeView(option) {
@@ -120,6 +122,12 @@ class Overview extends React.Component {
     });
   }
 
+  updateImgIndex(index) {
+    this.setState({
+      currentImgIndex: index,
+    });
+  }
+
   render() {
     let price;
     if (this.state.isOnSale) {
@@ -170,6 +178,7 @@ class Overview extends React.Component {
           currentStyle={this.state.currentStyle}
           changeView={this.changeView}
           view={this.state.view}
+          updateImgIndex={this.updateImgIndex}
         />
       </div>
     );

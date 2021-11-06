@@ -4,16 +4,14 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 
-const CarouselThumbnail = (props) => {
-  return (
-    <div>
-      <img
-        className={`overview-carousel-thumbnail${props.currentImgIndex === props.index ? ' selected' : ''}`}
-        src={props.url}
-        onClick={(e) => { props.selectIndex(props.index); }}
-      />
-    </div>
-  );
-};
+const CarouselThumbnail = (props) => (
+  <div>
+    <img
+      className={`overview-carousel-thumbnail${props.currentImgIndex === props.index ? ' selected' : ''}`}
+      src={props.url}
+      onClick={(e) => { props.selectIndex(props.index); }}
+    />
+  </div>
+);
 
 export default CarouselThumbnail;
