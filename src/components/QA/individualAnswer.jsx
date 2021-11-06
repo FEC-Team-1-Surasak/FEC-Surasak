@@ -55,12 +55,12 @@ class IndividualAnswer extends React.Component {
       <div>
         <div className="answer">
           {' '}
-          <b>A:</b>
+          A:
           {this.props.answer.body}
         </div>
         <div className="image">
           {this.props.answer.photos.map((photo) => (
-            <img src={photo.url} width="100" height="50" />
+            <img src={photo.url} width="100" height="50" key={photo.id} />
           ))}
         </div>
         <div className="user-name">
