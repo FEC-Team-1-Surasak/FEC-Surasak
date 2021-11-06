@@ -92,7 +92,7 @@ class IndividualQuestion extends React.Component {
       <div className="question">
         <div className="question-body">
           <b> Q:</b>
-          {this.highlight(this.props.term)}
+          <b>{this.highlight(this.props.term)}</b>
           <span>Helpful?</span>
           <span onClick={this.onClick}>
             Yes(
@@ -113,7 +113,10 @@ class IndividualQuestion extends React.Component {
           ):null}
         </div>
         <div>
-          <Answer question_id={this.props.question.question_id} />
+          <Answer
+            question_id={this.props.question.question_id}
+            key={this.props.question.question_id}
+          />
         </div>
       </div>
 
