@@ -310,9 +310,26 @@ Overview - Carousel Component!
 .overview-carousel-expanded {
   background-color: #4169E1;
   height: 100vh;
+  width: 100wh;
   position: relative;
   z-index: 10;
   cursor: crosshair;
+}
+
+.carousel-expanded-img {
+  max-width: 100%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.carousel-expanded-img-zoom {
+  max-width: 100%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transform: scale(2.5);
+  -webkit-transform: scale(2.5);
 }
 
 .close-button {
