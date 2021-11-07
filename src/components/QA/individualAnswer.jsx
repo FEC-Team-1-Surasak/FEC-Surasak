@@ -9,6 +9,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import axios from 'axios';
+import ExpandView from './expandView.jsx';
 
 class IndividualAnswer extends React.Component {
   constructor(props) {
@@ -18,9 +19,15 @@ class IndividualAnswer extends React.Component {
       helpfulness: this.props.answer.helpfulness,
       IsReport: 'Report',
       reportCount: 0,
+      expand: false,
+      currselect: '',
+      thumbnail: '',
+      currId: 0,
     };
     this.onClick = this.onClick.bind(this);
     this.report = this.report.bind(this);
+    this.clickPhoto = this.clickPhoto.bind(this);
+    this.clickThumbnail = this.clickThumbnail.bind(this);
   }
 
   // click function to mark answers helpful
@@ -32,6 +39,18 @@ class IndividualAnswer extends React.Component {
         console.log('UPDATED THE RECORD');
       })
       .catch((err) => { console.error(err); });
+  }
+
+  clickPhoto(e) {
+    const curr = this.state.expand;
+    this.setState({ expand: !curr });
+    this.setState({ currselect: e.target });
+  }
+
+  clickThumbnail(e) {
+    console.log(e);
+    this.setState({thumbnail: e.target });
+    this.setState({currselect: e.target});
   }
 
   // report an answer
@@ -60,9 +79,23 @@ class IndividualAnswer extends React.Component {
         </div>
         <div className="image">
           {this.props.answer.photos.map((photo) => (
-            <img src={photo.url} width="100" height="50" key={photo.id} />
+            <img src={photo.url} width="100" height="50" key={photo.id} onClick={this.clickPhoto} />
           ))}
         </div>
+
+        {this.state.expand
+          ? (
+            <div className="expand-answer-photo">
+              <div className="expand-answer-thumbnail">
+                {this.props.answer.photos.map((photo) => (
+                  <img src={photo.url} width="100" height="50" key={photo.id} onClick={this.clickThumbnail} />
+                ))}
+              </div>
+              <ExpandView url={this.state.currselect.src} click={this.clickPhoto} />
+            </div>
+          )
+          : null}
+
         <div className="user-name">
           by user
           {this.props.answer.answerer_name === 'Seller' ? <b>Seller</b> : this.props.answer.answerer_name}

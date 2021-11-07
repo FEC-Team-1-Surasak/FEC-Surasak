@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
@@ -21,8 +22,8 @@ class AnswerModal extends React.Component {
       name: '',
       email: '',
       photo: ['https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2670&q=80',
-      'https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=735&q=80'
-    ],
+        'https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=735&q=80',
+      ],
       preview: [],
     };
     this.answerChange = this.answerChange.bind(this);
@@ -46,7 +47,6 @@ class AnswerModal extends React.Component {
   emailChange(e) {
     this.setState({ email: e.target.value });
   }
-
 
   // checking if all input are valid before submit
   isValid() {
@@ -79,7 +79,7 @@ class AnswerModal extends React.Component {
       //   reader.readAsDataURL(file);
       const oldstate = this.state.preview;
       oldstate.push(url);
-      this.setState({preview: oldstate });
+      this.setState({ preview: oldstate });
     }
   }
 
