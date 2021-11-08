@@ -69,7 +69,7 @@ class Answer extends React.Component {
           {/* redner up to 2 answers */}
           {this.state.list.slice(0, this.state.len).map((answer) => (
             <div>
-              <IndividualAnswer answer={answer} key={answer.answer_id} />
+              <IndividualAnswer question={this.props.question} answer={answer} key={answer.answer_id} />
             </div>
           ))}
         </div>
