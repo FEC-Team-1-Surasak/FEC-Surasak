@@ -10,8 +10,8 @@ class CarouselDefaultView extends React.Component {
     this.state = {
       currentStyle: this.props.currentStyle,
       currentImgIndex: 0,
+      view: null,
     };
-
     this.updateStyle = this.updateStyle.bind(this);
     this.previous = this.previous.bind(this);
     this.next = this.next.bind(this);
@@ -22,6 +22,7 @@ class CarouselDefaultView extends React.Component {
     setTimeout(
       () => this.setState({
         currentStyle: this.props.currentStyle,
+        view: this.props.view,
       }), 1000,
     );
   }
@@ -33,8 +34,10 @@ class CarouselDefaultView extends React.Component {
   }
 
   updateStyle(style) {
+    const oldIndex = this.state.currentImgIndex;
     this.setState({
       currentStyle: style,
+      currentImgIndex: !style.photos[oldIndex] ? 0 : oldIndex,
     });
   }
 
@@ -55,6 +58,7 @@ class CarouselDefaultView extends React.Component {
   }
 
   selectIndex(index) {
+    this.props.updateImgIndex(index);
     this.setState({
       currentImgIndex: index,
     });
@@ -64,10 +68,9 @@ class CarouselDefaultView extends React.Component {
     if (this.state.currentStyle.photos === undefined) {
       return <div />;
     }
-
     return (
       <div className="overview-carousel-container">
-        <CarouselImage url={this.state.currentStyle.photos[this.state.currentImgIndex].url} />
+        <CarouselImage url={this.state.currentStyle.photos[this.state.currentImgIndex].url} changeView={this.props.changeView} />
 
         {this.state.currentImgIndex === 0 ? null : <Arrows direction="left" previous={this.previous} />}
 

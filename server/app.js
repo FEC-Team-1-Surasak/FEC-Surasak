@@ -3,14 +3,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 const express = require('express');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const path = require('path');
 const axios = require('axios');
 const config = require('../config');
 
 const app = express();
 
-app.use(morgan('combined'));
+// app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
@@ -123,7 +123,6 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
     body: req.body.body,
     name: req.body.name,
     email: req.body.email,
-    photo: req.body.photo,
   }, options)
     .then(
       (response) => { res.status(201).send('CREATE'); },
@@ -188,14 +187,6 @@ app.put('/reviews/helpful', (req, res) => {
   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${req.body.reviewId}/helpful`, null, options)
     .then((report) => res.status(200).json('Helpful rating successful'))
     .catch((err) => res.status(501).send(`Error in server while rating Review ID: ${req.params.reviewId} as helpful`));
-});
-
-// post request handler for reporting a review as helpful
-app.post('/reviews', (req, res) => {
-  console.log(req.body);
-  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews', req.body, options)
-    .then(() => res.status(200).json('Review successful'))
-    .catch((err) => res.status(501).send('Error in server while posting review'));
 });
 
 module.exports = app;
