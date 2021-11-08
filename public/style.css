@@ -10,7 +10,7 @@ Star Rating Component!
 }
 
 .reviews-list-container {
-  height:80vh;
+  max-height:80vh;
   width:80vw;
   overflow-y:auto;
 }

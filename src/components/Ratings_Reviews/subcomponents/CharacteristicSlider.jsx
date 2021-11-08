@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from 'react';
 
@@ -23,33 +24,19 @@ const CharacteristicSlider = ({ characteristic, charObj }) => {
     },
   };
 
-  console.log('CHAR: ', characteristic);
-  console.log('Obj: ', charObj);
-
   return (
     <div>
       <label htmlFor={characteristic}>{characteristic}</label>
       <input
         className="range-slider"
         name={characteristic}
-        alue={charObj.value}
+        value={charObj.value}
         type="range"
-        list="tickmarks"
         min="1"
         max="5"
+        step="0.1"
+        disabled
       />
-      <datalist className="range-data" id="tickmarks">
-        {
-          defaultCharacteristics[characteristic].values.map((value, i) => (
-            <option
-              label={`${value}`}
-              value={`${1 + i}`}
-            >
-              {value}
-            </option>
-          ))
-        }
-      </datalist>
     </div>
   );
 };

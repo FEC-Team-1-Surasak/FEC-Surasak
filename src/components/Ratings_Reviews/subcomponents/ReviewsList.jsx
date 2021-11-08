@@ -2,14 +2,17 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import ReviewTile from './ReviewTile.jsx';
+import ReviewForm from './ReviewForm.jsx';
 
 class ReviewsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       listLength: 2,
+      expand: false,
     };
     this.showMoreReviews = this.showMoreReviews.bind(this);
+    this.expand = this.expand.bind(this);
   }
 
   showMoreReviews() {
@@ -19,23 +22,36 @@ class ReviewsList extends React.Component {
     });
   }
 
+  expand() {
+    const { expand } = this.state;
+    this.setState({
+      expand: !expand,
+    });
+  }
+
   render() {
-    const { reviews } = this.props;
-    const { listLength } = this.state;
+    const { reviews, metaData, productId } = this.props;
+    const { listLength, expand } = this.state;
     let remainingReviews = false;
     return (
-      <div className="reviews-list-container">
-        {
-          reviews.map((review, i) => {
-            if (i >= listLength) {
-              remainingReviews = true;
-              return <div key={review.review_id} display="hidden" />;
-            }
-            return <ReviewTile key={review.review_id} review={review} />;
-          })
-        }
-        {remainingReviews ? <button type="submit" onClick={this.showMoreReviews}>Load More Reviews</button> : <div display="hidden" />}
-      </div>
+      <>
+        <div className="reviews-list-container">
+          {
+            reviews.map((review, i) => {
+              if (i >= listLength) {
+                remainingReviews = true;
+                return <div key={review.review_id} display="hidden" />;
+              }
+              return <ReviewTile key={review.review_id} review={review} />;
+            })
+          }
+        </div>
+        {remainingReviews ? <button type="submit" onClick={this.showMoreReviews}>Load More Reviews</button> : null}
+        <button type="submit" onClick={this.expand}>Add Review</button>
+        {expand
+          ? <ReviewForm data={metaData} productId={productId} close={this.expand} />
+          : null}
+      </>
     );
   }
 }

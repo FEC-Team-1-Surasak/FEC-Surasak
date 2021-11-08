@@ -94,7 +94,7 @@ class RatingsContainer extends React.Component {
         <div className="rating-breakdown-container">
           {
             Object.keys(ratingPercent).map((rating, i) => (
-              <div onClick={() => this.addFilter(rating)}>
+              <div key={rating} onClick={() => this.addFilter(rating)}>
                 <RatingBar
                   rating={rating}
                   completed={ratingPercent[rating]}
@@ -107,6 +107,7 @@ class RatingsContainer extends React.Component {
           {
             Object.keys(characteristics).map((characteristic) => (
               <CharacteristicSlider
+                key={characteristic}
                 characteristic={characteristic}
                 charObj={characteristics[characteristic]}
               />
