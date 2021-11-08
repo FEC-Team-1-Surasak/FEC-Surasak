@@ -48,9 +48,9 @@ class IndividualAnswer extends React.Component {
   }
 
   clickThumbnail(e) {
-    console.log(e);
-    this.setState({thumbnail: e.target });
-    this.setState({currselect: e.target});
+    console.log(e.target);
+    this.setState({ thumbnail: e.target });
+    this.setState({ currselect: e.target });
   }
 
   // report an answer
@@ -91,7 +91,14 @@ class IndividualAnswer extends React.Component {
                   <img src={photo.url} width="100" height="50" key={photo.id} onClick={this.clickThumbnail} />
                 ))}
               </div>
-              <ExpandView url={this.state.currselect.src} click={this.clickPhoto} />
+              <ExpandView
+                question={this.props.question}
+                answer={this.props.answer.body}
+                url={this.state.currselect.src}
+                click={this.clickPhoto}
+                width="300"
+                height="350"
+              />
             </div>
           )
           : null}

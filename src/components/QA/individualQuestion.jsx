@@ -114,6 +114,7 @@ class IndividualQuestion extends React.Component {
         </div>
         <div>
           <Answer
+            question={this.props.question.question_body}
             question_id={this.props.question.question_id}
             key={this.props.question.question_id}
           />
