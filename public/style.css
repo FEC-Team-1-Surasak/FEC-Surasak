@@ -218,3 +218,15 @@ Characteristic Rating in Review Form Component!
   text-align: left;
   vertical-align: middle
 };
+
+
+.range-data datalist {
+  display: flex;
+  justify-content: space-between;
+  color: red;
+  width: 100%;
+}
+
+.range-slider input {
+  width: 50%;
+}

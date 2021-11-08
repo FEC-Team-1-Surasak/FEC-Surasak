@@ -8,6 +8,7 @@
 import React from 'react';
 import StarRatingStatic from './StarRatingStatic.jsx';
 import RatingBar from './RatingBar.jsx';
+import CharacteristicSlider from './CharacteristicSlider.jsx';
 
 class RatingsContainer extends React.Component {
   constructor(props) {
@@ -73,7 +74,7 @@ class RatingsContainer extends React.Component {
 
   render() {
     const { data } = this.props;
-    const { ratings } = data;
+    const { ratings, characteristics } = data;
 
     if (!ratings) {
       return <div>No metadata</div>;
@@ -87,6 +88,8 @@ class RatingsContainer extends React.Component {
           {' '}
           {averageRating.toFixed(1)}
           <StarRatingStatic rating={averageRating / 5} />
+          {'No. of Ratings: '}
+          {totalRatings}
         </div>
         <div className="rating-breakdown-container">
           {
@@ -97,6 +100,16 @@ class RatingsContainer extends React.Component {
                   completed={ratingPercent[rating]}
                 />
               </div>
+            ))
+          }
+        </div>
+        <div>
+          {
+            Object.keys(characteristics).map((characteristic) => (
+              <CharacteristicSlider
+                characteristic={characteristic}
+                charObj={characteristics[characteristic]}
+              />
             ))
           }
         </div>
