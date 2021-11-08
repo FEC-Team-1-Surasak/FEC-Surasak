@@ -21,6 +21,7 @@ class Overview extends React.Component {
     super(props);
     this.state = {
       id: this.props.id,
+      // id: 37315,
       product: {},
       styles: [],
       currentStyle: {},
@@ -148,7 +149,7 @@ class Overview extends React.Component {
     }
 
     if (this.state.view === 'expanded') {
-      return <ExpandedView changeView={this.changeView} />;
+      return <ExpandedView changeView={this.changeView} currentStyle={this.state.currentStyle} currentImgIndex={this.state.currentImgIndex} />;
     }
 
     return (
