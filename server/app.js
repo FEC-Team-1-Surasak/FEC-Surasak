@@ -189,4 +189,11 @@ app.put('/reviews/helpful', (req, res) => {
     .catch((err) => res.status(501).send(`Error in server while rating Review ID: ${req.params.reviewId} as helpful`));
 });
 
+app.post('/reviews', (req, res) => {
+  console.log(req.body);
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/', req.body, options)
+    .then((report) => res.status(200).json('Review rating successful'))
+    .catch((err) => res.status(501).send(`Error in server while rating Review ID: ${req.params.reviewSubmission} as helpful`));
+});
+
 module.exports = app;

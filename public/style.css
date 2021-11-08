@@ -10,7 +10,7 @@ Star Rating Component!
 }
 
 .reviews-list-container {
-  height:80vh;
+  max-height:80vh;
   width:80vw;
   overflow-y:auto;
 }
@@ -341,4 +341,30 @@ Overview - Carousel Component!
   right: 18px;
   top: 18px;
   z-index: 12;
+}
+
+/*
+---------------------------------------------------
+
+Characteristic Rating in Review Form Component!
+
+---------------------------------------------------
+*/
+
+.rating-breakdown-container{
+  width: 20%;
+  text-align: left;
+  vertical-align: middle
+};
+
+
+.range-data datalist {
+  display: flex;
+  justify-content: space-between;
+  color: red;
+  width: 100%;
+}
+
+.range-slider input {
+  width: 50%;
 }
