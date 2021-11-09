@@ -124,6 +124,7 @@ class Overview extends React.Component {
   }
 
   updateImgIndex(index) {
+    console.log('FROM DEFAULT VIEW > ', index);
     this.setState({
       currentImgIndex: index,
     });
@@ -149,7 +150,14 @@ class Overview extends React.Component {
     }
 
     if (this.state.view === 'expanded') {
-      return <ExpandedView changeView={this.changeView} currentStyle={this.state.currentStyle} currentImgIndex={this.state.currentImgIndex} />;
+      return (
+        <ExpandedView
+          changeView={this.changeView}
+          currentStyle={this.state.currentStyle}
+          currentImgIndex={this.state.currentImgIndex}
+          updateImgIndex={this.updateImgIndex}
+        />
+      );
     }
 
     return (
@@ -178,8 +186,8 @@ class Overview extends React.Component {
         <CarouselDefaultView
           currentStyle={this.state.currentStyle}
           changeView={this.changeView}
-          view={this.state.view}
           updateImgIndex={this.updateImgIndex}
+          currentImgIndex={this.state.currentImgIndex}
         />
       </div>
     );
