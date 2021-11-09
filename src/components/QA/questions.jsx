@@ -92,8 +92,8 @@ class Question extends React.Component {
   render() {
     return (
       <div className="overall-question" onClick={this.props.onclick}>
-        <h3>Customer questions & answers</h3>
-        <input placeholder="Have a question? Search for answers…" onChange={this.onChange} />
+        <h3>Customer Questions & Answers</h3>
+        <input className="search-bar" placeholder="Have a question? Search for answers…" onChange={this.onChange} />
         <div className="question-list">
           {this.state.filteredList.slice(0, this.state.len)
             .map((question) => <IndividualQuestion productname={this.props.name} question={question} key={question.question_id} term={this.state.term} />)}

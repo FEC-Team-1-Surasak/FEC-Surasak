@@ -42,12 +42,10 @@ class Modal extends React.Component {
   }
 
   isValid() {
-    console.log('checking if it is valid');
     if (this.state.question === '' || this.state.name === '' || this.state.email === '') {
       return false;
     }
     if (this.state.email !== '') {
-      console.log(this.state.email);
       const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       return re.test(this.state.email);
     }

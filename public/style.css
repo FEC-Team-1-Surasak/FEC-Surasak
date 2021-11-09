@@ -76,10 +76,6 @@ div.modal{
 }
 
 div.box{
-  /* left: 50%;
-  right: 50%;
-  top: 50%;
-  bottom: 50%; */
   margin: auto;
   background-color:white;
 }
@@ -90,10 +86,6 @@ div.expand-answer-photo{
   left: 50px;
   right: 50px;
   bottom: 10px;
-  /* width:200px;
-  height:150px; */
-  /* width:70%;
-  height:70%; */
   background-color:white;
   padding:30px;
   margin:30px;
@@ -152,6 +144,10 @@ div.arrow-R{
 
 div.expand-view-section{
   display: inline-block;
+}
+
+.search-bar{
+padding:5px;
 
 
 }

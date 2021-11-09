@@ -50,6 +50,7 @@ class AnswerModal extends React.Component {
     this.setState({ email: e.target.value });
   }
 
+
   // checking if all input are valid before submit
   isValid() {
     if (this.state.body === '' || this.state.name === '' || this.state.email === '') {
