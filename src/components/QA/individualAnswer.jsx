@@ -1,3 +1,8 @@
+/* eslint-disable import/extensions */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable consistent-return */
+/* eslint-disable class-methods-use-this */
+/* eslint-disable no-plusplus */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/no-unused-state */
 /* eslint-disable no-console */
@@ -48,13 +53,13 @@ class IndividualAnswer extends React.Component {
     this.setState({ currselect: e.target });
   }
 
+  // click on thumbnail image to change the expanded photo
   clickThumbnail(e) {
-    // this.setState({ thumbnail: e.target });
     this.setState({ currselect: e.target });
   }
 
+  // function to find the index of selected images
   findindex(current, photo) {
-    // const item = photo.filter((photo) => photo.url === current.src);
     for (let i = 0; i < photo.length; i++) {
       if (photo[i].url === (current.src === undefined ? current.url : current.src)) {
         return i;
@@ -62,25 +67,16 @@ class IndividualAnswer extends React.Component {
     }
   }
 
+  // handle arrow click function
   arrowClick(e) {
     const index = this.findindex(this.state.currselect, this.props.answer.photos);
-
-    console.log('current index', index);
     if (index >= 1 && e.target.innerText === '<') {
-      // this.setState({ thumbnail: this.props.answer.photos[index - 1].url });
       this.setState({ currselect: this.props.answer.photos[index - 1] });
       console.log('current state', this.state.currselect);
     }
     if (index < this.props.answer.photos.length - 1 && e.target.innerText === '>') {
-      // this.setState({ thumbnail: this.props.answer.photos[index + 1].url });
       this.setState({ currselect: this.props.answer.photos[index + 1] });
-      console.log('current state', this.state.currselect);
     }
-    console.log(e.target.innerText);
-    console.log('currselect', this.props.answer.photos[index]);
-
-    console.log('src', this.state.currselect.src);
-    console.log('url', this.state.currselect.url);
   }
 
   // report an answer
@@ -113,6 +109,7 @@ class IndividualAnswer extends React.Component {
           ))}
         </div>
 
+        {/* seciton to handle photo expand view */}
         {this.state.expand
           ? (
             <div className="expand-answer-photo">
@@ -134,7 +131,7 @@ class IndividualAnswer extends React.Component {
                   width="300"
                   height="350"
                 />
-                 <div className="arrow-R" onClick={this.arrowClick}>{'>'}</div>
+                <div className="arrow-R" onClick={this.arrowClick}>{'>'}</div>
 
               </div>
             </div>
