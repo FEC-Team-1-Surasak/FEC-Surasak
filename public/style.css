@@ -10,7 +10,7 @@ Star Rating Component!
 }
 
 .reviews-list-container {
-  height:80vh;
+  max-height:80vh;
   width:80vw;
   overflow-y:auto;
 }
@@ -222,8 +222,88 @@ Characteristic Rating in Review Form Component!
   left:330px;
 }
 
+/*
+---------------------------------------------------
+
+Overview - Main Component!
+
+---------------------------------------------------
+*/
+
+.product-info {
+  /* position: absolute;
+  right: 400px; */
+}
+
+.product-description {
+  /* position: absolute;
+  bottom: 10px; */
+}
+
+.product-features {
+  list-style: none;
+}
+
+li::before {
+  content: "✔️ ";
+}
+
+.style-selector-container {
+  max-width: 240px;
+}
+
+.selected-thumbnail-container {
+  position: relative;
+  display: inline-block;
+  height: 42px;
+  width: 100%;
+  max-width: 42px;
+  max-height: 42px;
+  margin: 0px 14px 0px 0px;
+  border-radius: 30px;
+}
+
+.checkmark-overlay {
+  position: absolute;
+  top: 4px;
+  right: 0px;
+  border: 1px solid;
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  font-size: 5px;
+  text-align: center;
+  padding: 2px;
+  background-color: white;
+  z-index: 20;
+}
+
+.default-thumbnail {
+  position: relative;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  max-width: 42px;
+  max-height: 42px;
+  width: 100%;
+  height: 42px;
+  object-fit: cover;
+  margin: 5px 12px 5px 0px;
+  border: 1px solid lightslategray;
+}
+
+
+/*
+---------------------------------------------------
+
+Overview - Carousel Component!
+
+---------------------------------------------------
+*/
+
 .overview-carousel-container {
   position: relative;
+  /* top: 100px; */
+  margin: 10px;
   display: flex;
   justify-content: center;
   border: 1px solid lightslategray;
@@ -240,39 +320,123 @@ Characteristic Rating in Review Form Component!
   font-weight: bold;
   text-shadow: black 0.1em 0.1em 0.2em;
   font-size: 18px;
+  cursor: pointer;
 }
 
 .overview-carousel-arrow-L {
   position: absolute;
   z-index: 10;
-  left: 103px;
+  left: 88px;
   top: 225px;
   color: #FFFAFA;
   font-weight: bold;
   text-shadow: black 0.1em 0.1em 0.2em;
   font-size: 18px;
+  cursor: pointer;
 }
 
 .overview-carousel-image {
   max-width: 100%;
   max-height: 100%;
+  width: 100%;
   object-fit: cover;
+  cursor: zoom-in;
+  cursor: -webkit-zoom-in;
 }
 
 .overview-thumbnail-list {
   z-index: 11;
-  max-width: 70px;
-  max-height: 380px;
-  overflow-y: auto;
+  max-width: 50px;
+  max-height: 382px;
+  overflow-y: scroll;
+  overflow-x: hidden;
   left: 15px;
   top: 20px;
   position: absolute;
   text-align: center;
+  cursor: pointer;
 }
 
 .overview-carousel-thumbnail {
   max-width: 100%;
-  max-height: 60px;
+  max-height: 50px;
+  width: 100%;
+  height: 50px;
   object-fit: cover;
-  border: 1px solid;
+  -webkit-box-sizing: border-box;
+  border: 1px solid #F5F5F5;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.overview-carousel-thumbnail.selected {
+  max-width: 100%;
+  width: 100%;
+  height: 50px;
+  max-height: 50px;
+  object-fit: cover;
+  -webkit-box-sizing: border-box;
+  border: 2px solid #98FB98;
+  box-shadow: 0 0 50px #ccc;
+}
+
+.overview-carousel-expanded {
+  background-color: #4169E1;
+  /* background-image: url(https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80); */
+  height: 100vh;
+  width: 100wh;
+  position: relative;
+  z-index: 10;
+  cursor: crosshair;
+  overflow: hidden;
+}
+
+.carousel-expanded-img {
+  max-width: 100%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.carousel-expanded-img-zoom {
+  max-width: 100%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transform: scale(2.5);
+  -webkit-transform: scale(2.5);
+  background-position: 0px, 0px;
+  /* transform: translateY(-50%); */
+}
+
+.close-button {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  z-index: 12;
+}
+
+/*
+---------------------------------------------------
+
+Characteristic Rating in Review Form Component!
+
+---------------------------------------------------
+*/
+
+.rating-breakdown-container{
+  width: 20%;
+  text-align: left;
+  vertical-align: middle
+};
+
+
+.range-data datalist {
+  display: flex;
+  justify-content: space-between;
+  color: red;
+  width: 100%;
+}
+
+.range-slider input {
+  width: 50%;
 }

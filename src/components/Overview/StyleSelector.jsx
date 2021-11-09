@@ -3,28 +3,20 @@
 import React from 'react';
 import Thumbnail from './Thumbnail.jsx';
 
-class StyleSelector extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
+const StyleSelector = (props) => {
+  if (props.styles === undefined) {
+    return <></>;
   }
-
-  render() {
-    if (this.props.styles === undefined) {
-      return <></>;
-    }
-    return (
-      <>
-        <div>{<b>STYLE > </b>}{this.props.currentStyle.name}</div>
-        <div style={{'max-width': '200px'}}>
-          {this.props.styles.map(style => {
-            return <Thumbnail style={style} updateStyle={this.props.updateStyle} />;
-          })}
-        </div>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <div>{<b>STYLE > </b>}{props.currentStyle.name}</div>
+      <div className='style-selector-container'>
+        {props.styles.map(style => {
+          return <Thumbnail style={style} updateStyle={props.updateStyle} currentStyle={props.currentStyle} />;
+        })}
+      </div>
+    </>
+  );
+};
 
 export default StyleSelector;

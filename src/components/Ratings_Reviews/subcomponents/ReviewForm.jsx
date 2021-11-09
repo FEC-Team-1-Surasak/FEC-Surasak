@@ -25,7 +25,7 @@ export default class ReviewForm extends React.Component {
       photoUrls: [],
       characteristics: {},
       recommended: null,
-      rendered: false,
+      expand: false,
       uploadUrls: false,
     };
     this.change = this.change.bind(this);
@@ -58,7 +58,7 @@ export default class ReviewForm extends React.Component {
       return re.test(email);
     }
 
-    const { productId, data } = this.props;
+    const { productId, data, close } = this.props;
     const { characteristics: requiredChars } = data;
     const {
       rating,
@@ -109,117 +109,131 @@ export default class ReviewForm extends React.Component {
       .then(() => {
         window.alert('Thank you for your submission');
         this.setState({
-          rendered: false,
+          rating: null,
+          summary: '',
+          body: '',
+          nickname: '',
+          email: '',
+          photoUrls: [],
+          characteristics: {},
+          recommended: null,
+          expand: false,
         });
+        close();
       })
       .catch((err) => console.error(err));
   }
 
   render() {
-    const { data } = this.props;
+    const { data, close } = this.props;
     const { characteristics } = data;
-    const { body, uploadUrls } = this.state;
+    const { body, uploadUrls} = this.state;
     return (
-      <form onSubmit={(e) => e.preventDefault()}>
-        <div>
-          Rating:
-          <br />
-          <StarRatingDynamic rating={this.getRating} />
-        </div>
-        <br />
-        <div className="user-recommended radio-group">
-          <span>Do you recommend this product? </span>
-          <br />
-          <label>
-            <input
-              name="recommended"
-              type="radio"
-              value="true"
-              onChange={this.change}
-            />
-            Yes
-          </label>
-          {' '}
-          <label>
-            <input
-              name="recommended"
-              type="radio"
-              value="false"
-              onChange={this.change}
-            />
-            No
-          </label>
-        </div>
-        <br />
-        <div>Characteristics Ratings</div>
-        <CharacteristicsReview func={this.getCharScore} characteristics={characteristics} />
-        <label>
-          Review Summary:
-          <br />
-          <input
-            name="summary"
-            type="text"
-            placeholder="Example: Best purchase ever!"
-            onChange={this.change}
-            maxLength="60"
-          />
-        </label>
-        <br />
-        <label>
-          Review Summary:
-          <br />
-          <textarea
-            name="body"
-            type="text"
-            placeholder="Why did you like the product or not?"
-            onChange={this.change}
-            minLength="50"
-            maxLength="1000"
-            value={body}
-          />
+      <div className="modal">
+        <form onSubmit={(e) => e.preventDefault()}>
           <div>
-            {body.length < 50
-              ? `Minimum required characters left: ${50 - body.length}`
-              : `Minimum reached. Maximum remaining characters left: ${1000 - body.length}`}
+            Rating:
+            <br />
+            <StarRatingDynamic rating={this.getRating} />
           </div>
-        </label>
-        <br />
-        <button name="submit-url" onClick={() => this.setState({ uploadUrls: true })}>
-          Upload Photos
-        </button>
-        <br />
-        <br />
-        <label>
-          Nickname:
           <br />
-          <input
-            name="nickname"
-            type="text"
-            placeholder="Example: jackson11!"
-            onChange={this.change}
-            maxLength="60"
-          />
-          <div>For privacy reasons, do not use your full name or email address</div>
-        </label>
-        <br />
-        <label>
-          Email:
+          <div className="user-recommended radio-group">
+            <span>Do you recommend this product? </span>
+            <br />
+            <label>
+              <input
+                name="recommended"
+                type="radio"
+                value="true"
+                onChange={this.change}
+              />
+              Yes
+            </label>
+            {' '}
+            <label>
+              <input
+                name="recommended"
+                type="radio"
+                value="false"
+                onChange={this.change}
+              />
+              No
+            </label>
+          </div>
           <br />
-          <input
-            name="email"
-            type="text"
-            placeholder="Example: jackson11@email.com"
-            onChange={this.change}
-            maxLength="60"
-          />
-        </label>
-        <div>For authentication reasons, you will not be emailed</div>
-        <br />
-        <br />
-        <button name="submit-form" onClick={this.submitReview}>
-          Submit Review
-        </button>
-      </form>
+          <div>Characteristics Ratings</div>
+          <CharacteristicsReview func={this.getCharScore} characteristics={characteristics} />
+          <label>
+            Review Summary:
+            <br />
+            <input
+              name="summary"
+              type="text"
+              placeholder="Example: Best purchase ever!"
+              onChange={this.change}
+              maxLength="60"
+            />
+          </label>
+          <br />
+          <label>
+            Review Summary:
+            <br />
+            <textarea
+              name="body"
+              type="text"
+              placeholder="Why did you like the product or not?"
+              onChange={this.change}
+              minLength="50"
+              maxLength="1000"
+              value={body}
+            />
+            <div>
+              {body.length < 50
+                ? `Minimum required characters left: ${50 - body.length}`
+                : `Minimum reached. Maximum remaining characters left: ${1000 - body.length}`}
+            </div>
+          </label>
+          <br />
+          <button name="submit-url" onClick={() => this.setState({ uploadUrls: true })}>
+            Upload Photos
+          </button>
+          <br />
+          <br />
+          <label>
+            Nickname:
+            <br />
+            <input
+              name="nickname"
+              type="text"
+              placeholder="Example: jackson11!"
+              onChange={this.change}
+              maxLength="60"
+            />
+            <div>For privacy reasons, do not use your full name or email address</div>
+          </label>
+          <br />
+          <label>
+            Email:
+            <br />
+            <input
+              name="email"
+              type="text"
+              placeholder="Example: jackson11@email.com"
+              onChange={this.change}
+              maxLength="60"
+            />
+          </label>
+          <div>For authentication reasons, you will not be emailed</div>
+          <br />
+          <br />
+          <button name="submit-form" onClick={this.submitReview}>
+            Submit Review
+          </button>
+          <button name="close-form" onClick={(e) => {
+            e.preventDefault();
+            close()}}>Close Form</button>
+        </form>
+      </div>
     );
   }
 }

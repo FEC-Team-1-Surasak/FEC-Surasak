@@ -11,7 +11,8 @@ const ThumbnailList = (props) => {
       {thumbnails.map((thumbnail, i) => {
         return (
           <CarouselThumbnail
-            url={thumbnail.thumbnail_url}
+            url={thumbnail.url}
+            currentImgIndex={props.currentImgIndex}
             selectIndex={props.selectIndex}
             index={i}
           />

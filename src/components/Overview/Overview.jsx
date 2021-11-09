@@ -14,12 +14,14 @@ import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 import CarouselDefaultView from './Carousel/CarouselDefaultView.jsx';
 import StarRatingStatic from '../Ratings_Reviews/subcomponents/StarRatingStatic.jsx';
+import ExpandedView from './Carousel/ExpandedView.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       id: this.props.id,
+      // id: 37315,
       product: {},
       styles: [],
       currentStyle: {},
@@ -28,6 +30,8 @@ class Overview extends React.Component {
       isOnSale: '',
       cart: [],
       avgRating: 0,
+      view: null,
+      currentImgIndex: 0,
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getStyles = this.getStyles.bind(this);
@@ -35,6 +39,14 @@ class Overview extends React.Component {
     this.addToCart = this.addToCart.bind(this);
     this.getRatings = this.getRatings.bind(this);
     this.calculateAvg = this.calculateAvg.bind(this);
+    this.changeView = this.changeView.bind(this);
+    this.updateImgIndex = this.updateImgIndex.bind(this);
+  }
+
+  changeView(option) {
+    this.setState({
+      view: option,
+    });
   }
 
   componentDidMount() {
@@ -94,7 +106,6 @@ class Overview extends React.Component {
   }
 
   updateStyle(style) {
-    console.log('HERE  ', style.photos);
     this.setState({
       currentStyle: style,
       isOnSale: !!style.sale_price,
@@ -109,6 +120,12 @@ class Overview extends React.Component {
         size: item.size,
         qty: item.qty,
       }],
+    });
+  }
+
+  updateImgIndex(index) {
+    this.setState({
+      currentImgIndex: index,
     });
   }
 
@@ -131,26 +148,39 @@ class Overview extends React.Component {
       return <div />;
     }
 
+    if (this.state.view === 'expanded') {
+      return <ExpandedView changeView={this.changeView} currentStyle={this.state.currentStyle} currentImgIndex={this.state.currentImgIndex} />;
+    }
+
     return (
-      <div>
-        <StarRatingStatic rating={this.state.avgRating/5} />
-        <a>Read all reviews</a>
-        <br />
-        <span>{this.state.category.toUpperCase()}</span>
-        <h2>{this.state.product.name}</h2>
-        {price}
-        <StyleSelector
-          styles={this.state.styles}
+      <div className="overview-container">
+        <div className="product-info">
+          <StarRatingStatic rating={this.state.avgRating/5} />
+          <a>Read all reviews</a>
+          <br />
+          <span>{this.state.category.toUpperCase()}</span>
+          <h2>{this.state.product.name}</h2>
+          {price}
+          <StyleSelector
+            styles={this.state.styles}
+            currentStyle={this.state.currentStyle}
+            updateStyle={this.updateStyle}
+          />
+          <AddToCart
+            currentStyle={this.state.currentStyle}
+            addToCart={this.addToCart}
+            product={this.state.product}
+          />
+        </div>
+        <div className="product-description">
+          <ProductDescription product={this.state.product} />
+        </div>
+        <CarouselDefaultView
           currentStyle={this.state.currentStyle}
-          updateStyle={this.updateStyle}
+          changeView={this.changeView}
+          view={this.state.view}
+          updateImgIndex={this.updateImgIndex}
         />
-        <AddToCart
-          currentStyle={this.state.currentStyle}
-          addToCart={this.addToCart}
-          product={this.state.product}
-        />
-        <ProductDescription product={this.state.product} />
-        <CarouselDefaultView currentStyle={this.state.currentStyle} />
       </div>
     );
   }
