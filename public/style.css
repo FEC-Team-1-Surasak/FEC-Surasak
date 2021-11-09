@@ -158,14 +158,26 @@ Overview - Main Component!
 ---------------------------------------------------
 */
 
+.overview-grid {
+  display: grid;
+  grid-template-columns: 62vw 38vw;
+  grid-template-rows: 10vh 550px 26vh;
+}
+
 .product-info {
-  /* position: absolute;
-  right: 400px; */
+  top: 30px;
+  grid-column: 2;
+  grid-row: 2;
+  position: relative;
+  justify-items: stretch;
+  align-items: start;
 }
 
 .product-description {
-  /* position: absolute;
-  bottom: 10px; */
+  grid-column: 1 / span 2;
+  grid-row: 3;
+  width: 80%;
+  justify-self: center;
 }
 
 .product-features {
@@ -229,14 +241,16 @@ Overview - Carousel Component!
 */
 
 .overview-carousel-container {
+  justify-self: center;
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
   position: relative;
-  /* top: 100px; */
   margin: 10px;
   display: flex;
   justify-content: center;
   border: 1px solid lightslategray;
-  height: 450px;
-  width: 550px;
+  height: 525px;
+  width: 650px;
 }
 
 .overview-carousel-arrow-R {
