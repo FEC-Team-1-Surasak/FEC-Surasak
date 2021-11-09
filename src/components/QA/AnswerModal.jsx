@@ -12,6 +12,9 @@
 import React from 'react';
 import axios from 'axios';
 import PhotoSection from './PhotoSection.jsx';
+import Body from './Body.jsx';
+import Nickname from './Nickname.jsx';
+import Email from './Email.jsx';
 
 class AnswerModal extends React.Component {
   constructor(props) {
@@ -31,7 +34,6 @@ class AnswerModal extends React.Component {
     this.emailChange = this.emailChange.bind(this);
     this.isValid = this.isValid.bind(this);
     this.submit = this.submit.bind(this);
-    // this.expand = this.expand.bind(this);
     this.add = this.add.bind(this);
     this.delete = this.delete.bind(this);
   }
@@ -53,12 +55,10 @@ class AnswerModal extends React.Component {
     if (this.state.body === '' || this.state.name === '' || this.state.email === '') {
       return false;
     }
-
     if (this.state.email !== '') {
       const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       return re.test(this.state.email);
     }
-
     return true;
   }
 
@@ -84,13 +84,12 @@ class AnswerModal extends React.Component {
   }
 
   delete(e) {
-    console.log(e.target.src);
-    const oldlist = this.state.photo;
+    const oldlist = this.state.preview;
     oldlist.splice(oldlist.indexOf(e.target.src), 1);
-    this.setState({ photo: oldlist });
+    this.setState({ preview: oldlist });
   }
 
-  // submit a new answer
+  // verify if all the inputs are valid and submit a new answer
   submit() {
     if (this.isValid()) {
       axios.post('/qa/questions/:question_id/answers',
@@ -101,9 +100,7 @@ class AnswerModal extends React.Component {
           photo: this.state.photo,
         },
 
-        { params: { question_id: this.props.question.question_id } },
-        // { headers: { 'Content-Type': 'multipart/form-data' } }
-      )
+        { params: { question_id: this.props.question.question_id } })
         .then(() => {
           console.log('CREATE IT');
           alert('Thanks for submitting your answer!');
@@ -127,24 +124,10 @@ class AnswerModal extends React.Component {
             :
             {this.props.question.question_body}
           </h3>
-          <div className="your-question">
-            <h3>Your Answer</h3>
-            <input onChange={this.answerChange} maxLength="1000" />
-          </div>
+          <Body label="answer" labelChange={this.answerChange} />
+          <Nickname nameChange={this.nameChange} />
+          <Email emailChange={this.emailChange} />
 
-          <div className="your-nickname">
-            <h3>What is your nickname?</h3>
-            <input onChange={this.nameChange} maxLength="60" placeholder="Example:jackson543" />
-            <h5><i>For privacy reasons, do not use your full name or email address</i></h5>
-          </div>
-
-          <div className="your-email">
-            <h3>Your email</h3>
-            <input onChange={this.emailChange} maxLength="60" placeholder="Example: jack@email.com" />
-            <h5><i>For authentication reasons, you will not be emailed</i></h5>
-          </div>
-
-          {/* upload a photo */}
           <div className="your-photo">
             <h3>Upload your photo</h3>
             <div className="add-photo">
