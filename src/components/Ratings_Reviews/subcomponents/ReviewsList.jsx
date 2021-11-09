@@ -31,12 +31,14 @@ class ReviewsList extends React.Component {
   }
 
   render() {
-    const { reviews, metaData, productId } = this.props;
+    const {
+      reviews, metaData, productId, getReviews,
+    } = this.props;
     const { listLength, expand } = this.state;
     let remainingReviews = false;
     return (
       <>
-        <SortDropdown getReviews={this.props.getReviews} />
+        <SortDropdown getReviews={getReviews} />
         <div className="reviews-list-container">
           {
             reviews.map((review, i) => {
