@@ -12,6 +12,7 @@ import React from 'react';
 import axios from 'axios';
 import StarRatingDynamic from './StarRatingDynamic.jsx';
 import CharacteristicsReview from './CharacteristicsReview.jsx';
+import ReviewPhotos from './ReviewPhotos.jsx';
 
 export default class ReviewForm extends React.Component {
   constructor(props) {
@@ -47,9 +48,14 @@ export default class ReviewForm extends React.Component {
   }
 
   change(e) {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+    if (e.target.name === 'photoUrls') {
+      const value = e.target.value.split(', ');
+      this.setState({ [e.target.name]: value });
+    } else {
+      this.setState({
+        [e.target.name]: e.target.value,
+      });
+    }
   }
 
   submitReview() {
@@ -67,7 +73,7 @@ export default class ReviewForm extends React.Component {
       recommended,
       nickname,
       email,
-      photosUrls,
+      photoUrls,
       characteristics,
     } = this.state;
 
@@ -101,7 +107,7 @@ export default class ReviewForm extends React.Component {
       recommend: JSON.parse(recommended),
       name: nickname,
       email,
-      photos: photosUrls,
+      photos: photoUrls,
       characteristics,
     };
 
@@ -127,7 +133,7 @@ export default class ReviewForm extends React.Component {
   render() {
     const { data, close } = this.props;
     const { characteristics } = data;
-    const { body, uploadUrls} = this.state;
+    const { body, uploadUrls, photoUrls } = this.state;
     return (
       <div className="modal">
         <form onSubmit={(e) => e.preventDefault()}>
@@ -197,6 +203,20 @@ export default class ReviewForm extends React.Component {
           <button name="submit-url" onClick={() => this.setState({ uploadUrls: true })}>
             Upload Photos
           </button>
+          {uploadUrls
+            ? (
+              <div className="image-upload">
+                <textarea
+                  name="photoUrls"
+                  type="text"
+                  placeholder="Add image urls here separated by a comma and space"
+                  value={photoUrls.join(', ')}
+                  onChange={this.change}
+                />
+                <ReviewPhotos photos={photoUrls} />
+              </div>
+            )
+            : null}
           <br />
           <br />
           <label>
@@ -229,9 +249,15 @@ export default class ReviewForm extends React.Component {
           <button name="submit-form" onClick={this.submitReview}>
             Submit Review
           </button>
-          <button name="close-form" onClick={(e) => {
-            e.preventDefault();
-            close()}}>Close Form</button>
+          <button
+            name="close-form"
+            onClick={(e) => {
+              e.preventDefault();
+              close();
+            }}
+          >
+            Close Form
+          </button>
         </form>
       </div>
     );
