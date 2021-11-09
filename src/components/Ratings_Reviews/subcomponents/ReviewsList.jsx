@@ -3,6 +3,7 @@
 import React from 'react';
 import ReviewTile from './ReviewTile.jsx';
 import ReviewForm from './ReviewForm.jsx';
+import SortDropdown from './SortDropdown.jsx';
 
 class ReviewsList extends React.Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class ReviewsList extends React.Component {
     let remainingReviews = false;
     return (
       <>
+        <SortDropdown getReviews={this.props.getReviews} />
         <div className="reviews-list-container">
           {
             reviews.map((review, i) => {

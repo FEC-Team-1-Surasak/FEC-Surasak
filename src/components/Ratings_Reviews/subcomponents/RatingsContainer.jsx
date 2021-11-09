@@ -75,6 +75,7 @@ class RatingsContainer extends React.Component {
   render() {
     const { data } = this.props;
     const { ratings, characteristics } = data;
+    console.log(data);
 
     if (!ratings) {
       return <div>No metadata</div>;
@@ -88,9 +89,14 @@ class RatingsContainer extends React.Component {
           {' '}
           {averageRating.toFixed(1)}
           <StarRatingStatic rating={averageRating / 5} />
-          {'No. of Ratings: '}
+          {'Total Reviews: '}
           {totalRatings}
         </div>
+        <br />
+        <div className="percent-recommended">
+          {`Recommended by ${Math.round((data.recommended.true / totalRatings) * 100)}% of reviewers`}
+        </div>
+        <br />
         <div className="rating-breakdown-container">
           {
             Object.keys(ratingPercent).map((rating, i) => (
@@ -102,8 +108,6 @@ class RatingsContainer extends React.Component {
               </div>
             ))
           }
-        </div>
-        <div>
           {
             Object.keys(characteristics).map((characteristic) => (
               <CharacteristicSlider

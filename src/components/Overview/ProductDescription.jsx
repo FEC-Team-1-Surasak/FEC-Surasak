@@ -13,7 +13,7 @@ function ProductDescription(props) {
       <p>{props.product.description}</p>
       <ul className="product-features">
         {props.product.features.map(feature => {
-          return <li>{feature.value} {feature.feature}</li>;
+          return <li className="feature-list">{feature.value} {feature.feature}</li>;
         })}
       </ul>
     </div>

@@ -158,21 +158,21 @@ Overview - Main Component!
 ---------------------------------------------------
 */
 
-.product-info {
-  /* position: absolute;
-  right: 400px; */
+/* .product-info {
+  position: absolute;
+  right: 400px;
 }
 
 .product-description {
-  /* position: absolute;
-  bottom: 10px; */
-}
+  position: absolute;
+  bottom: 10px;
+} */
 
 .product-features {
   list-style: none;
 }
 
-li::before {
+.feature-list::before {
   content: "✔️ ";
 }
 
@@ -292,6 +292,7 @@ Overview - Carousel Component!
   height: 50px;
   object-fit: cover;
   -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   border: 1px solid #F5F5F5;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
@@ -303,6 +304,7 @@ Overview - Carousel Component!
   max-height: 50px;
   object-fit: cover;
   -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   border: 2px solid #98FB98;
   box-shadow: 0 0 50px #ccc;
 }
@@ -351,20 +353,79 @@ Characteristic Rating in Review Form Component!
 ---------------------------------------------------
 */
 
-.rating-breakdown-container{
-  width: 20%;
+.rating-breakdown-container {
+  width: 250px;
   text-align: left;
   vertical-align: middle
 };
 
 
-.range-data datalist {
-  display: flex;
-  justify-content: space-between;
-  color: red;
-  width: 100%;
+/*
+---------------------------------------------------
+
+Characteristic Rating Sliders
+
+---------------------------------------------------
+*/
+
+.sliderbar-container {
+  width: inherit;
+  display: inline-block;
+  position: relative;
 }
 
-.range-slider input {
-  width: 50%;
+.slider-marker {
+  height: 0;
+  width: 0;
+  border-top: 16px solid red;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  position: relative;
+  top: 1em;
+}
+
+.sliderbar-fragment {
+  width: 33.333%;
+  background-color: grey;
+  box-sizing: border-box;
+  height: 16px;
+  border-right: 1px solid white;
+  display: inline-block;
+}
+
+.slider-label-container {
+  list-style: none;
+  padding: 0;
+}
+.sliderbar-label {
+  font-size: x-small;
+  width: 33%;
+  box-sizing: border-box;
+  height: 1em;
+  display: inline-block;
+  text-align: center;
+}
+
+/*
+---------------------------------------------------
+
+Characteristic Rating Sliders
+
+---------------------------------------------------
+*/
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: 20vw 1fr 20vw 20vw 20vw;
+  grid-template-rows: 20vh 20vh 20vh 20vh 20vh;
+}
+
+.rating-breakdown-grid {
+  grid-column: 1 / 2;
+  grid-row: 1 / span 3;
+}
+
+.reveiws-list-grid {
+  grid-column: 3 / span 4;
+  grid-row: 1 / span 4;
 }
