@@ -28,6 +28,7 @@ class IndividualAnswer extends React.Component {
     this.report = this.report.bind(this);
     this.clickPhoto = this.clickPhoto.bind(this);
     this.clickThumbnail = this.clickThumbnail.bind(this);
+    this.arrowClick = this.arrowClick.bind(this);
   }
 
   // click function to mark answers helpful
@@ -48,9 +49,38 @@ class IndividualAnswer extends React.Component {
   }
 
   clickThumbnail(e) {
-    console.log(e.target);
-    this.setState({ thumbnail: e.target });
+    // this.setState({ thumbnail: e.target });
     this.setState({ currselect: e.target });
+  }
+
+  findindex(current, photo) {
+    // const item = photo.filter((photo) => photo.url === current.src);
+    for (let i = 0; i < photo.length; i++) {
+      if (photo[i].url === (current.src === undefined ? current.url : current.src)) {
+        return i;
+      }
+    }
+  }
+
+  arrowClick(e) {
+    const index = this.findindex(this.state.currselect, this.props.answer.photos);
+
+    console.log('current index', index);
+    if (index >= 1 && e.target.innerText === '<') {
+      // this.setState({ thumbnail: this.props.answer.photos[index - 1].url });
+      this.setState({ currselect: this.props.answer.photos[index - 1] });
+      console.log('current state', this.state.currselect);
+    }
+    if (index < this.props.answer.photos.length - 1 && e.target.innerText === '>') {
+      // this.setState({ thumbnail: this.props.answer.photos[index + 1].url });
+      this.setState({ currselect: this.props.answer.photos[index + 1] });
+      console.log('current state', this.state.currselect);
+    }
+    console.log(e.target.innerText);
+    console.log('currselect', this.props.answer.photos[index]);
+
+    console.log('src', this.state.currselect.src);
+    console.log('url', this.state.currselect.url);
   }
 
   // report an answer
@@ -86,19 +116,27 @@ class IndividualAnswer extends React.Component {
         {this.state.expand
           ? (
             <div className="expand-answer-photo">
+
               <div className="expand-answer-thumbnail">
                 {this.props.answer.photos.map((photo) => (
                   <img src={photo.url} width="100" height="50" key={photo.id} onClick={this.clickThumbnail} />
                 ))}
               </div>
-              <ExpandView
-                question={this.props.question}
-                answer={this.props.answer.body}
-                url={this.state.currselect.src}
-                click={this.clickPhoto}
-                width="300"
-                height="350"
-              />
+
+              <div className="expand-view-section">
+                <div className="arrow-L" onClick={this.arrowClick}>{'<'}</div>
+                <ExpandView
+                  question={this.props.question}
+                  answer={this.props.answer.body}
+                  url={this.state.currselect.src === undefined ? this.state.currselect.url
+                    : this.state.currselect.src}
+                  click={this.clickPhoto}
+                  width="300"
+                  height="350"
+                />
+                 <div className="arrow-R" onClick={this.arrowClick}>{'>'}</div>
+
+              </div>
             </div>
           )
           : null}
