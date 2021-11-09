@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/button-has-type */
@@ -12,42 +14,48 @@ class ExpandedView extends React.Component {
     super(props);
     this.state = {
       clicked: false,
-      x: 0,
-      y: 0,
     };
     this.zoom = React.createRef();
     this.handleClick = this.handleClick.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
   }
 
+  componentDidMount() {
+    const mainImage = document.getElementsByClassName('overview-carousel-expanded')[0];
+    mainImage.style.backgroundImage = `url('${this.props.currentStyle.photos[this.props.currentImgIndex].url}'`;
+  }
+
   handleClick() {
+    const zoom = document.getElementsByClassName('overview-carousel-expanded')[0];
+    zoom.style.transform = 'scale(2.5)';
     this.setState({
       clicked: true,
     });
   }
 
-  handleMouseMove(e) {
-    // const zoom = document.getElementsByClassName('carousel-expanded-img-zoom');
-    // console.log(e.clientX, e.clientY);
-    this.zoom.current.style.backgroundPositionX = `${-e.offsetX}px`;
-    this.zoom.current.style.backgroundPositionY = `${-e.offsetY}px`;
-    // this.zoom.current.style.transform = `translate(${e.offsetX}px, ${e.offsetY}px)`;
+  handleMouseMove() {
+    const zoom = document.getElementsByClassName('overview-carousel-expanded')[0];
+    zoom.addEventListener('mousemove', (e) => {
+      zoom.style.backgroundPositionX = `${-e.clientX}px`;
+      zoom.style.backgroundPositionY = `${-e.clientY}px`;
+    });
   }
 
   render() {
     return (
-      <div className="overview-carousel-expanded">
-          {/* style={{backgroundImage: this.props.currentImgIndex.url}}
-          ref={this.zoom}
-          onClick={this.handleClick}
-          onMouseMove={this.state.clicked === true ? (e) => this.handleMouseMove(e) : null} */}
-        <img
+      <div
+        className="overview-carousel-expanded"
+        ref={this.zoom}
+        onClick={(e) => this.handleClick(e)}
+        onMouseMove={this.state.clicked === true ? (e) => this.handleMouseMove(e) : null}
+      >
+        {/* <img
           ref={this.zoom}
           className={this.state.clicked === true ? 'carousel-expanded-img-zoom' : 'carousel-expanded-img'}
           src={this.props.currentStyle.photos[this.props.currentImgIndex].url}
           onClick={this.handleClick}
           onMouseMove={this.state.clicked === true ? (e) => this.handleMouseMove(e) : null}
-        />
+        /> */}
         <button className="close-button" onClick={(e) => this.props.changeView('default')}>close[x]</button>
       </div>
     );
