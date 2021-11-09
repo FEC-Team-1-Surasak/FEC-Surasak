@@ -105,20 +105,54 @@ div.expand-list{
   /* height:400px;
   width:200px; */
   display: inline-block;
-  align-items: center;
 }
 
-div.expand-photo-question{
-  display: block;
-  float: right;
-  width:50%
-
-}
 
 div.expand-photo{
   display: block;
   width:50%;
+  position:fixed;
+  z-index:-1;
+
+}
+div.expand-photo-question{
+  position:relative;
+  text-align: left;
+  justify-content: right;
+  left:500px;
+
+}
+
+div.arrow-L{
   position:absolute;
+  color: #FFFAFA;
+  font-weight: bold;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-size: 30px;
+  /* float:left; */
+  top:245px;
+  /* width: 25px; */
+  z-index:2;
+
+
+
+}
+div.arrow-R{
+  position:absolute;
+  color: #FFFAFA;
+  font-weight: bold;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-size: 30px;
+  float:right;
+  top:245px;
+  left:410px;
+  z-index:2;
+}
+
+
+div.expand-view-section{
+  display: inline-block;
+
 
 }
 
