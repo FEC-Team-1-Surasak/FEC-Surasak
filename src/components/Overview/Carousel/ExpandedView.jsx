@@ -13,7 +13,7 @@ class ExpandedView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      clicked: false,
+      zoomed: false,
     };
     this.zoom = React.createRef();
     this.handleClick = this.handleClick.bind(this);
@@ -27,10 +27,16 @@ class ExpandedView extends React.Component {
 
   handleClick() {
     const zoom = document.getElementsByClassName('overview-carousel-expanded')[0];
-    zoom.style.transform = 'scale(2.5)';
-    this.setState({
-      clicked: true,
-    });
+    if (this.state.zoomed === false) {
+      zoom.style.transform = 'scale(2.5)';
+      zoom.style.cursor = 'zoom-out';
+    } else {
+      zoom.style.transform = 'scale(1)';
+      zoom.style.cursor = 'zoom-in';
+    }
+    this.setState(prevState => ({
+      zoomed: !prevState.zoomed,
+    }));
   }
 
   handleMouseMove(e) {
@@ -49,7 +55,7 @@ class ExpandedView extends React.Component {
           className="overview-carousel-expanded"
           ref={this.zoom}
           onClick={(e) => this.handleClick(e)}
-          onMouseMove={this.state.clicked === true ? (e) => this.handleMouseMove(e) : null}
+          onMouseMove={this.state.zoomed === true ? (e) => this.handleMouseMove(e) : null}
         >
           {/* <img
             ref={this.zoom}
