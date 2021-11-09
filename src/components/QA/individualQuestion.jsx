@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/no-danger */
 /* eslint-disable space-infix-ops */
@@ -49,25 +50,23 @@ class IndividualQuestion extends React.Component {
     }
   }
 
+  findandReplace(string, term) {
+    const index = string.toLowerCase().indexOf(term.toLowerCase());
+    if (index !== -1) {
+      const regex = new RegExp(term, 'gi');
+      const text = string.replace(regex, '<mark class="highlight">$&</mark>');
+      return <span dangerouslySetInnerHTML={{ __html: `${text} ` }} />;
+    }
+    return string;
+  }
+
   // highklight the search term
   highlight(term) {
     if (term !== '') {
       return (
-        <span>
-          {this.props.question.question_body.split(' ')
-            .map((item) => {
-              const index = item.toLowerCase().indexOf(term.toLowerCase());
-              if (index !== -1) {
-                const regex = new RegExp(term, 'gi');
-                const text = item.replace(regex, '<mark class="highlight">$&</mark>');
-
-                return (
-                  <span dangerouslySetInnerHTML={{ __html: `${text} ` }} />
-                );
-              }
-              return <span>{`${item}\xa0`}</span>;
-            })}
-        </span>
+        <div>
+          {this.findandReplace(this.props.question.question_body, term)}
+        </div>
       );
     }
 
