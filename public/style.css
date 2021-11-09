@@ -308,8 +308,7 @@ Overview - Carousel Component!
 }
 
 .overview-carousel-expanded {
-  /* background-color: #4169E1; */
-  background-image: url(https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80);
+  background-image: url('');
   background-position: center;
   background-size: cover;
   height: 100vh;
@@ -319,8 +318,30 @@ Overview - Carousel Component!
   cursor: crosshair;
   overflow: hidden;
   background-repeat: no-repeat;
-  transition: background-position 0.25s ease;
+  /* animation-duration: 1.5s;
+  animation-play-state: running;
+  animation-fill-mode: forwards;
+  transition-timing-function: ease-out; */
 }
+
+@keyframes scrollUp {
+  0% {
+    transform: scale(2.5) translateY(-29%);
+  }
+  100% {
+    transform: scale(2.5) translateY(29%);
+  }
+}
+
+@keyframes scrollDown {
+  0% {
+    transform: scale(2.5) translateY(29%);
+  }
+  100% {
+    transform: scale(2.5) translateY(-29%);
+  }
+}
+
 
 .carousel-expanded-img {
   max-width: 100%;
@@ -340,7 +361,7 @@ Overview - Carousel Component!
 }
 
 .close-button {
-  position: absolute;
+  position: fixed;
   right: 18px;
   top: 18px;
   z-index: 12;
