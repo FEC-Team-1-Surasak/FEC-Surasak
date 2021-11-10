@@ -45,16 +45,76 @@ Question Component!
 */
 
 div.answer-list{
-  max-height: 250px;
+  max-height: 300px;
   overflow-y:auto;
 }
 
-div.question-list{
-  max-height: 500px;
-  width: 80%;
-  overflow-y:auto;
-  display:block;
+div.question,.individual-anaswer{
+  margin-bottom: 10px;
+}
 
+div.question-body{
+  display: grid;
+  grid-template-columns:7% 30% 6% 6% 10%;
+  overflow-y:auto;
+
+
+}
+
+.title{
+  grid-column:1;
+  justify-self: start;
+}
+
+.title-body{
+  grid-column:2;
+}
+.helpful{
+  grid-column: 3;
+}
+.helpful-yes{
+  grid-column: 4;
+  color: #2200CC;
+  background-color: transparent;
+  cursor: pointer;
+
+}
+.add-answer{
+  grid-column: 5;
+  color:#2200CC;
+  background-color: transparent;
+  cursor: pointer;
+
+}
+.question-body,.answer{
+  margin-bottom: 10px;
+}
+
+
+.answer-list{
+  display: grid;
+  grid-template-columns: 7% 50%;
+}
+
+.answer-title{
+  grid-column: 1;
+}
+.answer-sublist{
+  grid-column: 2;
+}
+
+.answer-helpful-yes,.report{
+  color: #2200CC;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.load-questions{
+  margin-left:7%;
+  width: 25%;
+}
+.add-question{
+  width: 25%;
 }
 
 mark{
@@ -62,22 +122,43 @@ mark{
 }
 div.modal{
   position:fixed;
-  width:90%;
-  height:90%;
-  z-index:1;
-  display: block;
+  width:100%;
+  height:100%;
+  display: grid;
+  grid-template-columns: 18% 60% 20%;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   margin: auto;
-  background-color:white;
   overflow: auto;
+  background-color:lightslategrey;
+
 }
 
 div.box{
-  margin: auto;
+  /* height:80%;
+  width:50%; */
+  /* margin: auto;
+  margin-bottom: 50px; */
   background-color:white;
+  box-shadow: 5px 5px 8px #888888;
+  grid-column: 2;
+  overflow: auto;
+}
+.box-title,.box-body,.your-question, .your-email,.your-nickname, button,.your-photo {
+  margin-left:10px;
+}
+.body-input {
+  width: 50%;
+  height:100px;
+  text-align: top;
+}
+.nickname-input,.email-input{
+  width: 30%;
+}
+.your-photo {
+  margin-bottom: 15px;
 }
 
 div.expand-answer-photo{
@@ -98,6 +179,7 @@ div.expand-list{
   width:200px; */
   display: inline-block;
 }
+
 
 
 div.expand-photo{
@@ -125,9 +207,6 @@ div.arrow-L{
   top:245px;
   /* width: 25px; */
   z-index:2;
-
-
-
 }
 div.arrow-R{
   position:absolute;
@@ -147,27 +226,25 @@ div.expand-view-section{
 }
 
 .search-bar{
-padding:5px;
-
-
+padding:2px;
+width:650px;
+margin-bottom:10px;
 }
 
-/* div.select-photo{
-  position:fixed;
-  width:90%;
-  height:90%;
-  z-index:1;
-  display: block;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  background-color: cornflowerblue;
-} */
-/* h2,h3{
-  text-align: center;
-} */
+.date{
+  margin-left:5px;
+}
+.user-name{
+  font-size:0.9em;
+  margin-bottom: 10px;
+}
+
+
+
+
+
+
+
 
 
 /*
