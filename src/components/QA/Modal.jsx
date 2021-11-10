@@ -61,7 +61,11 @@ class Modal extends React.Component {
         email: this.state.email,
         product_id: this.props.productid,
       })
-        .then(() => { console.log('CREATE IT'); })
+        .then(() => {
+          console.log('CREATE IT');
+          alert('Thanks for submitting your answer!');
+          this.props.close();
+        })
         .catch((err) => { console.log(err); });
     } else if (this.state.question === '' || this.state.name === '' || this.state.email === '') {
       alert('You must enter the following required information');
