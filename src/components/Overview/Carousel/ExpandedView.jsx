@@ -10,6 +10,7 @@
 /* eslint-disable semi */
 import React from 'react';
 import Arrows from './Arrows.jsx';
+import HorizontalThumbnail from './HorizontalThumbnail.jsx';
 
 class ExpandedView extends React.Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class ExpandedView extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.updateImage = this.updateImage.bind(this);
+    this.updateImgIndex = this.updateImgIndex.bind(this);
   }
 
   componentDidMount() {
@@ -52,7 +54,7 @@ class ExpandedView extends React.Component {
       zoom.style.transform = 'scale(1)';
       zoom.style.cursor = 'zoom-in';
     }
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       zoomed: !prevState.zoomed,
     }));
   }
@@ -79,11 +81,24 @@ class ExpandedView extends React.Component {
           onClick={() => this.handleClick()}
           onMouseMove={this.state.zoomed === true ? () => this.handleMouseMove() : null}
         />
+
         {this.props.currentImgIndex === 0 ? null : <Arrows direction="left" previous={(e) => this.props.updateImgIndex(this.props.currentImgIndex - 1)} />}
 
         {this.props.currentImgIndex === this.props.currentStyle.photos.length - 1 ? null : <Arrows direction="right" next={(e) => this.props.updateImgIndex(this.props.currentImgIndex + 1)} />}
 
         <button className="close-button" onClick={() => this.props.changeView('default')}>close[x]</button>
+
+        {/* <div className="horizontal-thumbnail-container"> */}
+          {!this.state.zoomed ? (
+            <HorizontalThumbnail
+              currentStyle={this.props.currentStyle}
+              currentImgIndex={this.state.currentImgIndex}
+              updateImgIndex={this.props.updateImgIndex}
+            />
+          )
+            : null}
+        {/* </div> */}
+
       </div>
     );
   }

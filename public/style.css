@@ -358,3 +358,20 @@ Overview - Carousel Component!
   top: 18px;
   z-index: 12;
 }
+
+.horizontal-thumbnail {
+  position: absolute;
+  bottom: -360px;
+  right: 300px;
+  height: 100%;
+  width: 20px;
+  text-align: center;
+  z-index: 16;
+  font-size: 18px;
+  transform: rotate(-90deg);
+  cursor: pointer;
+}
+
+.horizontal-icon {
+  text-shadow: -1px 1px 2px dimgray;
+}
