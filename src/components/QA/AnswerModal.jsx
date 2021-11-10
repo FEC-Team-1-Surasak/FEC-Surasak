@@ -50,7 +50,6 @@ class AnswerModal extends React.Component {
     this.setState({ email: e.target.value });
   }
 
-
   // checking if all input are valid before submit
   isValid() {
     if (this.state.body === '' || this.state.name === '' || this.state.email === '') {
@@ -69,15 +68,6 @@ class AnswerModal extends React.Component {
       alert('You can only upload up to 5 photos');
     } else {
       const url = URL.createObjectURL(e.target.files[0]);
-      // if (file) {
-      //   const reader = new FileReader();
-      //   reader.onloadend = () => {
-      //     console.log('invoking this');
-      //     const oldstate = this.state.photo;
-      //     oldstate.push(reader.result);
-      //     this.setState({ photo: oldstate });
-      //   };
-      //   reader.readAsDataURL(file);
       const oldstate = this.state.preview;
       oldstate.push(url);
       this.setState({ preview: oldstate });
@@ -119,8 +109,8 @@ class AnswerModal extends React.Component {
     return (
       <div className="modal">
         <div className="box">
-          <h2>Submit your Answer</h2>
-          <h3>
+          <h2 className="box-title">Submit your Answer</h2>
+          <h3 className="box-title">
             {this.props.name}
             :
             {this.props.question.question_body}
@@ -139,10 +129,11 @@ class AnswerModal extends React.Component {
             </div>
           </div>
 
-        </div>
-        <div className="button">
-          <button onClick={this.props.close}>Close</button>
-          <button onClick={this.submit}>Submit Answer</button>
+          <div>{' '}</div>
+          <div className="button">
+            <button onClick={this.props.close}>Close</button>
+            <button onClick={this.submit}>Submit</button>
+          </div>
         </div>
       </div>
 
