@@ -97,11 +97,11 @@ class IndividualAnswer extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="individual-answer-list">
         <div className="answer">
           {' '}
-          A:
-          {this.props.answer.body}
+          {/* <span className="answer-title">Answer:</span> */}
+          <span className="answer-title-body">{this.props.answer.body}</span>
         </div>
         <div className="image">
           {this.props.answer.photos.map((photo) => (
@@ -141,21 +141,37 @@ class IndividualAnswer extends React.Component {
         <div className="user-name">
           by user
           {this.props.answer.answerer_name === 'Seller' ? <b>Seller</b> : this.props.answer.answerer_name}
-          ,
+          {' '}
+          on
           {' '}
           {new Date(this.props.answer.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-          <span>Helpful?</span>
+          {' '}
+          <span className="answer-helpful">Helpful?</span>
           {this.state.hasVoted
-            ? <span>Marked Yes</span>
+            ? (
+              <span className="answer-helpful">
+                {' '}
+                Voted(
+                {this.state.helpfulness}
+                )
+                {' '}
+              </span>
+            )
             : (
-              <span onClick={this.onClick}>
+              <span className="answer-helpful-yes" onClick={this.onClick}>
+                {' '}
                 <u>Yes</u>
+                {' '}
                 (
                 {this.state.helpfulness}
                 )
               </span>
             )}
-          <span onClick={this.report}><u>{this.state.IsReport}</u></span>
+          <span className="report" onClick={this.report}>
+            {' '}
+            <u>{this.state.IsReport}</u>
+            {' '}
+          </span>
         </div>
       </div>
     );

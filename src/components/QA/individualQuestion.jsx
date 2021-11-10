@@ -37,17 +37,17 @@ class IndividualQuestion extends React.Component {
 
   // click functions to update the counts of helpfulness
   onClick() {
-    if (this.state.cnt === 1) {
-      alert('You have already marked this questions helfpful');
-    } else {
-      const count = this.state.helpfulness;
-      this.setState({ helpfulness: count + 1 });
-      this.setState({ cnt: 1 });
-      // send a put
-      axios.put('/qa/questions/:question_id/helpful', { question_id: this.props.question.question_id })
-        .then(() => { console.log('updating the record'); })
-        .catch((err) => { console.log('Error'); });
-    }
+    // if (this.state.cnt === 1) {
+    //   alert('You have already marked this questions helfpful');
+    // } else {
+    const count = this.state.helpfulness;
+    this.setState({ helpfulness: count + 1 });
+    this.setState({ cnt: 1 });
+    // send a put
+    axios.put('/qa/questions/:question_id/helpful', { question_id: this.props.question.question_id })
+      .then(() => { console.log('updating the record'); })
+      .catch((err) => { console.log('Error'); });
+    // }
   }
 
   findandReplace(string, term) {
@@ -69,7 +69,6 @@ class IndividualQuestion extends React.Component {
         </div>
       );
     }
-
     return (
       <span>
         {this.props.question.question_body}
@@ -90,17 +89,34 @@ class IndividualQuestion extends React.Component {
     return (
       <div className="question">
         <div className="question-body">
-          <b> Q:</b>
-          <b>{this.highlight(this.props.term)}</b>
-          <span>Helpful?</span>
-          <span onClick={this.onClick}>
-            Yes(
-            {this.state.helpfulness}
-            )
+          <span className="title">
+            {' '}
+            <b> Question:</b>
           </span>
-          <span onClick={this.showModal}>
-            <u>Add Answer</u>
+          <span className="title-body"><b>{this.highlight(this.props.term)}</b></span>
+          {' '}
+          <span className="helpful">Helpful?</span>
+          {' '}
+          {this.state.cnt===1
+            ? (
+              <span>
+                Voted(
+                {this.state.helpfulness}
+                )
+              </span>
 
+            )
+            : (
+              <span className="helpful-yes" onClick={this.onClick}>
+                Yes(
+                {this.state.helpfulness}
+                )
+              </span>
+
+            )}
+
+          <span className="add-answer" onClick={this.showModal}>
+            <u>Add Answer</u>
           </span>
           {this.state.modal ? (
             <AnswerModal

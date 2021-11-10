@@ -78,8 +78,8 @@ class Modal extends React.Component {
     return (
       <div className="modal">
         <div className="box">
-          <h2>Ask Your Question</h2>
-          <h3>
+          <h2 className="box-title">Ask Your Question</h2>
+          <h3 className="box-title">
             About the
             {' '}
             {this.props.productname}
@@ -87,12 +87,13 @@ class Modal extends React.Component {
           <Body label="question" labelChange={this.labelChange} />
           <Nickname nameChange={this.nameChange} />
           <Email emailChange={this.emailChange} />
+          <div className="button">
+            <button onClick={this.props.close}>Close</button>
+            {' '}
+            <button onClick={this.submit}>Submit</button>
+          </div>
         </div>
 
-        <div className="button">
-          <button onClick={this.props.close}>Close</button>
-          <button onClick={this.submit}>Submit Question</button>
-        </div>
       </div>
     );
   }
