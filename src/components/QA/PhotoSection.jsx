@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
@@ -7,12 +10,14 @@ class PhotoSection extends React.Component {
     super();
     this.state = {
       expand: false,
+      curr: '',
     };
   }
 
-  expand() {
+  expand(e) {
     const curr = this.state.expand;
     this.setState({ expand: !curr });
+    this.setState({ curr: e.target });
   }
 
   render() {
@@ -24,7 +29,7 @@ class PhotoSection extends React.Component {
             <span className="close-icon" onClick={this.props.delete.bind(this)}>X</span>
             {this.state.expand
               ? (
-                <img className="expand-image" src={photo} alt="" onClick={this.expand.bind(this)} />
+                <img className="expand-image" src={this.state.curr.src} alt="" onClick={this.expand.bind(this)} />
               )
               : null}
           </div>
