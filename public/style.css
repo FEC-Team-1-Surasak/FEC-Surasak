@@ -1,39 +1,9 @@
-/*
----------------------------------------------------
 
-Star Rating Component!
-
----------------------------------------------------
-*/
-.star-radio {
-  display: none;
-}
-
-.reviews-list-container {
-  max-height:80vh;
-  width:80vw;
-  overflow-y:auto;
-}
-
-.star-container{
-  display: grid;
-  width: 5em;
-  max-height: 1em;
-  white-space: nowrap;
-}
-
-.layer1, .layer2{
-  grid-column: 1;
-  grid-row: 1;
-  display: inline-block
-}
-
-.layer1 {
-  width: 100%;
-}
-
-.layer2{
-  overflow-x: hidden;
+body {
+  min-width: 800px;
+  max-width: 1280px;
+  margin: auto;
+  font: 16px 'Optima', sans-serif;
 }
 
 /*
@@ -60,7 +30,8 @@ div.question-list{
 mark{
   background-color: yellow;
 }
-div.modal{
+
+/* div.modal{
   position:fixed;
   width:90%;
   height:90%;
@@ -71,9 +42,9 @@ div.modal{
   right: 0;
   bottom: 0;
   margin: auto;
-  background-color:white;
+  background-color: white;
   overflow: auto;
-}
+} */
 
 div.box{
   /* left: 50%;
@@ -354,7 +325,7 @@ Characteristic Rating in Review Form Component!
 */
 
 .rating-breakdown-container {
-  width: 250px;
+  width: 100%;
   text-align: left;
   vertical-align: middle
 };
@@ -368,64 +339,319 @@ Characteristic Rating Sliders
 ---------------------------------------------------
 */
 
+
 .sliderbar-container {
-  width: inherit;
-  display: inline-block;
-  position: relative;
+  display: border-box;
+  width: 100%;
 }
 
-.slider-marker {
-  height: 0;
-  width: 0;
-  border-top: 16px solid red;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  position: relative;
-  top: 1em;
-}
-
-.sliderbar-fragment {
-  width: 33.333%;
-  background-color: grey;
-  box-sizing: border-box;
-  height: 16px;
-  border-right: 1px solid white;
-  display: inline-block;
+.slider-name {
+  margin-bottom: 0;
 }
 
 .slider-label-container {
+  margin: 0;
   list-style: none;
   padding: 0;
 }
-.sliderbar-label {
+
+.sliderbar-label-left {
   font-size: x-small;
   width: 33%;
+  margin-left: 0.33%;
   box-sizing: border-box;
-  height: 1em;
+  display: inline-block;
+  text-align: left;
+}
+
+.sliderbar-label-center {
+  font-size: x-small;
+  width: 33%;
+  margin-left: 0.33%;
+  box-sizing: border-box;
   display: inline-block;
   text-align: center;
+}
+
+.sliderbar-label-right {
+  font-size: x-small;
+  width: 33%;
+  margin-left: 0.33%;
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: right;
+}
+
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0px;
+  height: 0px;
+  border-top: 16px solid rgb(165, 14, 14);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+}
+
+.slider::-moz-range-thumb {
+  width: 0px;
+  height: 0px;
+  border-top: 16px solid rgb(165, 14, 14);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
 }
 
 /*
 ---------------------------------------------------
 
-Characteristic Rating Sliders
+Reveiw Component Layout
 
 ---------------------------------------------------
 */
 
 .reviews-grid {
   display: grid;
-  grid-template-columns: 20vw 1fr 20vw 20vw 20vw;
-  grid-template-rows: 20vh 20vh 20vh 20vh 20vh;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: auto auto;
+  grid-gap: 20px;
+  padding-bottom: 10vh;
+  max-height: 85vh;
 }
 
 .rating-breakdown-grid {
   grid-column: 1 / 2;
-  grid-row: 1 / span 3;
+  grid-row: 1 / span 2;
 }
 
 .reveiws-list-grid {
-  grid-column: 3 / span 4;
-  grid-row: 1 / span 5;
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 2;
+}
+
+/*
+---------------------------------------------------
+
+Reveiw Tile Layout
+
+---------------------------------------------------
+*/
+
+.tile-grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto auto auto;
+  border-bottom: 2px solid black;
+  grid-gap: 10px;
+}
+
+.star-rating-grid {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+  padding-top: 10px;
+}
+
+.review-date-grid {
+  grid-row: 1 / 2;
+  grid-column: -1 / -2;
+  text-align: right;
+  padding-top: 10px;
+  font-weight: lighter;
+  font-size: 0.75rem;
+}
+
+.review-summary-grid {
+  grid-row: 2 / 3;
+  grid-column: 1 / 4;
+  overflow-wrap: break-word;;
+}
+
+.recommended-grid {
+  grid-row: 3 / 4;
+  grid-column: 1 / 2;
+}
+
+.seller-response-grid {
+  grid-row: 4 / 5;
+  grid-column: 1 / 4;
+  background: lightgray;
+  padding: 20px;
+}
+
+.review-tile-buttons-grid {
+  grid-row: 5 / 6;
+  grid-column: 1 / 2;
+  font-size: 0.75rem;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.average-rating {
+  white-space: nowrap;
+}
+
+.sort-dropdown {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+  border-width: 0;
+  border-bottom: 1px solid black;
+  flex: 1;
+}
+
+.dropdown-arrow {
+  display:inline-block;
+  width: 0;
+  height: 0;
+  border-top: 1em solid black;
+  border-right: .6em solid transparent;
+  border-left:  .6em solid transparent;
+}
+
+.container-title {
+  display: inline-block;
+  margin-bottom: 2px;
+  padding-bottom: 0px;
+  font-size: 1.5rem;
+  font-variant: small-caps;
+}
+
+.emoji {
+  font-size: 0.7rem;
+}
+
+/*
+---------------------------------------------------
+
+Shrouded Modal, also need to set styling within the .modal-bg
+style={{ backgroundColor: 'rgba(0,0,0, 0.85)' }}
+
+---------------------------------------------------
+*/
+
+.modal-bg {
+  width:100%;
+  height:100%;
+  top: 0%;
+  left: 0%;
+  position: fixed;
+  z-index:1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.modal-shroud {
+  margin-top: 10vh;
+  width: auto;
+  max-height: 74vh;
+  overflow: auto;
+}
+
+#review-form {
+  background-color: white;
+  display: inline-block;
+  padding-left: 3vw ;
+  padding-right: 3vw;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+}
+
+.modal-img {
+  display: inline-block;
+  max-width: 95vw;
+}
+
+/*
+---------------------------------------------------
+
+Button Styling
+
+---------------------------------------------------
+*/
+
+button.btn {
+  background-color: transparent;
+  border: 2px solid black;
+  color: black;
+  padding: 0 2rem;
+  height: 3rem;
+  text-align: center;
+  font-variant: all-small-caps;
+  display: inline-block;
+  font-size: 1rem;
+  margin: 4px 2px;
+}
+
+/*
+---------------------------------------------------
+
+Star Rating Component!
+
+---------------------------------------------------
+*/
+.star-radio {
+  display: none;
+}
+
+.reviews-list-container {
+  max-height:80vh;
+  width:875px;
+  overflow-y:auto;
+}
+
+.star-container{
+  display: grid;
+  width: 10em;
+  max-height: 2em;
+  white-space: nowrap;
+}
+
+.layer1, .layer2{
+  grid-column: 1;
+  grid-row: 1;
+  display: inline-block
+}
+
+.layer1 {
+  width: 100%;
+}
+
+.layer2{
+  overflow-x: hidden;
+}
+
+/*
+---------------------------------------------------
+
+Characteristic Rating in Review Form Component!
+
+---------------------------------------------------
+*/
+
+.radio-group label {
+  display: inline-block;
+  text-align: center;
+  margin: 0 2em;
+}
+.radio-group label input[type="radio"] {
+  display: block;
+  margin: 0.5em auto;
 }

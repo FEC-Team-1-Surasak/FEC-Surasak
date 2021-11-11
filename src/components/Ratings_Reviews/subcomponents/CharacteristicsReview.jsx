@@ -73,7 +73,7 @@ class CharacteristicsReview extends React.Component {
           formItems.map((item) => (
             <>
               <CharRater func={this.clickHandler} item={item} id={item.id} />
-              <br />
+              <hr />
             </>
           ))
         }

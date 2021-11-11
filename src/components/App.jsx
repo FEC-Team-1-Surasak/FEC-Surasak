@@ -43,7 +43,7 @@ export default class App extends React.Component {
       return <div> </div>;
     }
     return (
-      <div>
+      <>
         <Overview id={this.state.id} />
         <br />
         <hr />
@@ -51,7 +51,7 @@ export default class App extends React.Component {
         <br />
         <hr />
         <Container productId={this.state.id} />
-      </div>
+      </>
     );
   }
 }

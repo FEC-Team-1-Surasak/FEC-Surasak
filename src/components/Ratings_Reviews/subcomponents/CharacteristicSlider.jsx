@@ -28,17 +28,15 @@ const CharacteristicSlider = ({ characteristic, charObj }) => {
     return null;
   }
   return (
-    <div className="slider-container">
-      <span className="slider-name">{characteristic}</span>
-      <br />
-      <div className="slider-marker" style={{ left: `${Math.round((((charObj.value - 1) / (4)) * 250) - 8)}px` }} />
-      <div className="sliderbar-fragment" />
-      <div className="sliderbar-fragment" />
-      <div className="sliderbar-fragment" />
+    <div className="sliderbar-container">
+      <div>{characteristic}</div>
+      <div className="slidecontainer">
+        <input type="range" min="0" max="100" value={Math.round((((charObj.value - 1) / (4)) * 100))} className="slider" disabled />
+      </div>
       <ul className="slider-label-container">
-        <li className="sliderbar-label">{defaultCharacteristics[characteristic].values[0]}</li>
-        <li className="sliderbar-label">{defaultCharacteristics[characteristic].values[1]}</li>
-        <li className="sliderbar-label">{defaultCharacteristics[characteristic].values[2]}</li>
+        <li className="sliderbar-label-left">{defaultCharacteristics[characteristic].values[0]}</li>
+        <li className="sliderbar-label-center">{defaultCharacteristics[characteristic].values[1]}</li>
+        <li className="sliderbar-label-right">{defaultCharacteristics[characteristic].values[2]}</li>
       </ul>
     </div>
   );

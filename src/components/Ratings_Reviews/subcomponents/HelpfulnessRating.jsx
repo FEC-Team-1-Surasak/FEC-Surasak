@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable no-console */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
@@ -31,17 +33,14 @@ class HelpfulnessRating extends React.Component {
   render() {
     const { count, hasUpvoted } = this.state;
     return (
-      <div className="helpfulness-rating">
-        Was this review helpful?
-        <br />
-        <div className="helpfulness-score">
-          {hasUpvoted
-            ? <span> 👌 </span>
-            : <button type="upvote" onClick={hasUpvoted ? this.neutral : this.increment}> 👍 </button>}
-          {'  '}
-          {count}
-        </div>
-      </div>
+      <>
+        Helpful?
+        {hasUpvoted
+          ? <span className="helpfulness-rating"> 👌 </span>
+          : <span className="helpfulness-rating btn" onClick={hasUpvoted ? this.neutral : this.increment}> 👍 </span>}
+        {'  '}
+        {count}
+      </>
     );
   }
 }

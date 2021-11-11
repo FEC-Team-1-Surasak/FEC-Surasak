@@ -135,130 +135,136 @@ export default class ReviewForm extends React.Component {
     const { characteristics } = data;
     const { body, uploadUrls, photoUrls } = this.state;
     return (
-      <div className="modal">
-        <form onSubmit={(e) => e.preventDefault()}>
-          <div>
-            Rating:
-            <br />
-            <StarRatingDynamic rating={this.getRating} />
-          </div>
-          <br />
-          <div className="user-recommended radio-group">
-            <span>Do you recommend this product? </span>
-            <br />
-            <label>
-              <input
-                name="recommended"
-                type="radio"
-                value="true"
-                onChange={this.change}
-              />
-              Yes
-            </label>
-            {' '}
-            <label>
-              <input
-                name="recommended"
-                type="radio"
-                value="false"
-                onChange={this.change}
-              />
-              No
-            </label>
-          </div>
-          <br />
-          <div>Characteristics Ratings</div>
-          <CharacteristicsReview func={this.getCharScore} characteristics={characteristics} />
-          <label>
-            Review Summary:
-            <br />
-            <input
-              name="summary"
-              type="text"
-              placeholder="Example: Best purchase ever!"
-              onChange={this.change}
-              maxLength="60"
-            />
-          </label>
-          <br />
-          <label>
-            Review Summary:
-            <br />
-            <textarea
-              name="body"
-              type="text"
-              placeholder="Why did you like the product or not?"
-              onChange={this.change}
-              minLength="50"
-              maxLength="1000"
-              value={body}
-            />
+      <div style={{ backgroundColor: 'rgba(0,0,0, 0.85)' }} className="modal-bg">
+        <div className="modal-shroud" id="review-form">
+          <div className="container-title">Submit A Review</div>
+          <hr />
+          <form onSubmit={(e) => e.preventDefault()}>
             <div>
-              {body.length < 50
-                ? `Minimum required characters left: ${50 - body.length}`
-                : `Minimum reached. Maximum remaining characters left: ${1000 - body.length}`}
+              Rating:
+              <br />
+              <StarRatingDynamic rating={this.getRating} />
             </div>
-          </label>
-          <br />
-          <button name="submit-url" onClick={() => this.setState({ uploadUrls: true })}>
-            Upload Photos
-          </button>
-          {uploadUrls
-            ? (
-              <div className="image-upload">
-                <textarea
-                  name="photoUrls"
-                  type="text"
-                  placeholder="Add image urls here separated by a comma and space"
-                  value={photoUrls.join(', ')}
+            <hr />
+            <div className="user-recommended radio-group">
+              Do you recommend this product?
+              <br />
+              <label>
+                <input
+                  name="recommended"
+                  type="radio"
+                  value="true"
                   onChange={this.change}
                 />
-                <ReviewPhotos photos={photoUrls} />
+                Yes
+              </label>
+              {' '}
+              <label>
+                <input
+                  name="recommended"
+                  type="radio"
+                  value="false"
+                  onChange={this.change}
+                />
+                No
+              </label>
+            </div>
+            <hr />
+            <div className="container-title">Characteristics Ratings</div>
+            <hr />
+            <CharacteristicsReview func={this.getCharScore} characteristics={characteristics} />
+            <label>
+              Review Summary:
+              <br />
+              <input
+                name="summary"
+                type="text"
+                placeholder="Example: Best purchase ever!"
+                onChange={this.change}
+                maxLength="60"
+              />
+            </label>
+            <hr />
+            <label>
+              Review Summary:
+              <br />
+              <textarea
+                name="body"
+                type="text"
+                placeholder="Why did you like the product or not?"
+                onChange={this.change}
+                minLength="50"
+                maxLength="1000"
+                value={body}
+              />
+              <div>
+                {body.length < 50
+                  ? `Minimum required characters left: ${50 - body.length}`
+                  : `Minimum reached. Maximum remaining characters left: ${1000 - body.length}`}
               </div>
-            )
-            : null}
-          <br />
-          <br />
-          <label>
-            Nickname:
+            </label>
+            <hr />
+            <button className="btn" name="submit-url" onClick={() => this.setState({ uploadUrls: true })}>
+              Upload Photos
+            </button>
+            {uploadUrls
+              ? (
+                <div className="image-upload">
+                  <textarea
+                    name="photoUrls"
+                    type="text"
+                    placeholder="Add image urls here separated by a comma and space"
+                    value={photoUrls.join(', ')}
+                    onChange={this.change}
+                  />
+                  <ReviewPhotos photos={photoUrls} />
+                </div>
+              )
+              : null}
+            <hr />
             <br />
-            <input
-              name="nickname"
-              type="text"
-              placeholder="Example: jackson11!"
-              onChange={this.change}
-              maxLength="60"
-            />
-            <div>For privacy reasons, do not use your full name or email address</div>
-          </label>
-          <br />
-          <label>
-            Email:
+            <label>
+              Nickname:
+              <br />
+              <input
+                name="nickname"
+                type="text"
+                placeholder="Example: jackson11!"
+                onChange={this.change}
+                maxLength="60"
+              />
+              <div>For privacy reasons, do not use your full name or email address</div>
+            </label>
+            <hr />
+            <label>
+              Email:
+              <br />
+              <input
+                name="email"
+                type="text"
+                placeholder="Example: jackson11@email.com"
+                onChange={this.change}
+                maxLength="60"
+              />
+            </label>
+            <div>For authentication reasons, you will not be emailed</div>
             <br />
-            <input
-              name="email"
-              type="text"
-              placeholder="Example: jackson11@email.com"
-              onChange={this.change}
-              maxLength="60"
-            />
-          </label>
-          <div>For authentication reasons, you will not be emailed</div>
-          <br />
-          <br />
-          <button name="submit-form" onClick={this.submitReview}>
-            Submit Review
-          </button>
-          <button
-            name="close-form"
-            onClick={(e) => {
-              e.preventDefault();
-              close();
-            }}
-          >
-            Close Form
-          </button>
-        </form>
+            <br />
+            <button className="btn" name="submit-form" onClick={this.submitReview}>
+              Submit Review
+            </button>
+            <button
+              className="btn"
+              name="close-form"
+              onClick={(e) => {
+                e.preventDefault();
+                close();
+              }}
+            >
+              Close Form
+            </button>
+          </form>
+        </div>
       </div>
     );
   }

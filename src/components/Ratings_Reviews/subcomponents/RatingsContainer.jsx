@@ -1,3 +1,5 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable no-return-assign */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable no-console */
@@ -24,6 +26,7 @@ class RatingsContainer extends React.Component {
     };
     this.getRatingData = this.getRatingData.bind(this);
     this.addFilter = this.addFilter.bind(this);
+    this.clearFilter = this.clearFilter.bind(this);
   }
 
   getRatingData() {
@@ -72,53 +75,79 @@ class RatingsContainer extends React.Component {
     });
   }
 
+  clearFilter() {
+    const { applyFilters } = this.props;
+    const filter = {
+      5: false,
+      4: false,
+      3: false,
+      2: false,
+      1: false,
+    };
+    applyFilters(filter);
+    this.setState({
+      filter,
+    });
+  }
+
   render() {
     const { data } = this.props;
     const { ratings, characteristics } = data;
-    console.log(data);
+    const { filter } = this.state;
 
     if (!ratings) {
-      return <div>No metadata</div>;
+      return null;
     }
 
     const [totalRatings, scoreSum, averageRating, ratingPercent] = this.getRatingData();
+    const percentRecommended = Math.round((data.recommended.true / totalRatings) * 100);
+
+    if (totalRatings === 0) {
+      return <div>No reviews</div>;
+    }
     return (
-      <div>
+      <>
         <div className="average-rating">
-          Average Rating:
-          {' '}
-          {averageRating.toFixed(1)}
-          <StarRatingStatic rating={averageRating / 5} />
-          {'Total Reviews: '}
-          {totalRatings}
+          <span>
+            {averageRating.toFixed(1)}
+            <StarRatingStatic rating={averageRating / 5} />
+          </span>
         </div>
         <br />
         <div className="percent-recommended">
-          {`Recommended by ${Math.round((data.recommended.true / totalRatings) * 100)}% of reviewers`}
+          {`${Number.isNaN(percentRecommended) ? 0 : percentRecommended}% of reviewers recommended this product`}
         </div>
         <br />
         <div className="rating-breakdown-container">
-          {
-            Object.keys(ratingPercent).map((rating, i) => (
-              <div key={rating} onClick={() => this.addFilter(rating)}>
-                <RatingBar
-                  rating={rating}
-                  completed={ratingPercent[rating]}
+          <div className="starbar-container">
+            {
+              Object.keys(ratingPercent).reverse().map((rating, i) => (
+                <div key={rating} onClick={() => this.addFilter(rating)}>
+                  <RatingBar
+                    rating={rating}
+                    completed={ratingPercent[rating]}
+                  />
+                </div>
+              ))
+            }
+          </div>
+          {Object.values(filter).includes(true)
+            ? <button className="btn" onClick={this.clearFilter}>Clear Filters</button>
+            : null }
+          <br />
+          <div className="sliders-container">
+            {
+              Object.keys(characteristics).map((characteristic) => (
+                <CharacteristicSlider
+                  key={characteristic}
+                  characteristic={characteristic}
+                  charObj={characteristics[characteristic]}
                 />
-              </div>
-            ))
-          }
-          {
-            Object.keys(characteristics).map((characteristic) => (
-              <CharacteristicSlider
-                key={characteristic}
-                characteristic={characteristic}
-                charObj={characteristics[characteristic]}
-              />
-            ))
-          }
+              ))
+            }
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 }

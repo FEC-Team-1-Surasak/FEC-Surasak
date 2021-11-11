@@ -5,18 +5,18 @@ import React from 'react';
 import Star from './Icons/Star.jsx';
 
 const StarRatingStatic = ({ rating }) => (
-  <div className="star-container">
-    <div className="layer1">
+  <span className="star-container">
+    <span className="layer1">
       {
         [...Array(5)].map((star, i) => <Star key={i} color="#e3e8e4" />)
       }
-    </div>
-    <div className="layer2" style={{ width: `${5 * rating}em` }}>
+    </span>
+    <span className="layer2" style={{ width: `${5 * rating}em` }}>
       {
         [...Array(5)].map((star, i) => <Star key={i} color="#ffc110" />)
       }
-    </div>
-  </div>
+    </span>
+  </span>
 );
 
 export default StarRatingStatic;

@@ -20,7 +20,7 @@ class EventTracking extends React.Component {
   onclick(e) {
     console.log(e.target.innerHTML);
     //
-    console.log(this.props.children)
+    console.log(this.props.children);
     this.setState({
       element: e.target.className,
       time: new Date().toString(),
@@ -28,7 +28,7 @@ class EventTracking extends React.Component {
     axios.post('/interactions', {
       element: this.state.element,
       widget: this.props.children.name,
-      time: this.state.time
+      time: this.state.time,
     })
       .then(() => { console.log('POST IT'); })
       .catch((err) => { console.log(err); });

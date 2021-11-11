@@ -74,37 +74,27 @@ export default class Container extends React.Component {
   render() {
     const { reviewData, metaData, filteredReviews } = this.state;
     const { productId } = this.props;
-    // if (Object.keys(reviewData).length === 0 || Object.keys(metaData).length === 0) {
-    //   return (
-    //     <div className="grid-reviews">
-    //       <RatingsContainer applyFilters={this.applyRatingFilters} data={metaData} />
-    //       <ReviewsList
-    //         reviews={filteredReviews.length === 0
-    //           ? reviewData
-    //           : filteredReviews}
-    //         metaData={metaData}
-    //         productId={productId}
-    //       />
-    //     </>
-    //   );
-    // }
+
     return (
-      <div className="reviews-grid">
-        <div className="rating-breakdown-grid">
-          <RatingsContainer applyFilters={this.applyRatingFilters} data={metaData} />
+      <>
+        <div className="container-title">Ratings &amp; Reviews</div>
+        <hr />
+        <div className="reviews-grid">
+          <div className="rating-breakdown-grid">
+            <RatingsContainer applyFilters={this.applyRatingFilters} data={metaData} />
+          </div>
+          <div className="reveiws-list-grid">
+            <ReviewsList
+              reviews={filteredReviews.length === 0
+                ? reviewData
+                : filteredReviews}
+              metaData={metaData}
+              productId={productId}
+              getReviews={this.getReviewData}
+            />
+          </div>
         </div>
-        <br />
-        <div className="reveiws-list-grid">
-          <ReviewsList
-            reviews={filteredReviews.length === 0
-              ? reviewData
-              : filteredReviews}
-            metaData={metaData}
-            productId={productId}
-            getReviews={this.getReviewData}
-          />
-        </div>
-      </div>
+      </>
     );
   }
 }

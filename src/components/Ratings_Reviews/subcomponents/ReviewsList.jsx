@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable import/extensions */
 /* eslint-disable react/prop-types */
 import React from 'react';
@@ -38,7 +39,13 @@ class ReviewsList extends React.Component {
     let remainingReviews = false;
     return (
       <>
-        <SortDropdown getReviews={getReviews} />
+        <span>
+          {reviews.length}
+          {' '}
+          reviews, sorted by
+          {' '}
+          <SortDropdown getReviews={getReviews} />
+        </span>
         <div className="reviews-list-container">
           {
             reviews.map((review, i) => {
@@ -50,8 +57,16 @@ class ReviewsList extends React.Component {
             })
           }
         </div>
-        {remainingReviews ? <button type="submit" onClick={this.showMoreReviews}>Load More Reviews</button> : null}
-        <button type="submit" onClick={this.expand}>Add Review</button>
+        {remainingReviews
+          ? (
+            <button className="btn" onClick={this.showMoreReviews}>
+              Load More Reviews
+            </button>
+          )
+          : null}
+        <button className="btn" onClick={this.expand}>
+          Add Review
+        </button>
         {expand
           ? <ReviewForm data={metaData} productId={productId} close={this.expand} />
           : null}
