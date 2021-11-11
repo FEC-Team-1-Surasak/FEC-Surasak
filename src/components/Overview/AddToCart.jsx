@@ -54,7 +54,7 @@ class AddToCart extends React.Component {
 
   handleClick() {
     if (this.state.size) {
-      alert(`${this.state.bagQty}x ${this.props.currentStyle.name} ${this.props.product.name} in ${this.state.size} added to cart!`);
+      alert(`${this.state.bagQty}x ${this.props.currentStyle.name} ${this.props.product.name} in size ${this.state.size} added to bag!`);
       this.props.addToCart({
         name: this.props.product.name,
         style: this.props.currentStyle.name,

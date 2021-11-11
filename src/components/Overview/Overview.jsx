@@ -9,6 +9,8 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import axios from 'axios';
+import Header from './Header.jsx';
+import AnnouncementBanner from './AnnouncementBanner.jsx';
 import ProductDescription from './ProductDescription.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
@@ -16,7 +18,6 @@ import CarouselDefaultView from './Carousel/CarouselDefaultView.jsx';
 import StarRatingStatic from '../Ratings_Reviews/subcomponents/StarRatingStatic.jsx';
 import ExpandedView from './Carousel/ExpandedView.jsx';
 import ReviewsList from '../Ratings_Reviews/subcomponents/ReviewsList.jsx';
-import AnnouncementBanner from './AnnouncementBanner.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -164,6 +165,7 @@ class Overview extends React.Component {
 
     return (
       <div className="overview-grid">
+        <Header />
         <AnnouncementBanner />
         <div className="product-info">
           <div className="star-and-reviews-container">
