@@ -90,30 +90,32 @@ class IndividualQuestion extends React.Component {
       <div className="question">
         <div className="question-body">
           <span className="title">
-            {' '}
             <b> Question:</b>
           </span>
           <span className="title-body"><b>{this.highlight(this.props.term)}</b></span>
           {' '}
-          <span className="helpful">Helpful?</span>
-          {' '}
-          {this.state.cnt===1
-            ? (
-              <span>
-                Voted(
-                {this.state.helpfulness}
-                )
-              </span>
+          <div className="helpful">
+            {' '}
+            Helpful?
+            {' '}
+            {this.state.cnt===1
+              ? (
+                <span className="helpful-yes">
+                  Voted(
+                  {this.state.helpfulness}
+                  )
+                </span>
 
-            )
-            : (
-              <span className="helpful-yes" onClick={this.onClick}>
-                Yes(
-                {this.state.helpfulness}
-                )
-              </span>
+              )
+              : (
+                <span className="helpful-yes" onClick={this.onClick}>
+                  Yes(
+                  {this.state.helpfulness}
+                  )
+                </span>
 
-            )}
+              )}
+          </div>
 
           <span className="add-answer" onClick={this.showModal}>
             <u>Add Answer</u>
