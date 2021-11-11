@@ -28,6 +28,7 @@ class IndividualQuestion extends React.Component {
       cnt: 0,
       answers: [],
       modal: false,
+      hasVoted: false,
     };
     this.onClick = this.onClick.bind(this);
     this.highlight = this.highlight.bind(this);
@@ -37,12 +38,19 @@ class IndividualQuestion extends React.Component {
 
   // click functions to update the counts of helpfulness
   onClick() {
-    // if (this.state.cnt === 1) {
-    //   alert('You have already marked this questions helfpful');
-    // } else {
     const count = this.state.helpfulness;
-    this.setState({ helpfulness: count + 1 });
-    this.setState({ cnt: 1 });
+
+    if (this.state.hasVoted === false) {
+      console.log('invoking this');
+      this.setState({ helpfulness: count + 1 });
+      this.setState({ hasVoted: true });
+    }
+
+    if (this.state.hasVoted === true) {
+      this.setState({ helpfulness: count - 1 });
+      this.setState({ hasVoted: false });
+    }
+
     // send a put
     axios.put('/qa/questions/:question_id/helpful', { question_id: this.props.question.question_id })
       .then(() => { console.log('updating the record'); })
@@ -98,9 +106,9 @@ class IndividualQuestion extends React.Component {
             {' '}
             Helpful?
             {' '}
-            {this.state.cnt===1
+            {this.state.hasVoted === true
               ? (
-                <span className="helpful-yes">
+                <span className="helpful-yes" onClick={this.onClick}>
                   Voted(
                   {this.state.helpfulness}
                   )
