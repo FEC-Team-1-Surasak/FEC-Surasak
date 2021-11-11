@@ -28,8 +28,7 @@ class Question extends React.Component {
 
     this.state = {
       // will change id to this.props.id once the component is ready to be deployed
-      // id: this.props.id,
-      id: 37335,
+      id: this.props.id,
       list: [],
       len: 2,
       filteredList: [],
