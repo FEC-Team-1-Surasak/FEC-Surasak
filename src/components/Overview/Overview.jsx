@@ -15,6 +15,7 @@ import AddToCart from './AddToCart.jsx';
 import CarouselDefaultView from './Carousel/CarouselDefaultView.jsx';
 import StarRatingStatic from '../Ratings_Reviews/subcomponents/StarRatingStatic.jsx';
 import ExpandedView from './Carousel/ExpandedView.jsx';
+import ReviewsList from '../Ratings_Reviews/subcomponents/ReviewsList.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -164,7 +165,7 @@ class Overview extends React.Component {
       <div className="overview-grid">
         <div className="product-info">
           <div className="star-rating"><StarRatingStatic rating={this.state.avgRating/5} /></div>
-          <div className="read-reviews"><a>Read all reviews</a></div>
+          <div className="read-reviews" onClick={() => document.getElementsByClassName('reviews-list-container')[0].scrollIntoView() }>Read all reviews</div>
           <br />
           <span className="category">{this.state.category.toUpperCase()}</span>
           <h1 className="product-name">{this.state.product.name}</h1>
