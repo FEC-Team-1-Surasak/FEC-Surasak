@@ -58,7 +58,8 @@ app.put('/qa/questions/:question_id/helpful', (req, res) => {
 app.get('/qa/questions/:question_id/answers', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.query.question_id}/answers?count=${req.query.count}`, options)
     .then((response) => {
-      res.status(201).json(response.data);
+      console.log(response.data);
+      res.status(201).send(response.data);
     })
     .catch((err) => {
       console.log('err');
@@ -123,6 +124,7 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
     body: req.body.body,
     name: req.body.name,
     email: req.body.email,
+    photos: req.body.photo,
   }, options)
     .then(
       (response) => { res.status(201).send('CREATE'); },
@@ -153,6 +155,7 @@ app.get('/reviews/:product_id/:filter', (req, res) => {
     });
 });
 
+// post request handler for interactions
 app.post('/interactions', (req, res) => {
   console.log('request is', req.body);
   data = {

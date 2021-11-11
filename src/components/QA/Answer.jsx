@@ -65,15 +65,20 @@ class Answer extends React.Component {
     }
     return (
       <div className="answer-list">
-        <div>
-          {/* redner up to 2 answers */}
+        <span className="answer-title">Answer:</span>
+        <div className="answer-sublist">
           {this.state.list.slice(0, this.state.len).map((answer) => (
-            <div>
-              <IndividualAnswer answer={answer} />
+            <div className="individual-anaswer">
+              <IndividualAnswer
+                question={this.props.question}
+                answer={answer}
+                key={answer.answer_id}
+              />
             </div>
           ))}
+          {(this.state.list.length > 2) ? <div className="add-answer" onClick={this.getMoreAnswers}><u>{this.state.loading}</u></div> : ''}
         </div>
-        {(this.state.list.length > 2) ? <div className="add-answer" onClick={this.getMoreAnswers}><u>{this.state.loading}</u></div> : ''}
+        {/* {(this.state.list.length > 2) ? <div className="add-answer" onClick={this.getMoreAnswers}><u>{this.state.loading}</u></div> : ''} */}
       </div>
     );
   }

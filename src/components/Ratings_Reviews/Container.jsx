@@ -75,8 +75,10 @@ export default class Container extends React.Component {
     const { reviewData, metaData, filteredReviews } = this.state;
     const { productId } = this.props;
 
+
+
     return (
-      <>
+      <div id="reveiw" onClick={this.props.onclick.bind(this)}>
         <div className="container-title">Ratings &amp; Reviews</div>
         <hr />
         <div className="reviews-grid">
@@ -94,7 +96,7 @@ export default class Container extends React.Component {
             />
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }

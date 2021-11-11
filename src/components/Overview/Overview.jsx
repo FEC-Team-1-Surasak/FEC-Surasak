@@ -164,6 +164,8 @@ class Overview extends React.Component {
     }
 
     return (
+
+      <div id="overview" className="overview-container" onClick={this.props.onclick}>
       <div className="overview-grid">
         <Header />
         <AnnouncementBanner />

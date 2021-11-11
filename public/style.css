@@ -1,4 +1,3 @@
-
 body {
   min-width: 800px;
   max-width: 1280px;
@@ -15,62 +14,234 @@ Question Component!
 */
 
 div.answer-list{
-  max-height: 250px;
+  max-height: 300px;
   overflow-y:auto;
 }
 
-div.question-list{
-  max-height: 500px;
-  width: 80%;
-  overflow-y:auto;
-  display:block;
+div.question,.individual-anaswer{
+  margin-bottom: 10px;
+}
+
+div.question-body{
+  display: grid;
+  /* grid-template-columns:7% 30% 6% 6% 10%; */
+  grid-template-columns: repeat(10, 10vw);
+  grid-auto-columns: minmax(10px, auto);
+  /* overflow-y:auto; */
+  overflow-wrap: break-word;
+
 
 }
 
+.title{
+  grid-column:2;
+  /* justify-self: start; */
+
+}
+
+.title-body{
+  grid-column:3/span 4;
+}
+.helpful{
+  grid-column: 7/ span 2;
+}
+.helpful-yes{
+  /* grid-column: 8; */
+  color: #2200CC;
+  background-color: transparent;
+  cursor: pointer;
+
+}
+.add-answer{
+  grid-column: 9;
+  color:#2200CC;
+  background-color: transparent;
+  cursor: pointer;
+
+}
+.question-body,.answer{
+  margin-bottom: 10px;
+}
+
+
+.answer-list{
+  display: grid;
+  /* grid-template-columns: 7% 50%; */
+  grid-template-columns: repeat(10, 10vw);
+  grid-auto-columns: minmax(10px, auto);
+}
+
+.answer-title{
+  grid-column: 2;
+  overflow-wrap: break-word;
+}
+.answer-sublist{
+  grid-column: 3/span 4;
+}
+
+.answer-helpful-yes,.report{
+  color: #2200CC;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.load-questions{
+  margin-left:20vw;
+  width: 25vw;
+}
+.add-question{
+  width: 25vw;
+}
+.page-title{
+  margin-left:10vw;
+}
 mark{
   background-color: yellow;
 }
 
-/* div.modal{
+div.modal{
   position:fixed;
-  width:90%;
-  height:90%;
-  z-index:1;
-  display: block;
+  width:100%;
+  height:100%;
+  display: grid;
+  grid-template-columns: 18% 60% 20%;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   margin: auto;
-  background-color: white;
   overflow: auto;
-} */
+  background-color:lightslategrey;
 
-div.box{
-  /* left: 50%;
-  right: 50%;
-  top: 50%;
-  bottom: 50%; */
-  margin: auto;
-  background-color:white;
 }
 
-/* div.select-photo{
+
+
+
+div.box{
+  /* height:80%;
+  width:50%; */
+  /* margin: auto;
+  margin-bottom: 50px; */
+  background-color:white;
+  box-shadow: 5px 5px 8px #888888;
+  grid-column: 2;
+  overflow: auto;
+}
+.box-title,.box-body,.your-question, .your-email,.your-nickname, button,.your-photo {
+  margin-left:10px;
+}
+.body-input {
+  width: 50%;
+  height:100px;
+  text-align: top;
+}
+.nickname-input,.email-input{
+  width: 30%;
+}
+.your-photo {
+  margin-bottom: 15px;
+}
+
+div.expand-answer-photo{
   position:fixed;
-  width:90%;
-  height:90%;
-  z-index:1;
-  display: block;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  background-color: cornflowerblue;
-} */
-/* h2,h3{
-  text-align: center;
-} */
+  top: 10px;
+  left: 50px;
+  right: 50px;
+  bottom: 10px;
+  display: grid;
+  grid-template-columns: 5% 20% 70% 5% ;
+  grid-template-rows: 15% 75% 10%;
+  background-color:whitesmoke;
+  padding:30px;
+  margin:30px;
+  justify-content: center;
+}
+
+
+
+div.expand-photo{
+  width:50vw;
+  position:fixed;
+  grid-column: 1;
+
+}
+
+div.expand-photo-question{
+  position:relative;
+  text-align: left;
+  justify-content: right;
+  left:500px;
+
+}
+
+div.expand-photo-answer {
+  margin-top: 10px;
+}
+
+div.arrow-L{
+  position:absolute;
+  color: #FFFAFA;
+  font-weight: bold;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-size: 30px;
+  /* float:left; */
+  top:245px;
+  /* width: 25px; */
+  z-index:2;
+}
+div.arrow-R{
+  position:absolute;
+  color: #FFFAFA;
+  font-weight: bold;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-size: 30px;
+  float:right;
+  top:245px;
+  left:410px;
+  z-index:2;
+}
+
+div.expand-answer-thumbnail {
+  grid-row:1;
+  grid-column:1/span 3;
+}
+
+div.expand-view-section{
+  grid-row: 2;
+  grid-column: 1 /span 2;
+  overflow-wrap: break-word;
+
+}
+.expand-photo-answe {
+  overflow-wrap: break-word;
+  grid-auto-columns: minmax(10px, auto);
+}
+
+.search-bar{
+padding:5px;
+/* width:650px; */
+margin-left:10vw;
+width: 66vw;
+/* height:20%; */
+margin-bottom:15px;
+/* position:relative; */
+}
+
+.date{
+  margin-left:5px;
+}
+.user-name{
+  font-size:0.9em;
+  margin-bottom: 10px;
+}
+
+
+
+
+
+
+
 
 
 /*

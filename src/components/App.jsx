@@ -43,15 +43,19 @@ export default class App extends React.Component {
       return <div> </div>;
     }
     return (
-      <>
-        <Overview id={this.state.id} />
-        <br />
-        <hr />
-        <Questions name={this.state.name} id={this.state.id} />
-        <br />
-        <hr />
-        <Container productId={this.state.id} />
-      </>
+
+      <div>
+        <EventTracking>
+          <Overview id={this.state.id} />
+          <br />
+          <hr />
+          <Questions name={this.state.name} id={this.state.id} />
+          <br />
+          <hr />
+          <Container productId={this.state.id} />
+        </EventTracking>
+      </div>
+
     );
   }
 }

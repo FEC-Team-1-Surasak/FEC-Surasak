@@ -28,7 +28,8 @@ class Question extends React.Component {
 
     this.state = {
       // will change id to this.props.id once the component is ready to be deployed
-      id: this.props.id,
+      // id: this.props.id,
+      id: 37335,
       list: [],
       len: 2,
       filteredList: [],
@@ -82,7 +83,6 @@ class Question extends React.Component {
 
   showModel() {
     this.setState({ modal: true });
-    console.log('showing the modal')
   }
 
   closeModal() {
@@ -91,14 +91,31 @@ class Question extends React.Component {
 
   render() {
     return (
-      <div className="overall-question" onClick={this.props.onclick}>
-        <input placeholder="Have a question? Search for answers…" onChange={this.onChange} />
+      <div id="question-and-answer" className="overall-question"  onClick={this.props.onclick.bind(this)}>
+        <h3 className="page-title">Customer Questions & Answers</h3>
+        <input className="search-bar" placeholder="Have a question? Search for answers…" onChange={this.onChange} />
         <div className="question-list">
           {this.state.filteredList.slice(0, this.state.len)
             .map((question) => <IndividualQuestion productname={this.props.name} question={question} key={question.question_id} term={this.state.term} />)}
         </div>
-        {(this.state.list.length > 2 && this.state.len < this.state.list.length) ? <button className="load-quetsions" onClick={this.getMoreQuestions} type="submit"> MORE ANSWERED QUESTIONS</button> : ''}
-        <button onClick={this.showModel}>ADD A QUESTION +</button>
+        <div className="question-button">
+
+          {(this.state.list.length > 2 && this.state.len < this.state.list.length)
+            ? (
+              <button
+                className="load-questions"
+                onClick={this.getMoreQuestions}
+                type="submit"
+              >
+                {' '}
+                MORE ANSWERED QUESTIONS
+
+              </button>
+            ) : ''}
+          {' '}
+          <button className="add-question" onClick={this.showModel}>ADD A QUESTION +</button>
+
+        </div>
         {this.state.modal ? <Modal close={this.closeModal} productname={this.props.name} productid={this.props.id} /> : null}
 
       </div>

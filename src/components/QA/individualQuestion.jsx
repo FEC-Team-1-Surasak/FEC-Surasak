@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/no-danger */
 /* eslint-disable space-infix-ops */
@@ -27,6 +28,7 @@ class IndividualQuestion extends React.Component {
       cnt: 0,
       answers: [],
       modal: false,
+      hasVoted: false,
     };
     this.onClick = this.onClick.bind(this);
     this.highlight = this.highlight.bind(this);
@@ -36,41 +38,45 @@ class IndividualQuestion extends React.Component {
 
   // click functions to update the counts of helpfulness
   onClick() {
-    if (this.state.cnt === 1) {
-      alert('You have already marked this questions helfpful');
-    } else {
-      const count = this.state.helpfulness;
+    const count = this.state.helpfulness;
+
+    if (this.state.hasVoted === false) {
+      console.log('invoking this');
       this.setState({ helpfulness: count + 1 });
-      this.setState({ cnt: 1 });
-      // send a put
-      axios.put('/qa/questions/:question_id/helpful', { question_id: this.props.question.question_id })
-        .then(() => { console.log('updating the record'); })
-        .catch((err) => { console.log('Error'); });
+      this.setState({ hasVoted: true });
     }
+
+    if (this.state.hasVoted === true) {
+      this.setState({ helpfulness: count - 1 });
+      this.setState({ hasVoted: false });
+    }
+
+    // send a put
+    axios.put('/qa/questions/:question_id/helpful', { question_id: this.props.question.question_id })
+      .then(() => { console.log('updating the record'); })
+      .catch((err) => { console.log('Error'); });
+    // }
+  }
+
+  findandReplace(string, term) {
+    const index = string.toLowerCase().indexOf(term.toLowerCase());
+    if (index !== -1) {
+      const regex = new RegExp(term, 'gi');
+      const text = string.replace(regex, '<mark class="highlight">$&</mark>');
+      return <span dangerouslySetInnerHTML={{ __html: `${text} ` }} />;
+    }
+    return string;
   }
 
   // highklight the search term
   highlight(term) {
     if (term !== '') {
       return (
-        <span>
-          {this.props.question.question_body.split(' ')
-            .map((item) => {
-              const index = item.toLowerCase().indexOf(term.toLowerCase());
-              if (index !== -1) {
-                const regex = new RegExp(term, 'gi');
-                const text = item.replace(regex, '<mark class="highlight">$&</mark>');
-
-                return (
-                  <span dangerouslySetInnerHTML={{ __html: `${text} ` }} />
-                );
-              }
-              return <span>{`${item}\xa0`}</span>;
-            })}
-        </span>
+        <div>
+          {this.findandReplace(this.props.question.question_body, term)}
+        </div>
       );
     }
-
     return (
       <span>
         {this.props.question.question_body}
@@ -91,17 +97,36 @@ class IndividualQuestion extends React.Component {
     return (
       <div className="question">
         <div className="question-body">
-          <b> Q:</b>
-          {this.highlight(this.props.term)}
-          <span>Helpful?</span>
-          <span onClick={this.onClick}>
-            Yes(
-            {this.state.helpfulness}
-            )
+          <span className="title">
+            <b> Question:</b>
           </span>
-          <span onClick={this.showModal}>
-            <u>Add Answer</u>
+          <span className="title-body"><b>{this.highlight(this.props.term)}</b></span>
+          {' '}
+          <div className="helpful">
+            {' '}
+            Helpful?
+            {' '}
+            {this.state.hasVoted === true
+              ? (
+                <span className="helpful-yes" onClick={this.onClick}>
+                  Voted(
+                  {this.state.helpfulness}
+                  )
+                </span>
 
+              )
+              : (
+                <span className="helpful-yes" onClick={this.onClick}>
+                  Yes(
+                  {this.state.helpfulness}
+                  )
+                </span>
+
+              )}
+          </div>
+
+          <span className="add-answer" onClick={this.showModal}>
+            <u>Add Answer</u>
           </span>
           {this.state.modal ? (
             <AnswerModal
@@ -113,7 +138,11 @@ class IndividualQuestion extends React.Component {
           ):null}
         </div>
         <div>
-          <Answer question_id={this.props.question.question_id} />
+          <Answer
+            question={this.props.question.question_body}
+            question_id={this.props.question.question_id}
+            key={this.props.question.question_id}
+          />
         </div>
       </div>
 
