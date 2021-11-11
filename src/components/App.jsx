@@ -1,13 +1,20 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/extensions */
 /* eslint-disable no-console */
 import React from 'react';
 import axios from 'axios';
+import Overview from './Overview/Overview.jsx';
+import Container from './Ratings_Reviews/Container.jsx';
+import Questions from './QA/questions.jsx';
+import EventTracking from './EventTracking.jsx';
 
 export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      // eslint-disable-next-line react/no-unused-state
       id: null,
+      name: null,
     };
     this.getRandomProduct = this.getRandomProduct.bind(this);
   }
@@ -22,8 +29,8 @@ export default class App extends React.Component {
         const number = products.data.length;
         const itemNumber = Math.floor(Math.random() * (number));
         this.setState({
-          // eslint-disable-next-line react/no-unused-state
           id: products.data[itemNumber].id,
+          name: products.data[itemNumber].name,
         });
       })
       .catch((err) => {
@@ -32,6 +39,23 @@ export default class App extends React.Component {
   }
 
   render() {
-    return <div>Hello, World</div>;
+    if (this.state.id === null) {
+      return <div> </div>;
+    }
+    return (
+
+      <div>
+        <EventTracking>
+          <Overview id={this.state.id} />
+          <br />
+          <hr />
+          <Questions name={this.state.name} id={this.state.id} />
+          <br />
+          <hr />
+          <Container productId={this.state.id} />
+        </EventTracking>
+      </div>
+
+    );
   }
 }
