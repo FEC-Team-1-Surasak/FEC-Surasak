@@ -63,7 +63,7 @@ class Modal extends React.Component {
       })
         .then(() => {
           console.log('CREATE IT');
-          alert('Thanks for submitting your answer!');
+          alert('Thanks for submitting your question!');
           this.props.close();
         })
         .catch((err) => { console.log(err); });
