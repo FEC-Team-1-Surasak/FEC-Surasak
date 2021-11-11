@@ -1,14 +1,13 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
 import React from 'react';
 
 const ExpandView = (props) => (
   <div className="expandlist">
-    <div className="expand-photo" role="listbox">
-    <img src={props.url} alt="" onClick={props.click} width="400" height="350"/>
-    </div>
-    <div className="expand-photo-question">
-      <b>Question:{props.question}</b>
-      {' '}
-      <div className="expand-photo-answer">Answer:{props.answer}</div>
+    <div className="expand-photo">
+      <img src={props.url} alt="" onClick={props.click} />
     </div>
   </div>
 );

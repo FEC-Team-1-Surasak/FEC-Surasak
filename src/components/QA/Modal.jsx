@@ -91,9 +91,9 @@ class Modal extends React.Component {
             <Nickname nameChange={this.nameChange} />
             <Email emailChange={this.emailChange} />
             <div className="button">
-              <button onClick={this.props.close}>Close</button>
+              <button className="btn" onClick={this.props.close}>Close</button>
               {' '}
-              <button onClick={this.submit}>Submit</button>
+              <button className="btn" onClick={this.submit}>Submit</button>
             </div>
           </div>
         </div>
