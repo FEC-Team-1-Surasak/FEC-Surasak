@@ -155,6 +155,7 @@ app.get('/reviews/:product_id/:filter', (req, res) => {
     });
 });
 
+// post request handler for interactions
 app.post('/interactions', (req, res) => {
   console.log('request is', req.body);
   data = {
