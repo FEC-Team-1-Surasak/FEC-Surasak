@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-escape */
+/* eslint-disable import/extensions */
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
 /* eslint-disable no-useless-constructor */
@@ -76,24 +78,25 @@ class Modal extends React.Component {
 
   render() {
     return (
-      <div className="modal">
-        <div className="box">
-          <h2 className="box-title">Ask Your Question</h2>
-          <h3 className="box-title">
-            About the
-            {' '}
-            {this.props.productname}
-          </h3>
-          <Body label="question" labelChange={this.labelChange} />
-          <Nickname nameChange={this.nameChange} />
-          <Email emailChange={this.emailChange} />
-          <div className="button">
-            <button onClick={this.props.close}>Close</button>
-            {' '}
-            <button onClick={this.submit}>Submit</button>
+      <div className="modal-bg" style={{ backgroundColor: 'rgba(0,0,0, 0.85)' }} >
+        <div className="modal-shroud">
+          <div className="question-form">
+            <h2 className="box-title">Ask Your Question</h2>
+            <h3 className="box-title">
+              About the
+              {' '}
+              {this.props.productname}
+            </h3>
+            <Body label="question" labelChange={this.labelChange} />
+            <Nickname nameChange={this.nameChange} />
+            <Email emailChange={this.emailChange} />
+            <div className="button">
+              <button onClick={this.props.close}>Close</button>
+              {' '}
+              <button onClick={this.submit}>Submit</button>
+            </div>
           </div>
         </div>
-
       </div>
     );
   }

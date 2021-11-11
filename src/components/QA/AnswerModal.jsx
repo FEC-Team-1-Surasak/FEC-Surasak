@@ -120,37 +120,38 @@ class AnswerModal extends React.Component {
 
   render() {
     return (
-      <div className="modal">
-        <div className="box">
-          <h2 className="box-title">Submit your Answer</h2>
-          <h3 className="box-title">
-            {this.props.name}
-            :
-            {this.props.question.question_body}
-          </h3>
-          <Body label="answer" labelChange={this.answerChange} />
-          <Nickname nameChange={this.nameChange} />
-          <Email emailChange={this.emailChange} />
+      <div className="modal-bg" style={{ backgroundColor: 'rgba(0,0,0, 0.85)' }} >
+        <div className="modal-shroud">
+          <div className="question-form">
+            <h2 className="box-title">Submit your Answer</h2>
+            <h3 className="box-title">
+              {this.props.name}
+              :
+              {this.props.question.question_body}
+            </h3>
+            <Body label="answer" labelChange={this.answerChange} />
+            <Nickname nameChange={this.nameChange} />
+            <Email emailChange={this.emailChange} />
 
-          <div className="your-photo">
-            <h3>Upload your photo</h3>
-            <div className="add-photo">
-              <div className="select-photo">
+            <div className="your-photo">
+              <h3>Upload your photo</h3>
+              <div className="add-photo">
+                <div className="select-photo">
 
-                <input type="file" accept="image/*" onChange={this.add} />
-                <PhotoSection photolist={this.state.preview} delete={this.delete} />
+                  <input type="file" accept="image/*" onChange={this.add} />
+                  <PhotoSection photolist={this.state.preview} delete={this.delete} />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div>{' '}</div>
-          <div className="button">
-            <button onClick={this.props.close}>Close</button>
-            <button onClick={this.submit}>Submit</button>
+            <div>{' '}</div>
+            <div className="button">
+              <button onClick={this.props.close}>Close</button>
+              <button onClick={this.submit}>Submit</button>
+            </div>
           </div>
         </div>
       </div>
-
     );
   }
 }
