@@ -291,6 +291,7 @@ Overview - Main Component!
 }
 
 .product-slogan {
+  font-size: 1.2em;
   grid-row: 1;
   grid-column: 1;
   position: relative;
@@ -301,6 +302,7 @@ Overview - Main Component!
   grid-column: 1;
   position: relative;
   margin-right: -1%;
+  margin-top: 5%;
 }
 
 .product-description:after {
@@ -319,7 +321,7 @@ Overview - Main Component!
   list-style: none;
   position: relative;
   margin-left: -10%;
-  top: 1%;
+  top: 5%;
 }
 
 li::before {
