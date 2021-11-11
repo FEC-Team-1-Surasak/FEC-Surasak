@@ -1,3 +1,7 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable react/sort-comp */
+/* eslint-disable class-methods-use-this */
+/* eslint-disable no-param-reassign */
 /* eslint-disable react/no-unused-state */
 /* eslint-disable no-console */
 /* eslint-disable react/destructuring-assignment */
@@ -15,31 +19,42 @@ class EventTracking extends React.Component {
       widget: '',
       time: '',
     };
+    this.onclick = this.onclick.bind(this);
   }
 
   onclick(e) {
-    console.log(e.target.innerHTML);
-    //
-    console.log(this.props.children)
+    let curr = e.target;
+    let id = '';
+    while (curr.parentNode !== null && curr.parentNode.id !== 'root') {
+      curr = curr.parentNode;
+      id = curr.id;
+      if (id !== '') {
+        break;
+      }
+    }
+
     this.setState({
       element: e.target.className,
-      time: new Date().toString(),
+      widget: id,
+      time: new Date(),
+
+    }, () => {
+      axios.post('/interactions', {
+        element: this.state.element,
+        widget: this.state.widget,
+        time: this.state.time,
+      })
+        .then(() => { console.log('POST IT'); })
+        .catch((err) => { console.log(err); });
     });
-    axios.post('/interactions', {
-      element: this.state.element,
-      widget: this.props.children.name,
-      time: this.state.time
-    })
-      .then(() => { console.log('POST IT'); })
-      .catch((err) => { console.log(err); });
   }
 
   render() {
     return (
-      <div>
+      <>
         {React.Children.map(this.props.children,
-          (child) => React.cloneElement(child, {onclick: this.onclick.bind(this)}))}
-      </div>
+          (child) => React.cloneElement(child, { onclick: this.onclick.bind(this) }))}
+      </>
     );
   }
 }
