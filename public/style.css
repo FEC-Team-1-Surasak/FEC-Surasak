@@ -129,36 +129,231 @@ Overview - Main Component!
 ---------------------------------------------------
 */
 
-/* .product-info {
-  position: absolute;
-  right: 400px;
+.overview-grid {
+  display: grid;
+  grid-template-columns: 65% 35%;
+  grid-template-rows: 8vh 4vh 65vh 23vh;
+  grid-gap: 10px;
+}
+
+/* --------------- HEADER ----------------- */
+
+.header {
+  grid-column: 1 / span 2;
+  background-color: #5F9EA0;
+}
+
+/* --------- ANNOUNCEMENT BANNER ---------- */
+
+.marquee {
+  grid-row: 2;
+  grid-column: 1 / span 2;
+  text-align: center;
+  overflow-x: hidden;
+  height: 60%;
+}
+
+.marquee span {
+  display: inline-block;
+  width: max-content;
+  padding-left: 100%;
+  will-change: transform;
+  animation: marquee 14s linear infinite;
+}
+
+.marquee span:hover {
+  animation-play-state: paused
+}
+
+@keyframes marquee {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-100%, 0); }
+}
+
+/* --------- PRODUCT INFO GRID---------- */
+
+.product-info {
+  position: relative;
+  justify-self: center;
+  height: 85%;
+  width: 80%;
+  top: 30px;
+  grid-column: 2 / 2;
+  grid-row: 3;
+
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 2% 6% auto 5% 6% auto auto;
+  grid-gap: 1em;
+}
+
+.star-and-reviews-container {
+  grid-row: 1 / 2;
+  float: left;
+}
+
+.star-rating {
+  display: inline-block;
+  transform: scale(1.2);
+  justify-self: left;
+  margin-left: 2%;
+}
+
+.read-reviews {
+  display: inline-block;
+  margin-left: 5%;
+  text-align: center;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.category {
+  grid-row: 2 / 3;
+  font-size: 1.2em;
+  margin-top: 5%;
+}
+
+.product-name {
+  grid-row: 3 / 4;
+  font-size: 2.7em;
+  margin-top: -1%;
+}
+
+.sale-price-container {
+  grid-row: 4 / 5;
+  font-size: 1.4em;
+  display: inline;
+}
+
+.sale-price-red {
+  font-size: 1em;
+  display: inline;
+}
+
+.old-price {
+  font-size: 1em;
+  display: inline;
+  margin-left: 0.5%;
+}
+
+.price {
+  grid-row: 4 / 5;
+  font-size: 1.4em;
+  display: inline;
+}
+
+.style {
+  grid-row: 5 / 6;
+  font-size: 1.3em;
+  margin-top: 1%;
+}
+
+.style-selector-container {
+  max-width: 350px;
+  grid-row: 6 / 7;
+}
+
+.add-to-cart-container {
+  grid-row: 7 / 8;
+}
+
+.select-size-prompt {
+  font-size: 1.4em;
+  color: red;
+}
+
+.size-dropdown {
+  padding-left: 1em;
+  font-size: 1.05em;
+  font-weight: 550;
+  grid-column: 1;
+  height: 3.2em;
+  width: 56%;
+  margin: 5% 5% 5% 0;
+}
+
+.qty-dropdown {
+  padding-left: 1em;
+  font-size: 1.05em;
+  font-weight: 550;
+  grid-column: 2;
+  height: 3.2em;
+  width: 32%;
+  margin: 5% 5% 5% 0;
+}
+
+.add-to-cart {
+  font-size: 1.05em;
+  font-weight: 550;
+  grid-column: 1 / span 2;
+  height: 3.2em;
+  width: 94%;
+  margin: 0 5% 5% 0;
+}
+
+/* ------ PRODUCT DESCRIPTION GRID ------- */
+
+.product-description-container {
+  padding-top: 2%;
+  grid-column: 1 / span 2;
+  grid-row: 4;
+  width: 80%;
+  justify-self: center;
+
+  display: grid;
+  grid-template-columns: 69% 31%;
+  grid-template-rows: 10% auto;
+  grid-gap: 4%;
+}
+
+.product-slogan {
+  font-size: 1.2em;
+  grid-row: 1;
+  grid-column: 1;
+  position: relative;
 }
 
 .product-description {
+  grid-row: 2;
+  grid-column: 1;
+  position: relative;
+  margin-right: -1%;
+  margin-top: 5%;
+}
+
+.product-description:after {
+  content: '';
   position: absolute;
-  bottom: 10px;
-} */
+  border-right: 1px solid black;
+  right: -2%;
+  height: 75%;
+  top: -30%;
+  text-align: center;
+}
 
 .product-features {
+  grid-row: 1 / span 2;
+  grid-column: 2;
   list-style: none;
+  position: relative;
+  margin-left: -10%;
+  top: 5%;
 }
 
 .feature-list::before {
   content: "✔️ ";
 }
 
-.style-selector-container {
-  max-width: 240px;
-}
+/* ------------ STYLE SELECTOR CONTAINER ------------ */
 
 .selected-thumbnail-container {
   position: relative;
   display: inline-block;
-  height: 42px;
+  height: 60px;
   width: 100%;
-  max-width: 42px;
-  max-height: 42px;
-  margin: 0px 14px 0px 0px;
+  max-width: 60px;
+  max-height: 60px;
+  margin: 0px 23px 0px 0px;
   border-radius: 30px;
 }
 
@@ -168,11 +363,12 @@ Overview - Main Component!
   right: 0px;
   border: 1px solid;
   border-radius: 50%;
-  width: 6px;
-  height: 6px;
-  font-size: 5px;
+  line-height: 9px;
+  width: 9px;
+  height: 9px;
+  font-size: 8.5px;
   text-align: center;
-  padding: 2px;
+  padding: 3px;
   background-color: white;
   z-index: 20;
 }
@@ -181,15 +377,15 @@ Overview - Main Component!
   position: relative;
   border-radius: 30px;
   -webkit-border-radius: 30px;
-  max-width: 42px;
-  max-height: 42px;
+  max-width: 60px;
+  max-height: 60px;
   width: 100%;
-  height: 42px;
+  height: 60px;
   object-fit: cover;
-  margin: 5px 12px 5px 0px;
+
+  margin: 5px 20px 5px 0px;
   border: 1px solid lightslategray;
 }
-
 
 /*
 ---------------------------------------------------
@@ -200,37 +396,40 @@ Overview - Carousel Component!
 */
 
 .overview-carousel-container {
+  margin-left: 2%;
+  justify-self: center;
+  justify-content: center;
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
   position: relative;
-  /* top: 100px; */
   margin: 10px;
   display: flex;
-  justify-content: center;
   border: 1px solid lightslategray;
-  height: 450px;
-  width: 550px;
+  height: 92%;
+  width: 98%;
 }
 
 .overview-carousel-arrow-R {
   position: absolute;
-  z-index: 10;
-  right: 20px;
-  top: 225px;
+  z-index: 20;
+  right: 25px;
+  top: 50%;
   color: #FFFAFA;
   font-weight: bold;
   text-shadow: black 0.1em 0.1em 0.2em;
-  font-size: 18px;
+  font-size: 24px;
   cursor: pointer;
 }
 
 .overview-carousel-arrow-L {
   position: absolute;
-  z-index: 10;
-  left: 88px;
-  top: 225px;
+  z-index: 20;
+  left: 100px;
+  top: 50%;
   color: #FFFAFA;
   font-weight: bold;
   text-shadow: black 0.1em 0.1em 0.2em;
-  font-size: 18px;
+  font-size: 24px;
   cursor: pointer;
 }
 
@@ -245,12 +444,12 @@ Overview - Carousel Component!
 
 .overview-thumbnail-list {
   z-index: 11;
-  max-width: 50px;
-  max-height: 382px;
+  max-width: 60px;
+  max-height: 432px;
   overflow-y: scroll;
   overflow-x: hidden;
-  left: 15px;
-  top: 20px;
+  left: 3%;
+  top: 5%;
   position: absolute;
   text-align: center;
   cursor: pointer;
@@ -258,9 +457,9 @@ Overview - Carousel Component!
 
 .overview-carousel-thumbnail {
   max-width: 100%;
-  max-height: 50px;
+  max-height: 60px;
   width: 100%;
-  height: 50px;
+  height: 60px;
   object-fit: cover;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -271,8 +470,8 @@ Overview - Carousel Component!
 .overview-carousel-thumbnail.selected {
   max-width: 100%;
   width: 100%;
-  height: 50px;
-  max-height: 50px;
+  height: 60px;
+  max-height: 60px;
   object-fit: cover;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -280,40 +479,85 @@ Overview - Carousel Component!
   box-shadow: 0 0 50px #ccc;
 }
 
+.expanded-view-container {
+  width:100vw;
+  height:100vh;
+  top: 0%;
+  left: 0%;
+  position: fixed;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .overview-carousel-expanded {
-  background-color: #4169E1;
-  /* background-image: url(https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80); */
-  height: 100vh;
-  width: 100wh;
-  position: relative;
-  z-index: 10;
+  background-image: url('');
   cursor: crosshair;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  max-height: 100%;
   overflow: hidden;
 }
 
-.carousel-expanded-img {
-  max-width: 100%;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
+.expanded-carousel-arrow-L {
+  position: absolute;
+  left: 5%;
+  bottom: 50%;
+  position: absolute;
+  color: #FFFAFA;
+  font-weight: bold;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-size: 35px;
+  cursor: pointer;
+  z-index: 1000;
 }
 
-.carousel-expanded-img-zoom {
-  max-width: 100%;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  transform: scale(2.5);
-  -webkit-transform: scale(2.5);
-  background-position: 0px, 0px;
-  /* transform: translateY(-50%); */
+.expanded-carousel-arrow-R {
+  position: absolute;
+  right: 5%;
+  bottom: 50%;
+  color: #FFFAFA;
+  font-weight: bold;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-size: 35px;
+  cursor: pointer;
+  z-index: 1000;
 }
 
 .close-button {
-  position: absolute;
-  right: 18px;
-  top: 18px;
+  position: fixed;
+  right: 2%;
+  top: 2%;
   z-index: 12;
+  height: 2em;
+  width: 4.3em;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.horizontal-thumbnail {
+  display: inline-block;
+  position: absolute;
+  bottom: 4%;
+  z-index: 16;
+  font-size: 20px;
+  transform: rotate(-90deg);
+  cursor: pointer;
+}
+
+.horizontal-icon {
+  text-shadow: -1px 1px 2px dimgray;
+}
+
+body {
+  width: 1280px;
+  margin: auto;
+  font: 16px "Gill Sans", sans-serif;
 }
 
 /*
