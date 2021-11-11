@@ -8,7 +8,6 @@ import axios from 'axios';
 import React from 'react';
 import ReviewsList from './subcomponents/ReviewsList.jsx';
 import RatingsContainer from './subcomponents/RatingsContainer.jsx';
-import SortDropdown from './subcomponents/SortDropdown.jsx';
 
 export default class Container extends React.Component {
   constructor(props) {
@@ -75,32 +74,26 @@ export default class Container extends React.Component {
   render() {
     const { reviewData, metaData, filteredReviews } = this.state;
     const { productId } = this.props;
-    if (Object.keys(reviewData).length === 0 || Object.keys(metaData).length === 0) {
-      return (
-        <>
-          <RatingsContainer applyFilters={this.applyRatingFilters} data={metaData} />
-          <ReviewsList
-            reviews={filteredReviews.length === 0
-              ? reviewData
-              : filteredReviews}
-            metaData={metaData}
-            productId={productId}
-          />
-        </>
-      );
-    }
+
     return (
       <>
-        <RatingsContainer applyFilters={this.applyRatingFilters} data={metaData} />
-        <br />
-        <SortDropdown getReviews={this.getReviewData} />
-        <ReviewsList
-          reviews={filteredReviews.length === 0
-            ? reviewData
-            : filteredReviews}
-          metaData={metaData}
-          productId={productId}
-        />
+        <div className="container-title">Ratings &amp; Reviews</div>
+        <hr />
+        <div className="reviews-grid">
+          <div className="rating-breakdown-grid">
+            <RatingsContainer applyFilters={this.applyRatingFilters} data={metaData} />
+          </div>
+          <div className="reveiws-list-grid">
+            <ReviewsList
+              reviews={filteredReviews.length === 0
+                ? reviewData
+                : filteredReviews}
+              metaData={metaData}
+              productId={productId}
+              getReviews={this.getReviewData}
+            />
+          </div>
+        </div>
       </>
     );
   }

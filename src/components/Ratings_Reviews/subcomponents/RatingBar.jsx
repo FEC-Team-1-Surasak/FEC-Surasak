@@ -10,7 +10,7 @@ const RatingBar = (props) => {
 
   const containerStyles = {
     height: '1em',
-    width: '80%',
+    width: '89.5%',
     backgroundColor: '#e0e0de',
     textAlign: 'left',
     display: 'inline-block',
@@ -28,8 +28,9 @@ const RatingBar = (props) => {
   return (
     <div>
       <span>
-        {`${rating}  `}
+        {`${rating} `}
         <Star color="#ffc110" />
+        <span style={{ color: rating === '1' ? 'transparent' : '#ffc110' }}>s </span>
       </span>
       <div style={containerStyles}>
         <div style={fillerStyles} />

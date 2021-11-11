@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/button-has-type */
 /* eslint-disable no-alert */
 /* eslint-disable no-console */
 /* eslint-disable react/prop-types */
@@ -33,9 +36,9 @@ export default class ReportButton extends React.Component {
   render() {
     const { reported } = this.state;
     return (
-      <button type="submit" onClick={this.reportReview}>
+      <span className="btn" onClick={this.reportReview}>
         {reported ? 'Thank you for reporting this review' : 'Report Review'}
-      </button>
+      </span>
     );
   }
 }
