@@ -20,8 +20,8 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // id: this.props.id,
-      id: 37315,
+      id: this.props.id,
+      // id: 37315,
       product: {},
       styles: [],
       currentStyle: {},
@@ -135,14 +135,14 @@ class Overview extends React.Component {
     if (this.state.isOnSale) {
       price = (
         <>
-          <span style={{ color: 'red' }}>${this.state.currentStyle.sale_price.slice(0, this.state.currentStyle.sale_price.indexOf('.'))}</span> {' '}
-          <span style={{ textDecorationLine: 'line-through', textDecorationStyle: 'solid' }}>
+          <span className="sale-price" style={{ color: 'red' }}>${this.state.currentStyle.sale_price.slice(0, this.state.currentStyle.sale_price.indexOf('.'))}</span> {' '}
+          <span className="old-price" style={{ textDecorationLine: 'line-through', textDecorationStyle: 'solid' }}>
             ${this.state.currentStyle.original_price.slice(0, this.state.currentStyle.original_price.indexOf('.'))}
           </span>
         </>
       );
     } else if (this.state.currentStyle.original_price !== undefined) {
-      price = <span>${this.state.currentStyle.original_price.slice(0, this.state.currentStyle.original_price.indexOf('.'))}</span>;
+      price = <div className="price">${this.state.currentStyle.original_price.slice(0, this.state.currentStyle.original_price.indexOf('.'))}</div>;
     }
 
     if (this.state.currentStyle === undefined) {
@@ -163,11 +163,11 @@ class Overview extends React.Component {
     return (
       <div className="overview-grid">
         <div className="product-info">
-          <StarRatingStatic rating={this.state.avgRating/5} />
-          <a>Read all reviews</a>
+          <div className="star-rating"><StarRatingStatic rating={this.state.avgRating/5} /></div>
+          <div className="read-reviews"><a>Read all reviews</a></div>
           <br />
-          <span>{this.state.category.toUpperCase()}</span>
-          <h2>{this.state.product.name}</h2>
+          <span className="category">{this.state.category.toUpperCase()}</span>
+          <h1 className="product-name">{this.state.product.name}</h1>
           {price}
           <StyleSelector
             styles={this.state.styles}
@@ -180,9 +180,7 @@ class Overview extends React.Component {
             product={this.state.product}
           />
         </div>
-        <div className="product-description">
-          <ProductDescription product={this.state.product} />
-        </div>
+        <ProductDescription product={this.state.product} />
         <CarouselDefaultView
           currentStyle={this.state.currentStyle}
           changeView={this.changeView}

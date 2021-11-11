@@ -74,7 +74,7 @@ class ExpandedView extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="expanded-view-conatiner">
         <div
           className="overview-carousel-expanded"
           ref={this.zoom}
@@ -82,22 +82,20 @@ class ExpandedView extends React.Component {
           onMouseMove={this.state.zoomed === true ? () => this.handleMouseMove() : null}
         />
 
-        {this.props.currentImgIndex === 0 ? null : <Arrows direction="left" previous={(e) => this.props.updateImgIndex(this.props.currentImgIndex - 1)} />}
+        {this.props.currentImgIndex === 0 ? null : this.state.zoomed ? null : <Arrows className="expanded-view-arrow-L" view="zoom" direction="left" previous={(e) => this.props.updateImgIndex(this.props.currentImgIndex - 1)} />}
 
-        {this.props.currentImgIndex === this.props.currentStyle.photos.length - 1 ? null : <Arrows direction="right" next={(e) => this.props.updateImgIndex(this.props.currentImgIndex + 1)} />}
+        {this.props.currentImgIndex === this.props.currentStyle.photos.length - 1 ? null : this.state.zoomed ? null : <Arrows className="expanded-view-arrow-R" view="zoom" direction="right" next={(e) => this.props.updateImgIndex(this.props.currentImgIndex + 1)} />}
 
         <button className="close-button" onClick={() => this.props.changeView('default')}>close[x]</button>
 
-        {/* <div className="horizontal-thumbnail-container"> */}
-          {!this.state.zoomed ? (
-            <HorizontalThumbnail
-              currentStyle={this.props.currentStyle}
-              currentImgIndex={this.state.currentImgIndex}
-              updateImgIndex={this.props.updateImgIndex}
-            />
-          )
-            : null}
-        {/* </div> */}
+        {!this.state.zoomed ? (
+          <HorizontalThumbnail
+            currentStyle={this.props.currentStyle}
+            currentImgIndex={this.state.currentImgIndex}
+            updateImgIndex={this.props.updateImgIndex}
+          />
+        )
+          : null}
 
       </div>
     );

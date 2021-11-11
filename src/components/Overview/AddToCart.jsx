@@ -104,10 +104,14 @@ class AddToCart extends React.Component {
     }
 
     return (
-      <>
-        <div>{this.state.selectSize ? '' : 'Please select size'}</div>
-        <select value={this.state.sku} onChange={this.handleChange}>
-          <option>{this.state.isOutOfStock ? 'OUT OF STOCK' : 'Select Size'}</option>
+      <div className="add-to-cart-container">
+        <div className="select-size-prompt">{this.state.selectSize ? '' : 'Please select size'}</div>
+        <select
+          className="size-dropdown"
+          value={this.state.sku}
+          onChange={this.handleChange}
+        >
+          <option>{this.state.isOutOfStock ? 'OUT OF STOCK' : 'SELECT SIZE'}</option>
           {Object.keys(this.props.currentStyle.skus).map((sku) => {
             const size = this.props.currentStyle.skus[sku].size;
             const qty = this.props.currentStyle.skus[sku].quantity;
@@ -118,6 +122,7 @@ class AddToCart extends React.Component {
         </select>
         {' '}
         <select
+          className="qty-dropdown"
           onChange={(e) => { this.setState({ bagQty: e.target.value }); }}
         >
           <option>{this.state.size === '' ? '-' : 1}</option>
@@ -125,11 +130,10 @@ class AddToCart extends React.Component {
             return <option value={digit}>{digit}</option>;
           })}
         </select>
-        <br />
         <div>
-          {this.state.isOutOfStock ? null : <button onClick={this.handleClick}>Add to Cart</button>}
+          {this.state.isOutOfStock ? null : <button className="add-to-cart" onClick={this.handleClick}>ADD TO BAG</button>}
         </div>
-      </>
+      </div>
     );
   }
 }
