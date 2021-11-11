@@ -113,41 +113,50 @@ class IndividualAnswer extends React.Component {
           {/* <span className="answer-title">Answer:</span> */}
           <span className="answer-title-body">{this.props.answer.body}</span>
         </div>
-        <div className="image">
+        <div className="image-list">
           {this.props.answer.photos.map((photo) => (
-            <img src={photo.url} width="100" height="50" key={photo.id} onClick={this.clickPhoto} />
+            <img className="image" src={photo.url} key={photo.id} onClick={this.clickPhoto} />
           ))}
         </div>
 
         {/* seciton to handle photo expand view */}
         {this.state.expand
           ? (
-            <div className="modal-bg" style={{ backgroundColor: 'rgba(0,0,0, 0.85)' }} >
-              <div className="modal-shroud">
-                <div className="expand-answer-photo">
+            <div className="modal-bg" style={{ backgroundColor: 'rgba(0,0,0, 0.85)' }}>
+              {/* <div className="modal-shroud"> */}
+              <div className="expand-answer-photo">
 
-                  <div className="expand-answer-thumbnail">
-                    {this.props.answer.photos.map((photo) => (
-                      <img src={photo.url} width="100" height="50" key={photo.id} onClick={this.clickThumbnail} />
-                    ))}
+                <div className="expand-answer-thumbnail">
+                  {this.props.answer.photos.map((photo) => (
+                    <img src={photo.url} width="100" height="50" key={photo.id} onClick={this.clickThumbnail} />
+                  ))}
+                </div>
+
+                <div className="expand-view-section">
+                  <div className="arrow-L" onClick={this.arrowClick}>{'<'}</div>
+                  <ExpandView
+                    question={this.props.question}
+                    answer={this.props.answer.body}
+                    url={this.state.currselect.src === undefined ? this.state.currselect.url
+                      : this.state.currselect.src}
+                    click={this.clickPhoto}
+                  />
+                  <div className="arrow-R" onClick={this.arrowClick}>{'>'}</div>
+                  <div className="expand-photo-question">
+                    <b>
+                      Question:
+                      {this.props.question}
+                    </b>
+                    {' '}
+                    <div className="expand-photo-answer">
+                      Answer:
+                      {this.props.answer.body}
+                    </div>
                   </div>
 
-                  <div className="expand-view-section">
-                    <div className="arrow-L" onClick={this.arrowClick}>{'<'}</div>
-                    <ExpandView
-                      question={this.props.question}
-                      answer={this.props.answer.body}
-                      url={this.state.currselect.src === undefined ? this.state.currselect.url
-                        : this.state.currselect.src}
-                      click={this.clickPhoto}
-                      width="300"
-                      height="350"
-                    />
-                    <div className="arrow-R" onClick={this.arrowClick}>{'>'}</div>
-
-                  </div>
                 </div>
               </div>
+              {/* </div> */}
             </div>
           )
           : null}
