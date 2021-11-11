@@ -74,7 +74,7 @@ class ExpandedView extends React.Component {
 
   render() {
     return (
-      <div className="expanded-view-conatiner">
+      <div className="expanded-view-container">
         <div
           className="overview-carousel-expanded"
           ref={this.zoom}

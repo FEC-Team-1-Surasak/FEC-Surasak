@@ -2,6 +2,7 @@
 /* eslint-disable arrow-parens */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
+// import fb from './Icons/fb.svg';
 
 function ProductDescription(props) {
   if (props.product.features === undefined) {
@@ -16,6 +17,7 @@ function ProductDescription(props) {
           return <li>{feature.value} {feature.feature}</li>;
         })}
       </ul>
+      {/* <img src={fb} /> */}
     </div>
   );
 }
