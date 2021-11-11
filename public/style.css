@@ -349,6 +349,7 @@ Overview - Main Component!
   position: relative;
   justify-self: center;
   height: 85%;
+  max-height: 680px;
   width: 80%;
   top: 30px;
   grid-column: 2 / 2;
@@ -370,12 +371,12 @@ Overview - Main Component!
   display: inline-block;
   transform: scale(1.2);
   justify-self: left;
-  margin-left: 2%;
+  margin-left: 4%;
 }
 
 .read-reviews {
   display: inline-block;
-  margin-left: 5%;
+  margin-left: -18%;
   text-align: center;
   text-decoration: underline;
   cursor: pointer;
@@ -391,6 +392,7 @@ Overview - Main Component!
   grid-row: 3 / 4;
   font-size: 2.7em;
   margin-top: -1%;
+  margin-bottom: -1%;
 }
 
 .sale-price-container {
@@ -402,6 +404,7 @@ Overview - Main Component!
 .sale-price-red {
   font-size: 1em;
   display: inline;
+  font-weight: bold;
 }
 
 .old-price {
@@ -425,7 +428,6 @@ Overview - Main Component!
 .style-selector-container {
   max-width: 350px;
   grid-row: 6 / 7;
-  /* overflow-y: auto; */
 }
 
 .add-to-cart-container {
@@ -438,30 +440,42 @@ Overview - Main Component!
 }
 
 .size-dropdown {
-  padding-left: 1em;
-  font-size: 1.05em;
+  background-color: transparent;
+  border: 1.5px solid black;
+  color: black;
+  padding-left: 0.5em;
+  font-variant: all-small-caps;
+  font-size: 1.2em;
   font-weight: 550;
   grid-column: 1;
-  height: 3.2em;
+  height: 2.8em;
   width: 56%;
-  margin: 5% 5% 5% 0;
+  margin: 3% 5% 5% 0;
 }
 
 .qty-dropdown {
-  padding-left: 1em;
-  font-size: 1.05em;
+  background-color: transparent;
+  border: 1.5px solid black;
+  color: black;
+  padding-left: 0.5em;
+  font-size: 1.2em;
+  font-variant: all-small-caps;
   font-weight: 550;
   grid-column: 2;
-  height: 3.2em;
+  height: 2.8em;
   width: 32%;
-  margin: 5% 5% 5% 0;
+  margin: 3% 5% 5% 0;
 }
 
 .add-to-cart {
-  font-size: 1.05em;
+  background-color: transparent;
+  border: 1.5px solid black;
+  color: black;
+  font-size: 1.2em;
+  font-variant: all-small-caps;
   font-weight: 550;
   grid-column: 1 / span 2;
-  height: 3.2em;
+  height: 2.8em;
   width: 94%;
   margin: 0 5% 5% 0;
 }
@@ -579,8 +593,8 @@ Overview - Carousel Component!
   position: relative;
   margin: 10px;
   display: flex;
-  border: 1px solid lightslategray;
-  height: 92%;
+  /* border: 1px solid lightslategray; */
+  height: 96%;
   width: 98%;
 }
 
@@ -610,7 +624,8 @@ Overview - Carousel Component!
 
 .overview-carousel-image {
   max-width: 100%;
-  max-height: 680px;
+  /* max-height: 680px; */
+  height: 660px;
   width: 100%;
   object-fit: cover;
   cursor: zoom-in;
