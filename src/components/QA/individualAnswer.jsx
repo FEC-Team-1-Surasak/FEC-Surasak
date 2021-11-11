@@ -38,8 +38,18 @@ class IndividualAnswer extends React.Component {
 
   // click function to mark answers helpful
   onClick() {
-    this.setState({ helpfulness: this.state.helpfulness + 1 });
-    this.setState({ hasVoted: true });
+    const count = this.state.helpfulness;
+
+    if (this.state.hasVoted === false) {
+      console.log('invoking this');
+      this.setState({ helpfulness: count + 1 });
+      this.setState({ hasVoted: true });
+    }
+
+    if (this.state.hasVoted === true) {
+      this.setState({ helpfulness: count - 1 });
+      this.setState({ hasVoted: false });
+    }
     axios.put('/qa/answers/:answer_id/helpful', { answer_id: this.props.answer.answer_id })
       .then(() => {
         console.log('UPDATED THE RECORD');
@@ -149,7 +159,7 @@ class IndividualAnswer extends React.Component {
           <span className="answer-helpful">Helpful?</span>
           {this.state.hasVoted
             ? (
-              <span className="answer-helpful">
+              <span className="answer-helpful-yes" onClick={this.onClick}>
                 {' '}
                 Voted(
                 {this.state.helpfulness}
