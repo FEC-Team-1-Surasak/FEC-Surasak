@@ -122,7 +122,7 @@ class IndividualAnswer extends React.Component {
         {/* seciton to handle photo expand view */}
         {this.state.expand
           ? (
-            <div className="modal-bg" style={{ backgroundColor: 'rgba(0,0,0, 0.85)' }} >
+            <div className="modal-bg" style={{ backgroundColor: 'rgba(0,0,0, 0.85)' }}>
               <div className="modal-shroud">
                 <div className="expand-answer-photo">
 

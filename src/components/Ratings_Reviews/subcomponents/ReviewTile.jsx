@@ -29,7 +29,7 @@ const ReviewTile = ({ review }) => (
       <br />
       {review.body}
       <br />
-      {review.photos.length !== 0 ? <ReviewPhotos photos={review.photos} /> : <></>}
+      {review.photos.length !== 0 ? <ReviewPhotos photos={review.photos} /> : null}
     </div>
     {review.recommend ? <div className="recommended-grid"> &#x2611; I recommend this product</div> : <></>}
     {review.response === null || review.response.length === 0

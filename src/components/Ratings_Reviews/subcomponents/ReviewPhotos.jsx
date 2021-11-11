@@ -37,7 +37,7 @@ class ReviewPhotos extends React.Component {
         <div className="photo-container">
           {
             photos.map((photo) => (
-              <img className="review-thumbnail" value={photo.url || photo} src={photo.url || photo} alt={photo.id || photo} key={photo.id || photo} height="80" onClick={() => { this.expandPhoto(photo.url || photo); }} />
+              <img className="review-thumbnail" value={photo.url || photo} src={photo.url || photo} alt={photo.id || photo} key={photo.id || photo} onClick={() => { this.expandPhoto(photo.url || photo); }} />
             ))
           }
         </div>

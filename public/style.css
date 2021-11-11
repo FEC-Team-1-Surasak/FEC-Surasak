@@ -946,8 +946,9 @@ Reveiw Tile Layout
   font-variant: small-caps;
 }
 
-.emoji {
-  font-size: 0.7rem;
+.review-thumbnail {
+  margin: 5px;
+  height: 80px;
 }
 
 /*
