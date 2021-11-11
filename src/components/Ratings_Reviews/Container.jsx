@@ -75,6 +75,7 @@ export default class Container extends React.Component {
   render() {
     const { reviewData, metaData, filteredReviews } = this.state;
     const { productId } = this.props;
+
     if (Object.keys(reviewData).length === 0 || Object.keys(metaData).length === 0) {
       return (
         <>
@@ -90,7 +91,7 @@ export default class Container extends React.Component {
       );
     }
     return (
-      <>
+      <div id="reveiw" onClick={this.props.onclick.bind(this)}>
         <RatingsContainer applyFilters={this.applyRatingFilters} data={metaData} />
         <br />
         <SortDropdown getReviews={this.getReviewData} />
@@ -101,7 +102,7 @@ export default class Container extends React.Component {
           metaData={metaData}
           productId={productId}
         />
-      </>
+      </div>
     );
   }
 }

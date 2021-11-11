@@ -153,7 +153,7 @@ class Overview extends React.Component {
     }
 
     return (
-      <div className="overview-container">
+      <div id="overview" className="overview-container" onClick={this.props.onclick}>
         <div className="product-info">
           <StarRatingStatic rating={this.state.avgRating/5} />
           <a>Read all reviews</a>
