@@ -136,7 +136,7 @@ export default class ReviewForm extends React.Component {
     const { body, uploadUrls, photoUrls } = this.state;
     return (
       <div style={{ backgroundColor: 'rgba(0,0,0, 0.85)' }} className="modal-bg">
-        <div className="modal-shroud" id="review-form">
+        <div className="modal-shroud review-form">
           <div className="container-title">Submit A Review</div>
           <hr />
           <form onSubmit={(e) => e.preventDefault()}>

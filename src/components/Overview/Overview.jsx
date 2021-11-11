@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable class-methods-use-this */
@@ -166,36 +167,37 @@ class Overview extends React.Component {
     return (
 
       <div id="overview" className="overview-container" onClick={this.props.onclick}>
-      <div className="overview-grid">
-        <Header />
-        <AnnouncementBanner />
-        <div className="product-info">
-          <div className="star-and-reviews-container">
-            <span className="star-rating"><StarRatingStatic rating={this.state.avgRating/5} /></span>{' '}
-            <span className="read-reviews" onClick={() => document.getElementsByClassName('reviews-list-container')[0].scrollIntoView() }>Read all reviews</span>
+        <div className="overview-grid">
+          <Header />
+          <AnnouncementBanner />
+          <div className="product-info">
+            <div className="star-and-reviews-container">
+              <span className="star-rating"><StarRatingStatic rating={this.state.avgRating / 5} /></span>{' '}
+              <span className="read-reviews" onClick={() => document.getElementsByClassName('reviews-list-container')[0].scrollIntoView() }>Read all reviews</span>
+            </div>
+            <br />
+            <span className="category">{this.state.category.toUpperCase()}</span>
+            <h1 className="product-name">{this.state.product.name}</h1>
+            {price}
+            <StyleSelector
+              styles={this.state.styles}
+              currentStyle={this.state.currentStyle}
+              updateStyle={this.updateStyle}
+            />
+            <AddToCart
+              currentStyle={this.state.currentStyle}
+              addToCart={this.addToCart}
+              product={this.state.product}
+            />
           </div>
-          <br />
-          <span className="category">{this.state.category.toUpperCase()}</span>
-          <h1 className="product-name">{this.state.product.name}</h1>
-          {price}
-          <StyleSelector
-            styles={this.state.styles}
+          <ProductDescription product={this.state.product} />
+          <CarouselDefaultView
             currentStyle={this.state.currentStyle}
-            updateStyle={this.updateStyle}
-          />
-          <AddToCart
-            currentStyle={this.state.currentStyle}
-            addToCart={this.addToCart}
-            product={this.state.product}
+            changeView={this.changeView}
+            updateImgIndex={this.updateImgIndex}
+            currentImgIndex={this.state.currentImgIndex}
           />
         </div>
-        <ProductDescription product={this.state.product} />
-        <CarouselDefaultView
-          currentStyle={this.state.currentStyle}
-          changeView={this.changeView}
-          updateImgIndex={this.updateImgIndex}
-          currentImgIndex={this.state.currentImgIndex}
-        />
       </div>
     );
   }

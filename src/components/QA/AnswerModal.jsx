@@ -11,7 +11,7 @@
 /* eslint-disable no-useless-constructor */
 import React from 'react';
 import axios from 'axios';
-import ReactFileReader from 'react-file-reader';
+// import ReactFileReader from 'react-file-reader';
 import PhotoSection from './PhotoSection.jsx';
 import Body from './Body.jsx';
 import Nickname from './Nickname.jsx';
