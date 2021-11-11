@@ -11,6 +11,7 @@
 /* eslint-disable no-useless-constructor */
 import React from 'react';
 import axios from 'axios';
+import ReactFileReader from 'react-file-reader';
 import PhotoSection from './PhotoSection.jsx';
 import Body from './Body.jsx';
 import Nickname from './Nickname.jsx';
@@ -64,6 +65,7 @@ class AnswerModal extends React.Component {
 
   // add an image to the state
   add(e) {
+    console.log('invoking')
     if (this.state.photo.length === 5) {
       alert('You can only upload up to 5 photos');
     } else {
@@ -105,6 +107,17 @@ class AnswerModal extends React.Component {
     }
   }
 
+  handleFiles(file) {
+    console.log(file.base64);
+    if (this.state.preview.length === 5) {
+      alert('You can only upload up to 5 photos');
+    } else {
+      const oldstate = this.state.preview;
+      oldstate.push(file.base64);
+      this.setState({ preview: oldstate });
+    }
+  }
+
   render() {
     return (
       <div className="modal">
@@ -123,6 +136,7 @@ class AnswerModal extends React.Component {
             <h3>Upload your photo</h3>
             <div className="add-photo">
               <div className="select-photo">
+
                 <input type="file" accept="image/*" onChange={this.add} />
                 <PhotoSection photolist={this.state.preview} delete={this.delete} />
               </div>
