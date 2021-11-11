@@ -9,12 +9,15 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import axios from 'axios';
+import Header from './Header.jsx';
+import AnnouncementBanner from './AnnouncementBanner.jsx';
 import ProductDescription from './ProductDescription.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 import CarouselDefaultView from './Carousel/CarouselDefaultView.jsx';
 import StarRatingStatic from '../Ratings_Reviews/subcomponents/StarRatingStatic.jsx';
 import ExpandedView from './Carousel/ExpandedView.jsx';
+import ReviewsList from '../Ratings_Reviews/subcomponents/ReviewsList.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -124,6 +127,7 @@ class Overview extends React.Component {
   }
 
   updateImgIndex(index) {
+    console.log('FROM DEFAULT VIEW > ', index);
     this.setState({
       currentImgIndex: index,
     });
@@ -133,15 +137,15 @@ class Overview extends React.Component {
     let price;
     if (this.state.isOnSale) {
       price = (
-        <>
-          <span style={{ color: 'red' }}>${this.state.currentStyle.sale_price.slice(0, this.state.currentStyle.sale_price.indexOf('.'))}</span> {' '}
-          <span style={{ textDecorationLine: 'line-through', textDecorationStyle: 'solid' }}>
+        <div className="sale-price-container">
+          <span className="sale-price-red" style={{ color: 'red' }}>${this.state.currentStyle.sale_price.slice(0, this.state.currentStyle.sale_price.indexOf('.'))}</span> {' '}
+          <span className="old-price" style={{ textDecorationLine: 'line-through', textDecorationStyle: 'solid' }}>
             ${this.state.currentStyle.original_price.slice(0, this.state.currentStyle.original_price.indexOf('.'))}
           </span>
-        </>
+        </div>
       );
     } else if (this.state.currentStyle.original_price !== undefined) {
-      price = <span>${this.state.currentStyle.original_price.slice(0, this.state.currentStyle.original_price.indexOf('.'))}</span>;
+      price = <div className="price">${this.state.currentStyle.original_price.slice(0, this.state.currentStyle.original_price.indexOf('.'))}</div>;
     }
 
     if (this.state.currentStyle === undefined) {
@@ -149,17 +153,30 @@ class Overview extends React.Component {
     }
 
     if (this.state.view === 'expanded') {
-      return <ExpandedView changeView={this.changeView} currentStyle={this.state.currentStyle} currentImgIndex={this.state.currentImgIndex} />;
+      return (
+        <ExpandedView
+          changeView={this.changeView}
+          currentStyle={this.state.currentStyle}
+          currentImgIndex={this.state.currentImgIndex}
+          updateImgIndex={this.updateImgIndex}
+        />
+      );
     }
 
     return (
+
       <div id="overview" className="overview-container" onClick={this.props.onclick}>
+      <div className="overview-grid">
+        <Header />
+        <AnnouncementBanner />
         <div className="product-info">
-          <StarRatingStatic rating={this.state.avgRating/5} />
-          <a>Read all reviews</a>
+          <div className="star-and-reviews-container">
+            <span className="star-rating"><StarRatingStatic rating={this.state.avgRating/5} /></span>{' '}
+            <span className="read-reviews" onClick={() => document.getElementsByClassName('reviews-list-container')[0].scrollIntoView() }>Read all reviews</span>
+          </div>
           <br />
-          <span>{this.state.category.toUpperCase()}</span>
-          <h2>{this.state.product.name}</h2>
+          <span className="category">{this.state.category.toUpperCase()}</span>
+          <h1 className="product-name">{this.state.product.name}</h1>
           {price}
           <StyleSelector
             styles={this.state.styles}
@@ -172,14 +189,12 @@ class Overview extends React.Component {
             product={this.state.product}
           />
         </div>
-        <div className="product-description">
-          <ProductDescription product={this.state.product} />
-        </div>
+        <ProductDescription product={this.state.product} />
         <CarouselDefaultView
           currentStyle={this.state.currentStyle}
           changeView={this.changeView}
-          view={this.state.view}
           updateImgIndex={this.updateImgIndex}
+          currentImgIndex={this.state.currentImgIndex}
         />
       </div>
     );

@@ -5,38 +5,39 @@ import React from 'react';
 const CharacteristicSlider = ({ characteristic, charObj }) => {
   const defaultCharacteristics = {
     Size: {
-      values: ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'],
+      values: ['Too small', 'Perfect', 'Too wide'],
     },
     Width: {
-      values: ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'],
+      values: ['Too narrow', 'Perfect', 'Too wide'],
     },
     Comfort: {
-      values: ['Uncomfortable', 'Slightly uncomfortable', 'OK', 'Comfortable', 'Perfect'],
+      values: ['Uncomfortable', 'OK', 'Perfect'],
     },
     Quality: {
-      values: ['Poor', 'Below Average', 'What I expect', 'Pretty great', 'Perfect'],
+      values: ['Poor', 'What I expect', 'Perfect'],
     },
     Length: {
-      values: ['Runs short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
+      values: ['Runs short', 'Perfect', 'Runs long'],
     },
     Fit: {
-      values: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly loose', 'Runs loose'],
+      values: ['Runs tight', 'Perfect', 'Runs loose'],
     },
   };
 
+  if (charObj.value === null) {
+    return null;
+  }
   return (
-    <div>
-      <label htmlFor={characteristic}>{characteristic}</label>
-      <input
-        className="range-slider"
-        name={characteristic}
-        value={charObj.value}
-        type="range"
-        min="1"
-        max="5"
-        step="0.1"
-        disabled
-      />
+    <div className="sliderbar-container">
+      <div>{characteristic}</div>
+      <div className="slidecontainer">
+        <input type="range" min="0" max="100" value={Math.round((((charObj.value - 1) / (4)) * 100))} className="slider" disabled />
+      </div>
+      <ul className="slider-label-container">
+        <li className="sliderbar-label-left">{defaultCharacteristics[characteristic].values[0]}</li>
+        <li className="sliderbar-label-center">{defaultCharacteristics[characteristic].values[1]}</li>
+        <li className="sliderbar-label-right">{defaultCharacteristics[characteristic].values[2]}</li>
+      </ul>
     </div>
   );
 };

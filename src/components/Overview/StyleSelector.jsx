@@ -9,7 +9,7 @@ const StyleSelector = (props) => {
   }
   return (
     <>
-      <div>{<b>STYLE > </b>}{props.currentStyle.name}</div>
+      <div className="style">{<b>STYLE > </b>}{props.currentStyle.name}</div>
       <div className='style-selector-container'>
         {props.styles.map(style => {
           return <Thumbnail style={style} updateStyle={props.updateStyle} currentStyle={props.currentStyle} />;

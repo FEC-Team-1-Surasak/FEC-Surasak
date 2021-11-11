@@ -5,14 +5,14 @@ import React from 'react';
 const Arrows = (props) => {
   if (props.direction === 'right') {
     return (
-      <div className="overview-carousel-arrow-R" onClick={props.next}>
+      <div className={props.view === 'zoom' ? "expanded-carousel-arrow-R" : "overview-carousel-arrow-R"} onClick={props.next}>
         {'>'}
       </div>
     );
   }
   if (props.direction === 'left') {
     return (
-      <div className="overview-carousel-arrow-L" onClick={props.previous}>
+      <div className={props.view === 'zoom' ? "expanded-carousel-arrow-L" : "overview-carousel-arrow-L"} onClick={props.previous}>
         {'<'}
       </div>
     );

@@ -34,20 +34,22 @@ class ReviewPhotos extends React.Component {
 
     return (
       <>
-        {expanded
-          ? (
-            <div className="modal">
-              <img src={image} alt={image} onClick={this.closePhoto} />
-            </div>
-          )
-          : null}
         <div className="photo-container">
           {
             photos.map((photo) => (
-              <img value={photo.url} src={photo.url} alt={photo.id} key={photo.id} height="100" onClick={() => { this.expandPhoto(photo.url); }} />
+              <img className="review-thumbnail" value={photo.url || photo} src={photo.url || photo} alt={photo.id || photo} key={photo.id || photo} height="80" onClick={() => { this.expandPhoto(photo.url || photo); }} />
             ))
           }
         </div>
+        {expanded
+          ? (
+            <div className="modal-bg" style={{ backgroundColor: 'rgba(0,0,0, 0.85)' }}>
+              <div className="modal-shroud">
+                <img className="modal-img" src={image} alt={image} onClick={this.closePhoto} />
+              </div>
+            </div>
+          )
+          : null}
       </>
     );
   }

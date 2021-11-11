@@ -1,47 +1,8 @@
 body {
-  width: 1280px;
+  min-width: 800px;
+  max-width: 1280px;
   margin: auto;
-  font: 16px "Gill Sans", sans-serif;
-}
-
-
-
-/*
----------------------------------------------------
-
-Star Rating Component!
-
----------------------------------------------------
-*/
-.star-radio {
-  display: none;
-}
-
-.reviews-list-container {
-  max-height:80vh;
-  width:80vw;
-  overflow-y:auto;
-}
-
-.star-container{
-  display: grid;
-  width: 5em;
-  max-height: 1em;
-  white-space: nowrap;
-}
-
-.layer1, .layer2{
-  grid-column: 1;
-  grid-row: 1;
-  display: inline-block
-}
-
-.layer1 {
-  width: 100%;
-}
-
-.layer2{
-  overflow-x: hidden;
+  font: 16px 'Optima', sans-serif;
 }
 
 /*
@@ -137,6 +98,7 @@ div.question-body{
 mark{
   background-color: yellow;
 }
+
 div.modal{
   position:fixed;
   width:100%;
@@ -152,6 +114,9 @@ div.modal{
   background-color:lightslategrey;
 
 }
+
+
+
 
 div.box{
   /* height:80%;
@@ -335,36 +300,231 @@ Overview - Main Component!
 ---------------------------------------------------
 */
 
+.overview-grid {
+  display: grid;
+  grid-template-columns: 65% 35%;
+  grid-template-rows: 8vh 4vh 65vh 23vh;
+  grid-gap: 10px;
+}
+
+/* --------------- HEADER ----------------- */
+
+.header {
+  grid-column: 1 / span 2;
+  background-color: #5F9EA0;
+}
+
+/* --------- ANNOUNCEMENT BANNER ---------- */
+
+.marquee {
+  grid-row: 2;
+  grid-column: 1 / span 2;
+  text-align: center;
+  overflow-x: hidden;
+  height: 60%;
+}
+
+.marquee span {
+  display: inline-block;
+  width: max-content;
+  padding-left: 100%;
+  will-change: transform;
+  animation: marquee 14s linear infinite;
+}
+
+.marquee span:hover {
+  animation-play-state: paused
+}
+
+@keyframes marquee {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-100%, 0); }
+}
+
+/* --------- PRODUCT INFO GRID---------- */
+
 .product-info {
-  /* position: absolute;
-  right: 400px; */
+  position: relative;
+  justify-self: center;
+  height: 85%;
+  width: 80%;
+  top: 30px;
+  grid-column: 2 / 2;
+  grid-row: 3;
+
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 2% 6% auto 5% 6% auto auto;
+  grid-gap: 1em;
 }
 
-.product-description {
-  /* position: absolute;
-  bottom: 10px; */
+.star-and-reviews-container {
+  grid-row: 1 / 2;
+  float: left;
 }
 
-.product-features {
-  list-style: none;
+.star-rating {
+  display: inline-block;
+  transform: scale(1.2);
+  justify-self: left;
+  margin-left: 2%;
 }
 
-li::before {
-  content: "✔️ ";
+.read-reviews {
+  display: inline-block;
+  margin-left: 5%;
+  text-align: center;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.category {
+  grid-row: 2 / 3;
+  font-size: 1.2em;
+  margin-top: 5%;
+}
+
+.product-name {
+  grid-row: 3 / 4;
+  font-size: 2.7em;
+  margin-top: -1%;
+}
+
+.sale-price-container {
+  grid-row: 4 / 5;
+  font-size: 1.4em;
+  display: inline;
+}
+
+.sale-price-red {
+  font-size: 1em;
+  display: inline;
+}
+
+.old-price {
+  font-size: 1em;
+  display: inline;
+  margin-left: 0.5%;
+}
+
+.price {
+  grid-row: 4 / 5;
+  font-size: 1.4em;
+  display: inline;
+}
+
+.style {
+  grid-row: 5 / 6;
+  font-size: 1.3em;
+  margin-top: 1%;
 }
 
 .style-selector-container {
-  max-width: 240px;
+  max-width: 350px;
+  grid-row: 6 / 7;
 }
+
+.add-to-cart-container {
+  grid-row: 7 / 8;
+}
+
+.select-size-prompt {
+  font-size: 1.4em;
+  color: red;
+}
+
+.size-dropdown {
+  padding-left: 1em;
+  font-size: 1.05em;
+  font-weight: 550;
+  grid-column: 1;
+  height: 3.2em;
+  width: 56%;
+  margin: 5% 5% 5% 0;
+}
+
+.qty-dropdown {
+  padding-left: 1em;
+  font-size: 1.05em;
+  font-weight: 550;
+  grid-column: 2;
+  height: 3.2em;
+  width: 32%;
+  margin: 5% 5% 5% 0;
+}
+
+.add-to-cart {
+  font-size: 1.05em;
+  font-weight: 550;
+  grid-column: 1 / span 2;
+  height: 3.2em;
+  width: 94%;
+  margin: 0 5% 5% 0;
+}
+
+/* ------ PRODUCT DESCRIPTION GRID ------- */
+
+.product-description-container {
+  padding-top: 2%;
+  grid-column: 1 / span 2;
+  grid-row: 4;
+  width: 80%;
+  justify-self: center;
+
+  display: grid;
+  grid-template-columns: 69% 31%;
+  grid-template-rows: 10% auto;
+  grid-gap: 4%;
+}
+
+.product-slogan {
+  font-size: 1.2em;
+  grid-row: 1;
+  grid-column: 1;
+  position: relative;
+}
+
+.product-description {
+  grid-row: 2;
+  grid-column: 1;
+  position: relative;
+  margin-right: -1%;
+  margin-top: 5%;
+}
+
+.product-description:after {
+  content: '';
+  position: absolute;
+  border-right: 1px solid black;
+  right: -2%;
+  height: 75%;
+  top: -30%;
+  text-align: center;
+}
+
+.product-features {
+  grid-row: 1 / span 2;
+  grid-column: 2;
+  list-style: none;
+  position: relative;
+  margin-left: -10%;
+  top: 5%;
+}
+
+.feature-list::before {
+  content: "✔️ ";
+}
+
+/* ------------ STYLE SELECTOR CONTAINER ------------ */
 
 .selected-thumbnail-container {
   position: relative;
   display: inline-block;
-  height: 42px;
+  height: 60px;
   width: 100%;
-  max-width: 42px;
-  max-height: 42px;
-  margin: 0px 14px 0px 0px;
+  max-width: 60px;
+  max-height: 60px;
+  margin: 0px 23px 0px 0px;
   border-radius: 30px;
 }
 
@@ -374,11 +534,12 @@ li::before {
   right: 0px;
   border: 1px solid;
   border-radius: 50%;
-  width: 6px;
-  height: 6px;
-  font-size: 5px;
+  line-height: 9px;
+  width: 9px;
+  height: 9px;
+  font-size: 8.5px;
   text-align: center;
-  padding: 2px;
+  padding: 3px;
   background-color: white;
   z-index: 20;
 }
@@ -387,15 +548,15 @@ li::before {
   position: relative;
   border-radius: 30px;
   -webkit-border-radius: 30px;
-  max-width: 42px;
-  max-height: 42px;
+  max-width: 60px;
+  max-height: 60px;
   width: 100%;
-  height: 42px;
+  height: 60px;
   object-fit: cover;
-  margin: 5px 12px 5px 0px;
+
+  margin: 5px 20px 5px 0px;
   border: 1px solid lightslategray;
 }
-
 
 /*
 ---------------------------------------------------
@@ -406,37 +567,40 @@ Overview - Carousel Component!
 */
 
 .overview-carousel-container {
+  margin-left: 2%;
+  justify-self: center;
+  justify-content: center;
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
   position: relative;
-  /* top: 100px; */
   margin: 10px;
   display: flex;
-  justify-content: center;
   border: 1px solid lightslategray;
-  height: 450px;
-  width: 550px;
+  height: 92%;
+  width: 98%;
 }
 
 .overview-carousel-arrow-R {
   position: absolute;
-  z-index: 10;
-  right: 20px;
-  top: 225px;
+  z-index: 20;
+  right: 25px;
+  top: 50%;
   color: #FFFAFA;
   font-weight: bold;
   text-shadow: black 0.1em 0.1em 0.2em;
-  font-size: 18px;
+  font-size: 24px;
   cursor: pointer;
 }
 
 .overview-carousel-arrow-L {
   position: absolute;
-  z-index: 10;
-  left: 88px;
-  top: 225px;
+  z-index: 20;
+  left: 100px;
+  top: 50%;
   color: #FFFAFA;
   font-weight: bold;
   text-shadow: black 0.1em 0.1em 0.2em;
-  font-size: 18px;
+  font-size: 24px;
   cursor: pointer;
 }
 
@@ -451,12 +615,12 @@ Overview - Carousel Component!
 
 .overview-thumbnail-list {
   z-index: 11;
-  max-width: 50px;
-  max-height: 382px;
+  max-width: 60px;
+  max-height: 432px;
   overflow-y: scroll;
   overflow-x: hidden;
-  left: 15px;
-  top: 20px;
+  left: 3%;
+  top: 5%;
   position: absolute;
   text-align: center;
   cursor: pointer;
@@ -464,11 +628,12 @@ Overview - Carousel Component!
 
 .overview-carousel-thumbnail {
   max-width: 100%;
-  max-height: 50px;
+  max-height: 60px;
   width: 100%;
-  height: 50px;
+  height: 60px;
   object-fit: cover;
   -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   border: 1px solid #F5F5F5;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
@@ -476,48 +641,94 @@ Overview - Carousel Component!
 .overview-carousel-thumbnail.selected {
   max-width: 100%;
   width: 100%;
-  height: 50px;
-  max-height: 50px;
+  height: 60px;
+  max-height: 60px;
   object-fit: cover;
   -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   border: 2px solid #98FB98;
   box-shadow: 0 0 50px #ccc;
 }
 
+.expanded-view-container {
+  width:100vw;
+  height:100vh;
+  top: 0%;
+  left: 0%;
+  position: fixed;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .overview-carousel-expanded {
-  background-color: #4169E1;
-  /* background-image: url(https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80); */
-  height: 100vh;
-  width: 100wh;
-  position: relative;
-  z-index: 10;
+  background-image: url('');
   cursor: crosshair;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  max-height: 100%;
   overflow: hidden;
 }
 
-.carousel-expanded-img {
-  max-width: 100%;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
+.expanded-carousel-arrow-L {
+  position: absolute;
+  left: 5%;
+  bottom: 50%;
+  position: absolute;
+  color: #FFFAFA;
+  font-weight: bold;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-size: 35px;
+  cursor: pointer;
+  z-index: 1000;
 }
 
-.carousel-expanded-img-zoom {
-  max-width: 100%;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  transform: scale(2.5);
-  -webkit-transform: scale(2.5);
-  background-position: 0px, 0px;
-  /* transform: translateY(-50%); */
+.expanded-carousel-arrow-R {
+  position: absolute;
+  right: 5%;
+  bottom: 50%;
+  color: #FFFAFA;
+  font-weight: bold;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-size: 35px;
+  cursor: pointer;
+  z-index: 1000;
 }
 
 .close-button {
-  position: absolute;
-  right: 18px;
-  top: 18px;
+  position: fixed;
+  right: 2%;
+  top: 2%;
   z-index: 12;
+  height: 2em;
+  width: 4.3em;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.horizontal-thumbnail {
+  display: inline-block;
+  position: absolute;
+  bottom: 4%;
+  z-index: 16;
+  font-size: 20px;
+  transform: rotate(-90deg);
+  cursor: pointer;
+}
+
+.horizontal-icon {
+  text-shadow: -1px 1px 2px dimgray;
+}
+
+body {
+  width: 1280px;
+  margin: auto;
+  font: 16px "Gill Sans", sans-serif;
 }
 
 /*
@@ -528,20 +739,334 @@ Characteristic Rating in Review Form Component!
 ---------------------------------------------------
 */
 
-.rating-breakdown-container{
-  width: 20%;
+.rating-breakdown-container {
+  width: 100%;
   text-align: left;
   vertical-align: middle
 };
 
 
-.range-data datalist {
-  display: flex;
-  justify-content: space-between;
-  color: red;
+/*
+---------------------------------------------------
+
+Characteristic Rating Sliders
+
+---------------------------------------------------
+*/
+
+
+.sliderbar-container {
+  display: border-box;
   width: 100%;
 }
 
-.range-slider input {
-  width: 50%;
+.slider-name {
+  margin-bottom: 0;
+}
+
+.slider-label-container {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+
+.sliderbar-label-left {
+  font-size: x-small;
+  width: 33%;
+  margin-left: 0.33%;
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: left;
+}
+
+.sliderbar-label-center {
+  font-size: x-small;
+  width: 33%;
+  margin-left: 0.33%;
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: center;
+}
+
+.sliderbar-label-right {
+  font-size: x-small;
+  width: 33%;
+  margin-left: 0.33%;
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: right;
+}
+
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0px;
+  height: 0px;
+  border-top: 16px solid rgb(165, 14, 14);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+}
+
+.slider::-moz-range-thumb {
+  width: 0px;
+  height: 0px;
+  border-top: 16px solid rgb(165, 14, 14);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+}
+
+/*
+---------------------------------------------------
+
+Reveiw Component Layout
+
+---------------------------------------------------
+*/
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: auto auto;
+  grid-gap: 20px;
+  padding-bottom: 10vh;
+  max-height: 85vh;
+}
+
+.rating-breakdown-grid {
+  grid-column: 1 / 2;
+  grid-row: 1 / span 2;
+}
+
+.reveiws-list-grid {
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 2;
+}
+
+/*
+---------------------------------------------------
+
+Reveiw Tile Layout
+
+---------------------------------------------------
+*/
+
+.tile-grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto auto auto;
+  border-bottom: 2px solid black;
+  grid-gap: 10px;
+}
+
+.star-rating-grid {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+  padding-top: 10px;
+}
+
+.review-date-grid {
+  grid-row: 1 / 2;
+  grid-column: -1 / -2;
+  text-align: right;
+  padding-top: 10px;
+  font-weight: lighter;
+  font-size: 0.75rem;
+}
+
+.review-summary-grid {
+  grid-row: 2 / 3;
+  grid-column: 1 / 4;
+  overflow-wrap: break-word;;
+}
+
+.recommended-grid {
+  grid-row: 3 / 4;
+  grid-column: 1 / 2;
+}
+
+.seller-response-grid {
+  grid-row: 4 / 5;
+  grid-column: 1 / 4;
+  background: lightgray;
+  padding: 20px;
+}
+
+.review-tile-buttons-grid {
+  grid-row: 5 / 6;
+  grid-column: 1 / 2;
+  font-size: 0.75rem;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.average-rating {
+  white-space: nowrap;
+}
+
+.sort-dropdown {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+  border-width: 0;
+  border-bottom: 1px solid black;
+  flex: 1;
+}
+
+.dropdown-arrow {
+  display:inline-block;
+  width: 0;
+  height: 0;
+  border-top: 1em solid black;
+  border-right: .6em solid transparent;
+  border-left:  .6em solid transparent;
+}
+
+.container-title {
+  display: inline-block;
+  margin-bottom: 2px;
+  padding-bottom: 0px;
+  font-size: 1.5rem;
+  font-variant: small-caps;
+}
+
+.emoji {
+  font-size: 0.7rem;
+}
+
+/*
+---------------------------------------------------
+
+Shrouded Modal, also need to set styling within the .modal-bg
+style={{ backgroundColor: 'rgba(0,0,0, 0.85)' }}
+
+---------------------------------------------------
+*/
+
+.modal-bg {
+  width:100%;
+  height:100%;
+  top: 0%;
+  left: 0%;
+  position: fixed;
+  z-index:1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.modal-shroud {
+  margin-top: 10vh;
+  width: auto;
+  max-height: 74vh;
+  overflow: auto;
+}
+
+#review-form {
+  background-color: white;
+  display: inline-block;
+  padding-left: 3vw ;
+  padding-right: 3vw;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+}
+
+.modal-img {
+  display: inline-block;
+  max-width: 95vw;
+}
+
+/*
+---------------------------------------------------
+
+Button Styling
+
+---------------------------------------------------
+*/
+
+button.btn {
+  background-color: transparent;
+  border: 2px solid black;
+  color: black;
+  padding: 0 2rem;
+  height: 3rem;
+  text-align: center;
+  font-variant: all-small-caps;
+  display: inline-block;
+  font-size: 1rem;
+  margin: 4px 2px;
+}
+
+/*
+---------------------------------------------------
+
+Star Rating Component!
+
+---------------------------------------------------
+*/
+.star-radio {
+  display: none;
+}
+
+.reviews-list-container {
+  max-height:80vh;
+  width:875px;
+  overflow-y:auto;
+}
+
+.star-container{
+  display: grid;
+  width: 10em;
+  max-height: 2em;
+  white-space: nowrap;
+}
+
+.layer1, .layer2{
+  grid-column: 1;
+  grid-row: 1;
+  display: inline-block
+}
+
+.layer1 {
+  width: 100%;
+}
+
+.layer2{
+  overflow-x: hidden;
+}
+
+/*
+---------------------------------------------------
+
+Characteristic Rating in Review Form Component!
+
+---------------------------------------------------
+*/
+
+.radio-group label {
+  display: inline-block;
+  text-align: center;
+  margin: 0 2em;
+}
+.radio-group label input[type="radio"] {
+  display: block;
+  margin: 0.5em auto;
 }

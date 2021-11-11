@@ -32,7 +32,6 @@ class EventTracking extends React.Component {
         break;
       }
     }
-
     this.setState({
       element: e.target.className,
       widget: id,
@@ -47,6 +46,7 @@ class EventTracking extends React.Component {
         .then(() => { console.log('POST IT'); })
         .catch((err) => { console.log(err); });
     });
+
   }
 
   render() {
