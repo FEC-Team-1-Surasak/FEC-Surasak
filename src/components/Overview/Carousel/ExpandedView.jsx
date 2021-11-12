@@ -88,13 +88,16 @@ class ExpandedView extends React.Component {
 
         <button className="close-button" onClick={() => this.props.changeView('default')}>close[x]</button>
 
-        {!this.state.zoomed ? (
-          <HorizontalThumbnail
+        {this.props.currentStyle.photos.length === 1
+          ? null
+          : !this.state.zoomed
+          ? (
+            <HorizontalThumbnail
             currentStyle={this.props.currentStyle}
             currentImgIndex={this.state.currentImgIndex}
             updateImgIndex={this.props.updateImgIndex}
-          />
-        )
+            />
+            )
           : null}
 
       </div>
