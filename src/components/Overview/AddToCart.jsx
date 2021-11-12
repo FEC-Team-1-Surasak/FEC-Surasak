@@ -125,7 +125,7 @@ class AddToCart extends React.Component {
           className="qty-dropdown"
           onChange={(e) => { this.setState({ bagQty: e.target.value }); }}
         >
-          <option>{this.state.size === '' ? '-' : 1}</option>
+          <option>{this.state.size === '' ? '—' : 1}</option>
           {qtyCount.map(digit => {
             return <option value={digit}>{digit}</option>;
           })}
