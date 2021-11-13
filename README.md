@@ -57,4 +57,3 @@ Set up a config.js with the following:
 - [Anna Yan]()
 - [Amitt Dosanjh]()
 - [Xiaohan Liu]()
-- 
