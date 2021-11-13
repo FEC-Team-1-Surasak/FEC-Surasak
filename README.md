@@ -18,7 +18,8 @@ Surassk is an e-commerce website that offers a wide range of products and allows
 
 
 #### Question & Answers
-![question](https://imgur.com/sKoUn29.gif)
+![question](https://user-images.githubusercontent.com/58152554/141657413-73ab38e5-41b4-4a1a-8b9c-d7ae4fd564a7.gif)
+
 
 #### Rating & Reviews
 ![R RSection](https://user-images.githubusercontent.com/67452230/141657225-5d405e80-8656-4ca3-b32d-9509c70357dd.gif)
