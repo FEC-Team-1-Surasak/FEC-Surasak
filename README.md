@@ -21,7 +21,8 @@ Surassk is an e-commerce website that offers a wide range of products and allows
 ![question](https://imgur.com/sKoUn29.gif)
 
 #### Rating & Reviews
-![RR](https://drive.google.com/file/d/19iWqJYjOehyxei9ZNcXut2jpA8CtxPfn/view?usp=sharing)
+![R RSection](https://user-images.githubusercontent.com/67452230/141657225-5d405e80-8656-4ca3-b32d-9509c70357dd.gif)
+
 
 ### 🧪 Technologies
 * Axios : Version 0.24.0,
